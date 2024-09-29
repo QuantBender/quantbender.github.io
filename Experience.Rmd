@@ -1,0 +1,47 @@
+---
+title: "Experience"
+author: "Max"
+date: "January 14, 2021"
+output:
+  distill::distill_article:
+    toc: true
+creative_commons: CC BY-SA
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## C++ Code
+
+```{r engine='Rcpp'}
+#include <Rcpp.h>
+
+// [[Rcpp::export]]
+int fibonacci(const int x) {
+    if (x == 0 || x == 1) return(x);
+    return (fibonacci(x - 1)) + fibonacci(x - 2);
+}
+```
+
+## Deployed
+
+```{r}
+fibonacci(10L)
+fibonacci(20L)
+```
+
+
+## Python code
+
+```{r}
+library(reticulate)
+```
+
+```{python}
+#Example Python code:
+print("Hello, world!")
+x = 2
+print(x)
+```
+

@@ -1,0 +1,18 @@
+---
+title: Code
+output:
+  distill::distill_article:
+    toc: true
+creative_commons: CC BY-SA
+---
+
+A lot of the following are things I do for fun or personal interest and development. Here you will find packages, code demos and more, but for my latest efforts, check me out on [GitHub](https://github.com/QuantBender).
+
+
+## Python Scripts
+
+Coming soon ...
+
+## R Scripts
+
+Coming soon ...

@@ -1,0 +1,9 @@
+---
+title: The Reader
+output:
+  distill::distill_article:
+    toc: true
+creative_commons: CC BY-SA
+---
+
+Here you'll find few articles, dashboards and projects about books I've read.

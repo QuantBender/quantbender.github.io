@@ -1,0 +1,9 @@
+---
+title: Odds/Ends
+output:
+  distill::distill_article:
+    toc: true
+creative_commons: CC BY-SA
+---
+
+Here you will find articles on miscellaneous subjects.

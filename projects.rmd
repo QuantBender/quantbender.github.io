@@ -1,0 +1,10 @@
+---
+title: Projects
+output:
+  distill::distill_article:
+    toc: true
+creative_commons: CC BY-SA
+---
+
+Here, you will find description of past projects I have worked on. 
+

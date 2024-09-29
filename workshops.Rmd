@@ -1,0 +1,9 @@
+---
+title: Workshops
+output:
+  distill::distill_article:
+    toc: true
+creative_commons: CC BY-SA
+---
+
+Here you'll find past workshop slides and content. They are roughly in order of how recently they've been given. 

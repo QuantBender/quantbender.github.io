@@ -1,0 +1,11 @@
+---
+title: Ressources
+output:
+  distill::distill_article:
+    toc: true
+creative_commons: CC BY-SA
+---
+
+This is a list of resources for myself primarily, essentially a reminder of things to check out from time to time, or links I've gone back to on more than one occasion.  
+
+
