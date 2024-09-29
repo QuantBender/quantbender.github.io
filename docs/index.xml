@@ -2,24 +2,24 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:media="http://search.yahoo.com/mrss/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:dc="http://purl.org/dc/elements/1.1/" version="2.0">
   <channel>
     <title>The Ultimate Learner</title>
-    <link>https://quantbender.github.io/blog-experiment/</link>
-    <atom:link href="https://quantbender.github.io/blog-experiment/index.xml" rel="self" type="application/rss+xml"/>
+    <link>https://quantbender.github.io/</link>
+    <atom:link href="https://quantbender.github.io/index.xml" rel="self" type="application/rss+xml"/>
     <description>Data, Science, Learning Methods
 </description>
     <image>
       <title>The Ultimate Learner</title>
-      <url>https://quantbender.github.io/blog-experiment/images/max.ico</url>
-      <link>https://quantbender.github.io/blog-experiment/</link>
+      <url>https://quantbender.github.io/images/max.ico</url>
+      <link>https://quantbender.github.io/</link>
     </image>
     <generator>Distill</generator>
     <lastBuildDate>Sat, 09 Oct 2021 00:00:00 +0000</lastBuildDate>
     <item>
       <title>Welcome to The Ultimate Learner</title>
       <dc:creator>CapitainData</dc:creator>
-      <link>https://quantbender.github.io/blog-experiment/posts/welcome</link>
+      <link>https://quantbender.github.io/posts/welcome</link>
       <description>Welcome to our new blog, The Ultimate Learner. We hope you enjoy 
 reading what we have to say!</description>
-      <guid>https://quantbender.github.io/blog-experiment/posts/welcome</guid>
+      <guid>https://quantbender.github.io/posts/welcome</guid>
       <pubDate>Sat, 09 Oct 2021 00:00:00 +0000</pubDate>
     </item>
   </channel>

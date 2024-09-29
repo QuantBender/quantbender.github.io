@@ -4,14 +4,11 @@ anchor_sections: FALSE
 ---
 
 
-<span itemscope itemtype="http://schema.org/Person">
-<figure>
-<img src="https://avatars.mds.yandex.net/i?id=e42210878d1b8fe0ac825c3e99d2ca4e-5341407-images-thumbs&n=13" alt="Star Trek Data, Captain Picard" style="display:block; margin: 0 auto; width: 40%">
-<figcation>
-<center>Source: <a href="https://www.pinterest.com/pin/278871401912165348/">pinterest</a></center>
-</figcation>
+<center>
+  <img src="images/max.jpg" alt="Alt text" style="width: 50%; border-radius: 60%;">
+</center>
 
-</figure>
+
 
 ### What I do
 
@@ -41,7 +38,7 @@ about the answers to his questions.
 ### Academic Background
 
 <span itemprop="description">
-Even though my interest is in data science generally, I started off majoring in [Economic Statistics](http://eneam.uac.bj/) as an undergraduate, and eventually obtained a certification in [Data Science](https://dit.sn/). During undergraduate school, I became interested in data science for practical reasons, eventually choosing it as a concentration. That turned out to be a good fit for me, and I've been exploring and analyzing data ever since.
+Even though my interest is in data science generally, I started off majoring in [Economic Statistics](http://eneam.uac.bj/) as an undergraduate, and eventually obtained a certification in [Data Science](https://dit.sn/). During undergraduate school, I became interested in data science for practical reasons, eventually choosing it as a concentration. That turned out to be a good fit for me, and I've been exploring and analyzing data ever since. At the moment, I am more passionate about the applications of Data in the field of finance, and the development of innovative and robust financial models.
 </span>
 
 
