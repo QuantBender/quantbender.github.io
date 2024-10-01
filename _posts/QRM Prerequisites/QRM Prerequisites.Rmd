@@ -22,6 +22,12 @@ knitr::opts_chunk$set(echo = FALSE)
 
 ```
 
+
+<figure>
+<img src="https://cloudinary.hbs.edu/hbsit/image/upload/s--WzOmNSN1--/f_auto,c_fill,h_375,w_750,/v20200101/80AEA8DCA9AD880564BBF2D6A2581F3F.jpg" alt="Quantitative and Risk Management Prerequisites" style="width:100%">
+<figcaption>Source: <a href="https://cloudinary.hbs.edu/hbsit/image/upload/s--WzOmNSN1--/f_auto,c_fill,h_375,w_750,/v20200101/80AEA8DCA9AD880564BBF2D6A2581F3F.jpg">Quantitative and Risk Management Prerequisites</a></figcaption>
+</figure>
+
 # Introduction
 
 This article is a collection of the prerequisites for quantitative and risk management study. It is a guide for students who want to pursue a career in quantitative finance, risk management, or financial engineering. The prerequisites are divided into four categories: finance, mathematics, statistics, and programming.
