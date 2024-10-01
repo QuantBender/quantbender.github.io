@@ -37,6 +37,56 @@ Finance is the study of how individuals, businesses, and governments allocate re
 - Knowledge of risk and return
 - Understanding of capital budgeting
 
+Apart from these key notions, there some principles and notions which are required to the quantification and management of risk within any endeavour (and specifically in the financial world).
+
 + **<ins>No Arbitration Opportunity (NOOA) principle</ins>**: This principle states that there is no opportunity to make a risk-free profit by exploiting price differences between two or more markets. If there is an arbitrage opportunity, it will be quickly eliminated by market participants.
 
-+ 
++ **<ins>Yield Curve</ins>**: Oxford defines it as "*a curve on a graph in which the yield of fixed-interest securities is plotted against the length of time they have to run to maturity*". So basically, a yield curve gives an idea to an investor of how much he could expect to earn if he lends his money during a certain period of time.
+
+|Types of yield curves| Long term vs short term expectations|
+|---------------------|------------------------|
+|Normal               | higher expected returns|
+|Inverted             | lower expected returns (expectation of decline in inflation) |
+|Steep                | long-term yields are rising at a faster rate than short-term yields.|
+|Flat                 | all maturities have similar yields|
+|Humped               | medium-term yields are greater than both short-term yields and long-term yields (slowing of economic groth).| 
+
+
+Yield curves are mainly influenced by **inflation**, **economic growth**, and **interest rates**.
+
++  **How Black-Scholes model is used in trading room?**
+
+This model, taking in account the time and other risk factors, is useful in estimating the theoretical value of derivatives based on different investment instruments (underlying assets in particular). It is a stochastic differential equation widely used to price European options contract because American ones could be exercises before the expiration date. The model requires five input variables: the strike price of the option, the current stock price, the time to expiration, the risk-free rate, and the volatility of the underlying stock. The model is based on the assumption that the price of the underlying asset follows a geometric Brownian motion with constant drift and volatility. The model is used in trading rooms to price options and other derivatives, to hedge risk, and to manage portfolios. The assumptions made by the model are sometimes violated in practice, leading to inaccurate pricing and hedging.
+
+This is the Black-Scholes equation:
+
+$$
+\frac{\partial V}{\partial t} + \frac{1}{2} \sigma^2 S^2 \frac{\partial^2 V}{\partial S^2} + rS \frac{\partial V}{\partial S} - rV = 0
+$$,
+
+where $V$ is the price of the option, $t$ is time, $S$ is the price of the underlying asset, $\sigma$ is the volatility of the underlying asset, and $r$ is the risk-free rate.
+
+We can write the option value as a function of the underlying asset price(S), the current time(t), the strike price(E), the date of expiry(T), the drift of the asset($\mu$), the volatility($\sigma$) of the asset, and the risk-free rate(r). 
+
+$$
+V = V(S, t; \mu, \sigma; E, T; r)
+$$
+
++ **<ins>The Black-Scholes model price is associated with the calculation of sensitivities: Delta, Vega, Gamma, Theta. How are these sensitivities used?</ins>**
+
+<figure>
+
+<img src="images/greeks.png" alt="Greeks" style="width:100%">
+
+<figcaption>Source: <a href="https://www.amazon.fr/Paul-Wilmott-Introduces-Quantitative-Finance/dp/0470319585">Paul Wilmott, Introduction to Quantitative Finance, Page 200</a></figcaption>
+
+</figure>
+
+- **Delta sensitivity** is the rate of change of the option price with respect to the price of the underlying asset. It measures the change in the option price for a one-unit change in the price of the underlying asset. It is used to hedge the option price risk by taking an opposite position in the underlying asset. 
+
+- **Vega sensitivity** is the rate of change of the option price with respect to the volatility of the underlying asset. It measures the change in the option price for a one-unit change in the volatility of the underlying asset. It is used to hedge the volatility risk by taking an opposite position in the underlying asset. It is also known as zeta and kappa.
+
+- **Gamma sensitivity** is the rate of change of the delta sensitivity with respect to the price of the underlying asset. It measures the change in the delta sensitivity for a one-unit change in the price of the underlying asset. It is used to hedge the delta sensitivity risk by taking an opposite position in the underlying asset.
+
+- **Theta sensitivity** is the rate of change of the option price with respect to time. It measures the change in the option price for a one-unit change in time. It is used to hedge the time risk by taking an opposite position in the underlying asset. It is also known as the time decay of the option price.
+
