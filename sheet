@@ -1,0 +1,41 @@
+---
+title: "Quantitative and Risk Management Prerequisites"
+description: |
+  This is an article on the prerequisites for quantitative and risk management study.
+author:
+    name: QuantBender 
+    url: https://quantbender.github.io
+    affiliation: UM6P
+    affiliation_url: http://www.um6p.ma/
+date: 10-01-2024
+output:
+  distill::distill_article:
+    self_contained: false
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+
+# Learn more about creating blogs with Distill at:
+# https://rstudio.github.io/distill/blog.html
+
+```
+
+# Introduction
+
+This article is a collection of the prerequisites for quantitative and risk management study. It is a guide for students who want to pursue a career in quantitative finance, risk management, or financial engineering. The prerequisites are divided into four categories: finance, mathematics, statistics, and programming.
+
+# Finance
+
+Finance is the study of how individuals, businesses, and governments allocate resources over time. It is the science of money management. The following are the prerequisites for studying finance:
+
+- Basic knowledge of financial markets and instruments
+- Understanding of financial statements
+- Knowledge of financial ratios
+- Understanding of the time value of money
+- Knowledge of risk and return
+- Understanding of capital budgeting
+
++ **<ins>No Arbitration Opportunity (NOOA) principle</ins>**: This principle states that there is no opportunity to make a risk-free profit by exploiting price differences between two or more markets. If there is an arbitrage opportunity, it will be quickly eliminated by market participants.
+
++ 

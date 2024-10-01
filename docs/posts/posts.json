@@ -1,19 +1,19 @@
 [
   {
-    "path": "posts/welcome/",
-    "title": "Welcome to The Ultimate Learner",
-    "description": "Welcome to our new blog, The Ultimate Learner. We hope you enjoy \nreading what we have to say!",
+    "path": "posts/QRM Prerequisites/",
+    "title": "Quantitative and Risk Management Prerequisites",
+    "description": "\"This is an article on the prerequisites for quantitative and risk management study.\"",
     "author": [
       {
-        "name": "CapitainData",
-        "url": "https://capitaindata.github.io"
+        "name": "QuantBender",
+        "url": "https://quantbender.github.io"
       }
     ],
-    "date": "2021-10-09",
+    "date": "2024-10-01",
     "categories": [],
-    "contents": "\n\n\n\n",
-    "preview": {},
-    "last_modified": "2024-09-29T14:01:57+01:00",
+    "contents": "\nIntroduction\nThis article is a collection of the prerequisites for quantitative and risk management study. It is a guide for students who want to pursue a career in quantitative finance, risk management, or financial engineering. The prerequisites are divided into four categories: finance, mathematics, statistics, and programming.\nFinance\nFinance is the study of how individuals, businesses, and governments allocate resources over time. It is the science of money management. The following are the prerequisites for studying finance:\nBasic knowledge of financial markets and instruments\nUnderstanding of financial statements\nKnowledge of financial ratios\nUnderstanding of the time value of money\nKnowledge of risk and return\nUnderstanding of capital budgeting\nNo Arbitration Opportunity (NOOA) principle: This principle states that there is no opportunity to make a risk-free profit by exploiting price differences between two or more markets. If there is an arbitrage opportunity, it will be quickly eliminated by market participants.\n\n\n\n\n",
+    "preview": "https://cloudinary.hbs.edu/hbsit/image/upload/s--WzOmNSN1--/f_auto,c_fill,h_375,w_750,/v20200101/80AEA8DCA9AD880564BBF2D6A2581F3F.jpg",
+    "last_modified": "2024-10-01T15:02:27+01:00",
     "input_file": {}
   }
 ]

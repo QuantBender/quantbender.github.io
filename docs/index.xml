@@ -12,15 +12,15 @@
       <link>https://quantbender.github.io/</link>
     </image>
     <generator>Distill</generator>
-    <lastBuildDate>Sat, 09 Oct 2021 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 01 Oct 2024 00:00:00 +0000</lastBuildDate>
     <item>
-      <title>Welcome to The Ultimate Learner</title>
-      <dc:creator>CapitainData</dc:creator>
-      <link>https://quantbender.github.io/posts/welcome</link>
-      <description>Welcome to our new blog, The Ultimate Learner. We hope you enjoy 
-reading what we have to say!</description>
-      <guid>https://quantbender.github.io/posts/welcome</guid>
-      <pubDate>Sat, 09 Oct 2021 00:00:00 +0000</pubDate>
+      <title>Quantitative and Risk Management Prerequisites</title>
+      <dc:creator>QuantBender</dc:creator>
+      <link>https://quantbender.github.io/posts/QRM Prerequisites</link>
+      <description>"This is an article on the prerequisites for quantitative and risk management study."</description>
+      <guid>https://quantbender.github.io/posts/QRM Prerequisites</guid>
+      <pubDate>Tue, 01 Oct 2024 00:00:00 +0000</pubDate>
+      <media:content url="https://cloudinary.hbs.edu/hbsit/image/upload/s--WzOmNSN1--/f_auto,c_fill,h_375,w_750,/v20200101/80AEA8DCA9AD880564BBF2D6A2581F3F.jpg" medium="image" type="image/jpeg"/>
     </item>
   </channel>
 </rss>
