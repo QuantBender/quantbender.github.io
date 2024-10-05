@@ -25,7 +25,7 @@ knitr::opts_chunk$set(echo = FALSE)
 
 <figure>
 <img src="https://cloudinary.hbs.edu/hbsit/image/upload/s--WzOmNSN1--/f_auto,c_fill,h_375,w_750,/v20200101/80AEA8DCA9AD880564BBF2D6A2581F3F.jpg" alt="Quantitative and Risk Management Prerequisites" style="width:100%">
-<figcaption>Source: <a href="https://cloudinary.hbs.edu/hbsit/image/upload/s--WzOmNSN1--/f_auto,c_fill,h_375,w_750,/v20200101/80AEA8DCA9AD880564BBF2D6A2581F3F.jpg">Quantitative and Risk Management Prerequisites</a></figcaption>
+<figcaption>Source: <a href="https://cloudinary.hbs.edu/hbsit/image/upload/s--WzOmNSN1--/f_auto,c_fill,h_375,w_750,/v20200101/80AEA8DCA9AD880564BBF2D6A2581F3F.jpg">Havard Business School Blog</a></figcaption>
 </figure>
 
 # Introduction
@@ -57,6 +57,7 @@ Apart from these key notions, there some principles and notions which are requir
 |Flat                 | all maturities have similar yields|
 |Humped               | medium-term yields are greater than both short-term yields and long-term yields (slowing of economic groth).| 
 
+- **Courbe de taux sur le marche des obligations francaises**
 
 Yield curves are mainly influenced by **inflation**, **economic growth**, and **interest rates**.
 
@@ -95,4 +96,9 @@ $$
 - **Gamma sensitivity** is the rate of change of the delta sensitivity with respect to the price of the underlying asset. It measures the change in the delta sensitivity for a one-unit change in the price of the underlying asset. It is used to hedge the delta sensitivity risk by taking an opposite position in the underlying asset.
 
 - **Theta sensitivity** is the rate of change of the option price with respect to time. It measures the change in the option price for a one-unit change in time. It is used to hedge the time risk by taking an opposite position in the underlying asset. It is also known as the time decay of the option price.
+
++ **<ins>Black & Scholes diffusion model: risk-free rate and volatility are assumed to be two constant parameters: $\frac{dS(t)}{s(t)}=rdt+\sigma dW(t)$. Can we generalize the model by assuming that $t \rightarrow r_{t}$ and $t \rightarrow \sigma_{t}$ are two deterministic functions? If so, how?</ins>**
+
+
+Yes.
 

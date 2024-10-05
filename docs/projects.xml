@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:media="http://search.yahoo.com/mrss/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:dc="http://purl.org/dc/elements/1.1/" version="2.0">
+  <channel>
+    <title>The Ultimate Learner</title>
+    <link>https://quantbender.github.io/</link>
+    <atom:link href="https://quantbender.github.io/projects.xml" rel="self" type="application/rss+xml"/>
+    <description>Data, Science, Learning Methods
+</description>
+    <image>
+      <title>The Ultimate Learner</title>
+      <url>https://quantbender.github.io/images/max.ico</url>
+      <link>https://quantbender.github.io/</link>
+    </image>
+    <generator>Distill</generator>
+    <lastBuildDate>Sat, 05 Oct 2024 00:00:00 +0000</lastBuildDate>
+    <item>
+      <title>The Binomial No-Arbitrage Pricing Model</title>
+      <dc:creator>QuantBender</dc:creator>
+      <link>https://quantbender.github.io/projects/Stochastic Calculus For Finance Exercises Solutions/The Binomial No-Arbitrage Pricing Model</link>
+      <description>This is a proposition of solutions to the exercises in the chapter 1 of the book "Stochastic Calculus for Finance I: The Binomial Asset Pricing Model" by Steven Shreve.</description>
+      <guid>https://quantbender.github.io/projects/Stochastic Calculus For Finance Exercises Solutions/The Binomial No-Arbitrage Pricing Model</guid>
+      <pubDate>Sat, 05 Oct 2024 00:00:00 +0000</pubDate>
+    </item>
+  </channel>
+</rss>
