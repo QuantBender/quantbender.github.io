@@ -64,3 +64,103 @@ From condition 1.1.2, we have $0 < d < 1+r < u$. This implies that $u-1-r > 0$ a
 Hence the condition (1.1.2) precludes arbitrage.
 
 ## Exercise 1.2
+
+Suppose in in the situation of Example 1.1.1 that the option sells for 1.20 at time zero. Consider an agent who begins with wealth $X_0=0$ and at time zero buys $\Delta_0$ shares of a stock and $\Gamma_0$ options. The numbers $\Delta_0$ and $\Gamma_0$ can be either positive or negative or zero. This leaves the agent with  a cash position of $-4\Delta_0-1.20\Gamma_0$. If this is positive, it is invested in the money market; if it is negative, it represents money borrowed from the money market. At time one, the value of the agent's portfolio of stock, option, and money market assets is 
+
+$$
+X_1=\Delta_0 S_1 +\Gamma_0 (S_1-5)^{+} -\frac{5}{4}(4\Delta_0+1.20\Gamma_0)
+$$
+
+Assume that both H and T have positive probability of occuring. Show that if there is a positive probability that $X_1$ is positive, then there is a positive probability that $X_1$ is negative. In other words, one cannot find an arbitrage when time-zero price of the option is 1.20.
+
+**Answer:**
+
+From the example, we know the following: $S_0=4$, $S_1(H)=8$, $S_1(T)=2$, $r=\frac{1}{4}$, $u=2$, $d=\frac{1}{2}$, and $X_0=0$.
+
+The value of the agent's portfolio at time one is given by for two possible states of the world $H$ and $T$:
+
+$$
+\begin{aligned}
+\begin{cases}
+X_1(H) &= \Delta_0 S_1(H) +\Gamma_0 (S_1(H)-5)^{+} -\frac{5}{4}(4\Delta_0+1.20\Gamma_0) \\
+X_1(T) &= \Delta_0 S_1(T) +\Gamma_0 (S_1(T)-5)^{+} -\frac{5}{4}(4\Delta_0+1.20\Gamma_0)
+\end{cases}\\
+&\Rightarrow
+\begin{cases}
+X_1(H) &= \Delta_0 8 +\Gamma_0 (8-5)^{+} -\frac{5}{4}(4\Delta_0+1.20\Gamma_0) \\
+X_1(T) &= \Delta_0 2 +\Gamma_0 (2-5)^{+} -\frac{5}{4}(4\Delta_0+1.20\Gamma_0)
+\end{cases}\\
+&\Rightarrow
+\begin{cases}
+X_1(H) &= 8\Delta_0 +\Gamma_0 (3) -5\Delta_0-\frac{3}{2}\Gamma_0) \\
+X_1(T) &= 2\Delta_0 +\Gamma_0 (0) -5\Delta_0-\frac{3}{2}\Gamma_0)
+\end{cases}\\
+&\Rightarrow
+\begin{cases}
+X_1(H) &= 3\Delta_0 +\frac{3}{2}\Gamma_0 \\
+X_1(T) &= -3\Delta_0 -\frac{3}{2}\Gamma_0
+\end{cases}
+\end{aligned}
+$$
+
+If there is a positive probability that $X_1$ is positive, then there is a positive probability that $X_1$ is negative. This is because if $X_1(H) > 0$ then $X_1(T) < 0$ and vice versa. This shows that if $X_1$ is strictly positive with positive probability, then $X_1$ is strictly negative with positive probability as well.
+
+Hence, one cannot find an arbitrage when the time-zero price of the option is 1.20.
+
+## Exercise 1.3
+
+In the one-period binomial model of Section 1 . 1 , suppose we want to determine the price at time zero of the derivative security $V_1=S_1$ (i.e., the derivative security pays off the stock price.) (This can be regarded as a European call with strike price K = 0 ) . What is the time-zero price $V_0$ given by the risk-neutral pricing formula (1.1.10)?
+
+**Answer:**
+
+The risk-neutral pricing formula is given by:
+
+$$
+V_0 = \frac{1}{1+r} [\tilde{p}V_1(H) + \tilde{q}V_1(T)]
+$$
+
+where $\tilde{p} = \frac{1+r-d}{u-d}$ and $\tilde{q} = \frac{u-1-r}{u-d}$.
+
+In this case, we have $V_1(H) = S_1(H) = uS_0$ and $V_1(T) = S_1(T) = dS_0$. Therefore, the time-zero price $V_0$ is given by:
+
+$$
+\begin{aligned}
+V_0 &= \frac{1}{1+r} [\tilde{p}V_1(H) + \tilde{q}V_1(T)] \\
+&= \frac{1}{1+r} [\tilde{p}uS_0 + \tilde{q}dS_0] \\
+&= \frac{1}{1+r} [\frac{1+r-d}{u-d}uS_0 + \frac{u-1-r}{u-d}dS_0] \\
+&= \frac{S_0}{1+r} [\frac{u+ur-du+ud-d-dr}{u-d}] \\
+&= \frac{S_0}{1+r} [\frac{u-d+(u-d)r}{u-d}] \\
+&= \frac{S_0}{1+r} [1+r] \\
+&= S_0
+\end{aligned}
+$$
+## Exercise 1.4.
+
+In the proof of Theorem 1.2.2, show under the induction hypothesis that $$X_{n+1}(\omega_1\omega_2...\omega_nT)=V_{n+!}(\omega_1\omega_2...\omega_nT)$$.
+
+
+**Answer:**
+
+$$
+\begin{aligned}
+X_{n+1}(T) &= \Delta_n d S_{n} + (1+r)(X_n - \Delta_n S_n)\\
+           &= (1+r)X_n + \Delta_n S_n (d - (1+r))\\
+           &= (1+r)V_n + \Delta_n S_n (d - (1+r))\quad [induction \ hypothesis]\\
+           &= (1+r)V_n + [\frac{V_{n+1}(H)-V_{n+1}(T)}{(u-d)S_{n}}] S_n (d - (1+r))\\
+           &= (1+r)V_n + [\frac{V_{n+1}(T)-V_{n+1}(H)}{u-d}] (1+r - d)\\
+           &= (1+r)V_n +\tilde{p}V_{n+1}(T) - \tilde{p}V_{n+1}(H)\\
+           &= \tilde{p}V_{n+1}(H) + \tilde{q}V_{n+1}(T) + \tilde{p}V_{n+1}(T) - \tilde{p}V_{n+1}(H)\\
+           &= [\tilde{p}+\tilde{q}]V_{n+1}(T)\\
+           &= V_{n+1}(T)
+\end{aligned}
+$$
+
+
+## Exercise 1.5
+
+In example 1.2.4, we considered an agent who sold the lookback option for $V_0=1.376$ and bought $\Delta_0=0.1733$ shares of stock at time zeroAt time one, if the stock goes up, she has a portfolio valued at $V_1(H)=2.24$. Assume that she now takes a position of $\Delta_1(H)=\frac{V_2(HH)-V_2(HT)}{S_2(HH)-S_2(HT)}$ in the stock. Show that, at time two, if the stock goes up again, she will have a portfolio valued at $V_2(HH) = 3.20$, whereas if the stock goes down, her portfolio will be worth $V_2(HT)=2.40$. Finally, under the assumption that the stock goes up in the first period and down in the second period, assume the agent takes the position $\Delta_2(HT)=\frac{V_3(HTH)-V_3(HTT)}{S_{3}(HTH)-S_3(HTT)}$ in the stock. Show that at time three, if the stock goes up, she will have a portfolio valued at $V_3(HTH)= 0 $, whereas if the stock goes down, her portfolio will be worth $V_3(HTT)=6$. In other words, she has hedged her short position in the option.
+
+
+**Answer:**
+
+
