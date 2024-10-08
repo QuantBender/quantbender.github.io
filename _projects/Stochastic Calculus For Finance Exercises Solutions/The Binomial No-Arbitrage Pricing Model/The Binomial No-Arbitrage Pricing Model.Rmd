@@ -158,9 +158,215 @@ $$
 
 ## Exercise 1.5
 
-In example 1.2.4, we considered an agent who sold the lookback option for $V_0=1.376$ and bought $\Delta_0=0.1733$ shares of stock at time zeroAt time one, if the stock goes up, she has a portfolio valued at $V_1(H)=2.24$. Assume that she now takes a position of $\Delta_1(H)=\frac{V_2(HH)-V_2(HT)}{S_2(HH)-S_2(HT)}$ in the stock. Show that, at time two, if the stock goes up again, she will have a portfolio valued at $V_2(HH) = 3.20$, whereas if the stock goes down, her portfolio will be worth $V_2(HT)=2.40$. Finally, under the assumption that the stock goes up in the first period and down in the second period, assume the agent takes the position $\Delta_2(HT)=\frac{V_3(HTH)-V_3(HTT)}{S_{3}(HTH)-S_3(HTT)}$ in the stock. Show that at time three, if the stock goes up, she will have a portfolio valued at $V_3(HTH)= 0 $, whereas if the stock goes down, her portfolio will be worth $V_3(HTT)=6$. In other words, she has hedged her short position in the option.
+In example 1.2.4, we considered an agent who sold the lookback option for $V_0=1.376$ and bought $\Delta_0=0.1733$ shares of stock at time zero. At time one, if the stock goes up, she has a portfolio valued at $V_1(H)=2.24$. Assume that she now takes a position of $\Delta_1(H)=\frac{V_2(HH)-V_2(HT)}{S_2(HH)-S_2(HT)}$ in the stock. Show that, at time two, if the stock goes up again, she will have a portfolio valued at $V_2(HH) = 3.20$, whereas if the stock goes down, her portfolio will be worth $V_2(HT)=2.40$. Finally, under the assumption that the stock goes up in the first period and down in the second period, assume the agent takes the position $\Delta_2(HT)=\frac{V_3(HTH)-V_3(HTT)}{S_{3}(HTH)-S_3(HTT)}$ in the stock. Show that at time three, if the stock goes up, she will have a portfolio valued at $V_3(HTH)= 0 $, whereas if the stock goes down, her portfolio will be worth $V_3(HTT)=6$. In other words, she has hedged her short position in the option.
+
+
+**Answer:** The exercise is almost solved in the book. We have the following data:
+
+$S_0 =4$, $u=2$, $d=\frac{1}{2}$, $r=\frac{1}{4}$, $\tilde{p}=\tilde{q}=\frac{1}{2}$, and $V_{3}=max_{0\leq n \leq 3} S_n - S_3$.
+
+THe stock price tree over the three periods is given below:
+
+```{r, include=FALSE, echo=FALSE, message=FALSE, warning=FALSE}
+genlattice <- function(X0=4, u=1.1, d=.75, N=5) {
+  X <- c()
+  X[1] <- X0
+  count <- 2
+  
+  for (i in 1:N) {
+    for (j in 0:i) {
+      X[count] <- X0 * u^(i-j) * d^j
+      count <- count + 1
+    }
+  }
+  return(X)
+}
+
+dotlattice <- function(S, labels=FALSE) {
+  shape <- ifelse(labels == TRUE, "plaintext", "point")
+  
+  cat("digraph G {", "\n", sep="")
+  cat("node[shape=",shape,"];","\n", sep="")
+  cat("rankdir=LR;","\n")
+  
+  cat("edge[arrowhead=none];","\n")
+  
+  # Create a dot node for each element in the lattice
+  for (i in 1:length(S)) {
+    cat("node", i, "[label=\"", S[i], "\"];", "\n", sep="")
+  }
+  
+  # The number of levels in a binomial lattice of length N
+  # is 
+  L <- ((sqrt(8*length(S)+1)-1)/2 - 1)
+  
+  k<-1
+  for (i in 1:L) {
+    tabs <- rep("\t",i-1)
+    j <- i
+    while(j>0) {
+      cat("node",k,"->","node",(k+i),";\n",sep="")
+      cat("node",k,"->","node",(k+i+1),";\n",sep="")
+      k <- k + 1
+      j <- j - 1
+    }
+  }
+  
+  cat("}", sep="")
+}
+
+x<-capture.output(dotlattice(genlattice(N=3, u=2, d=0.5), labels=TRUE))
+cat(x, file="lattice1.dot")
+```
+
+
+```{bash, include=FALSE, echo=FALSE, message=FALSE, warning=FALSE}
+dot -Tpng lattice1.dot -o lattice1.png
+```
+
+```{r, include=TRUE, echo=FALSE, message=FALSE, warning=FALSE}
+knitr::include_graphics("lattice1.png")
+```
+
+Determining the option value backward in time, we have:
+
+$$
+\begin{array}{ccccc}
+V_3(HHH) &= S_3(HHH) - S_3(HHH) &= 32 - 32 &= 0\\
+V_3(HHT) &= S_2(HH) - S_3(HHT) &= 16 - 8 &= 8\\
+V_3(HTH) &= S_1(H) - S_3(HTH) &= 8 - 8 &= 0\\
+V_3(HTT) &= S_1(H) - S_3(HTT) &= 8 - 2 &= 6\\
+V_3(THH) &= S_3(THH) - S_3(THH) &= 8 - 8 &= 0\\
+V_3(THT) &= S_2(TH) - S_3(THT) &= 4 - 2 &= 2\\
+V_3(TTH) &= S_0 - S_3(TTH) &= 4 - 2 &= 2\\
+V_3(TTT) &= S_0 - S_3(TTT) &= 4 - \frac{1}{2} &= \frac{7}{2}\\
+\end{array}
+$$
+
+For the other periods, we use the backward recursion formula:
+
+$$
+\begin{aligned}
+V_2(HH) &= \frac{1}{1+r}[\tilde{p}V_3(HHH) + \tilde{q}V_3(HHT)]\\
+        &= \frac{1}{1+\frac{1}{4}}[\frac{1}{2}V_3(HHH) + \frac{1}{2}V_3(HHT)]\\
+        &= \frac{1}{\frac{5}{4}}[\frac{1}{2}0 + \frac{1}{2}8]\\
+        &= \frac{4}{5} \times 4 = \frac{16}{5} = 3.2\\
+V_2(HT) &= \frac{1}{1+r}[\tilde{p}V_3(HTH) + \tilde{q}V_3(HTT)]\\
+        &= \frac{1}{1+\frac{1}{4}}[\frac{1}{2}V_3(HTH) + \frac{1}{2}V_3(HTT)]\\
+        &= \frac{1}{\frac{5}{4}}[\frac{1}{2}0 + \frac{1}{2}6]\\
+        &= \frac{4}{5} \times 3 = \frac{12}{5} = 2.4\\
+V_2(TH) &= \frac{1}{1+r}[\tilde{p}V_3(THH) + \tilde{q}V_3(THT)]\\
+        &= \frac{1}{1+\frac{1}{4}}[\frac{1}{2}V_3(THH) + \frac{1}{2}V_3(THT)]\\
+        &= \frac{1}{\frac{5}{4}}[\frac{1}{2}0 + \frac{1}{2}2]\\
+        &= \frac{4}{5} \times 1 = \frac{4}{5} = 0.8\\
+V_2(TT) &= \frac{1}{1+r}[\tilde{p}V_3(TTH) + \tilde{q}V_3(TTT)]\\
+        &= \frac{1}{1+\frac{1}{4}}[\frac{1}{2}V_3(TTH) + \frac{1}{2}V_3(TTT)]\\
+        &= \frac{1}{\frac{5}{4}}[\frac{1}{2}2 + \frac{1}{2}\frac{7}{2}]\\
+        &= \frac{4}{5} \times \frac{11}{4} = \frac{11}{5} = 2.2\\
+\end{aligned}
+$$
+
+And in period 1:
+
+$$
+\begin{aligned}
+V_1(H) &= \frac{1}{1+r}[\tilde{p}V_2(HH) + \tilde{q}V_2(HT)]\\
+        &= \frac{1}{1+\frac{1}{4}}[\frac{1}{2}V_2(HH) + \frac{1}{2}V_2(HT)]\\
+        &= \frac{1}{\frac{5}{4}}[\frac{1}{2}\frac{16}{5} + \frac{1}{2}\frac{12}{5}]\\
+        &= \frac{4}{5} \times \frac{14}{5} = \frac{56}{25} = 2.24\\
+        
+V_1(T) &= \frac{1}{1+r}[\tilde{p}V_2(TH) + \tilde{q}V_2(TT)]\\
+        &= \frac{1}{1+\frac{1}{4}}[\frac{1}{2}V_2(TH) + \frac{1}{2}V_2(TT)]\\
+        &= \frac{1}{\frac{5}{4}}[\frac{1}{2}\frac{4}{5} + \frac{1}{2}\frac{11}{5}]\\
+        &= \frac{4}{5} \times \frac{15}{10} = \frac{6}{5} = 1.2\\
+\end{aligned}
+$$
+
+Finally, in period 0:
+
+$$
+\begin{aligned}
+V_0 &= \frac{1}{1+r}[\tilde{p}V_1(H) + \tilde{q}V_1(T)]\\
+        &= \frac{1}{1+\frac{1}{4}}[\frac{1}{2}V_1(H) + \frac{1}{2}V_1(T)]\\
+        &= \frac{1}{\frac{5}{4}}[\frac{1}{2}2.24 + \frac{1}{2}1.2]\\
+        &= \frac{4}{5} \times \frac{8.6}{5} = \frac{34.4}{25} = 1.376\\
+\end{aligned}
+$$
+
+From the above, we can see that the agent has hedged her short position in the option.
+
+
+## Exercise 1.6 (Hedging a long position-one period).
+
+Consider a bank that has a long position in the European call written on the stock price in
+Figure 1.1.2. The call expires at time one and has strike price K = 5. In Section 1.1,
+we determined the time-zero price of this call to be V0 = 1.20. At time zero, 
+the bank owns this option, which ties up capital V0 = 1.20. The bank wants to 
+earn the interest rate 25% on this capital until time one (i.e., without investing any more money, 
+and regardless of how the coin tossing turns out, the bank wants to have
+
+$$\frac{5}{4}.1.20=1.50$$
+at time one, after collecting the payoff from the option (if any) at time one).
+Specify how the bank's trader should invest in the stock and money markets to accomplish this.
+
 
 
 **Answer:**
+
+The bank's trader should set up a portfolio whose value negates the payoff of the option at time one. This is done by solving the equation:
+
+$$
+(1+r)(X_0-\Delta_0 S_0) + \Delta_0 S_1 = -(S_1 - K)^{+}
+$$
+With a space of states of the world $H$ and $T$, we have:
+
+$$
+\begin{aligned}
+\begin{cases}
+(1+r)(X_0-\Delta_0 S_0) + \Delta_0 S_1(H) &= -(S_1(H) - K)^{+} \\
+(1+r)(X_0-\Delta_0 S_0) + \Delta_0 S_1(T) &= -(S_1(T) - K)^{+}
+\end{cases}\\
+&\Rightarrow
+\begin{cases}
+(1+\frac{1}{4})(X_0-\Delta_0 4) + \Delta_0 8 &= -(8 - 5)^{+} \\
+(1+\frac{1}{4})(X_0-\Delta_0 4) + \Delta_0 2 &= -(2 - 5)^{+}
+\end{cases}\\
+&\Rightarrow
+\begin{cases}
+\frac{5}{4}X_0 - 5\Delta_0 + 8\Delta_0 &= -3 \\
+\frac{5}{4}X_0 - 5\Delta_0 + 2\Delta_0 &= 0
+\end{cases}\\
+&\Rightarrow
+\begin{cases}
+\frac{5}{4}X_0 + 3\Delta_0 &= -3 \\
+\frac{5}{4}X_0 - 3\Delta_0 &= 0
+\end{cases}\\
+&\Rightarrow
+\begin{cases}
+X_0 &= -\frac{6}{5}=-1.2\\
+\Delta_0 &= -\frac{1}{2}=-0.5
+\end{cases}
+\end{aligned}
+$$
+
+Therefore, the bank's trader should invest in the stock and money markets by short selling 0.5 shares of stock at time zero, which will provide him with the capital of $0.5\times S_0=0.5\times 4=2$. Then, the bank's trader should invest $2-1.2=0.8$ in the money market to hedge the risk related to the long call position on the European option, and put in a different money market account the remaining capital of $1.2$ to earn the interest rate of 25% until time one.  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
