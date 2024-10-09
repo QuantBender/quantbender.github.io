@@ -354,9 +354,44 @@ Therefore, the bank's trader should invest in the stock and money markets by sho
 
 
 
+## Exercise 1.7 (Hedging a long position-multiple periods).
+
+Consider a bank that has a long position in the lookback option of Example 1.2.4. The
+bank intends to hold this option until expiration and receive the payoff $V_3$ . At
+time zero, the bank has capital $V_0 = 1.376$ tied up in the option and wants
+to earn the interest rate of $25\%$ on this capital until time three (i.e., without
+investing any more money, and regardless of how the coin tossing turns out,
+the bank wants to have 
+
+$$(\frac{5}{4})^{3}.1.376=2.6875$$
+
+at time three, after collecting the payoff from the lookback option at time
+three). Specify how the bank's trader should invest in the stock and the money
+market account to accomplish this.
+
+**Answer:**
+
+Like in the preceding exercise, the bank's trader should set up a portfolio whose value negates the payoff of the option at time three. This is done by short selling the stock in quantity $\Delta_0 =\frac{V_(H)-V_1(T)}{S_1(H)-S_1(T)}=\frac{2.24-1.20}{8-2}=0.1733$. This will provide the trader with the capital of $0.1733\times V_0=0.1733 \times 4 = 0.6932$. Then, the bank's trader should invest(borrowing) $0.6932-1.376=-0.6828$ in the money market to hedge the risk related to the long call position on the European option, and put in a different money market account the obtained capital of $1.376$ to earn the interest rate of 25% until time three.
+
+## Exercise 1.8 (Asian option). 
 
 
+Consider the three-period model of Example 1.2.1, with $S_0 = 4$, $u = 2$, $d = \frac{1}{2}$ and take the interest rate $r = \frac{1}{4}$, so that $\tilde{p}=\tilde{q}=\frac{1}{2}$ - For $n = 0, 1, 2, 3$, define $Y_{n} = \sum_{k=0}^{n}S_{k}$ to be the sum of the stock prices between times zero and n. 
+Consider an Asian call option that expires at time three and has strike $K = 4$ (i.e., whose payoff at time three is $(\frac{1}{4}Y_3 - 4)^{+})$. This is like a European call, except the payoff of the option is
+based on the average stock price rather than the final stock price. Let $v_{n} (s, y)$
+denote the price of this option at time $n$ if $S_n = s$ and $Y_n = y$. In particular,
+$v_3 (s, y) = (\frac{1}{4}y - 4)^{+}$.
 
+(i) Develop an algorithm for computing $v_{n}$ recursively. In particular, write a
+formula for $v_n$ in terms of $v_{n+1}$.
+
+(ii) Apply the algorithm developed in (i) to compute $v_0(4, 4)$ , the price of the
+Asian option at time zero.
+
+(iii) Provide a formula for $\delta_{n} ( s, y )$ , the number of shares of stock that should
+be held by the replicating portfolio at time $n$ if $S_n = s$ and $Y_n = y$
+
+**Answer:**
 
 
 

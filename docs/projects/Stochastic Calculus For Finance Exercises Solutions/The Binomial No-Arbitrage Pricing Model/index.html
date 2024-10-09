@@ -4206,6 +4206,34 @@ X_0 &amp;= -\frac{6}{5}=-1.2\\
 \end{aligned}
 \]</span></p>
 <p>Therefore, the bank’s trader should invest in the stock and money markets by short selling 0.5 shares of stock at time zero, which will provide him with the capital of <span class="math inline">\(0.5\times S_0=0.5\times 4=2\)</span>. Then, the bank’s trader should invest <span class="math inline">\(2-1.2=0.8\)</span> in the money market to hedge the risk related to the long call position on the European option, and put in a different money market account the remaining capital of <span class="math inline">\(1.2\)</span> to earn the interest rate of 25% until time one.</p>
+<h2 id="exercise-1.7-hedging-a-long-position-multiple-periods.">Exercise 1.7 (Hedging a long position-multiple periods).</h2>
+<p>Consider a bank that has a long position in the lookback option of Example 1.2.4. The
+bank intends to hold this option until expiration and receive the payoff <span class="math inline">\(V_3\)</span> . At
+time zero, the bank has capital <span class="math inline">\(V_0 = 1.376\)</span> tied up in the option and wants
+to earn the interest rate of <span class="math inline">\(25\%\)</span> on this capital until time three (i.e., without
+investing any more money, and regardless of how the coin tossing turns out,
+the bank wants to have</p>
+<p><span class="math display">\[(\frac{5}{4})^{3}.1.376=2.6875\]</span></p>
+<p>at time three, after collecting the payoff from the lookback option at time
+three). Specify how the bank’s trader should invest in the stock and the money
+market account to accomplish this.</p>
+<p><strong>Answer:</strong></p>
+<p>Like in the preceding exercise, the bank’s trader should set up a portfolio whose value negates the payoff of the option at time three. This is done by short selling the stock in quantity <span class="math inline">\(\Delta_0 =\frac{V_(H)-V_1(T)}{S_1(H)-S_1(T)}=\frac{2.24-1.20}{8-2}=0.1733\)</span>. This will provide the trader with the capital of <span class="math inline">\(0.1733\times V_0=0.1733 \times 4 = 0.6932\)</span>. Then, the bank’s trader should invest(borrowing) <span class="math inline">\(0.6932-1.376=-0.6828\)</span> in the money market to hedge the risk related to the long call position on the European option, and put in a different money market account the obtained capital of <span class="math inline">\(1.376\)</span> to earn the interest rate of 25% until time three.</p>
+<h2 id="exercise-1.8-asian-option.">Exercise 1.8 (Asian option).</h2>
+<p>Consider the three-period model of Example 1.2.1, with <span class="math inline">\(S_0 = 4\)</span>, <span class="math inline">\(u = 2\)</span>, <span class="math inline">\(d = \frac{1}{2}\)</span> and take the interest rate <span class="math inline">\(r = \frac{1}{4}\)</span>, so that <span class="math inline">\(\tilde{p}=\tilde{q}=\frac{1}{2}\)</span> - For <span class="math inline">\(n = 0, 1, 2, 3\)</span>, define <span class="math inline">\(Y_{n} = \sum_{k=0}^{n}S_{k}\)</span> to be the sum of the stock prices between times zero and n. 
+Consider an Asian call option that expires at time three and has strike <span class="math inline">\(K = 4\)</span> (i.e., whose payoff at time three is <span class="math inline">\((\frac{1}{4}Y_3 - 4)^{+})\)</span>. This is like a European call, except the payoff of the option is
+based on the average stock price rather than the final stock price. Let <span class="math inline">\(v_{n} (s, y)\)</span>
+denote the price of this option at time <span class="math inline">\(n\)</span> if <span class="math inline">\(S_n = s\)</span> and <span class="math inline">\(Y_n = y\)</span>. In particular,
+<span class="math inline">\(v_3 (s, y) = (\frac{1}{4}y - 4)^{+}\)</span>.</p>
+<ol type="i">
+<li><p>Develop an algorithm for computing <span class="math inline">\(v_{n}\)</span> recursively. In particular, write a
+formula for <span class="math inline">\(v_n\)</span> in terms of <span class="math inline">\(v_{n+1}\)</span>.</p></li>
+<li><p>Apply the algorithm developed in (i) to compute <span class="math inline">\(v_0(4, 4)\)</span> , the price of the
+Asian option at time zero.</p></li>
+<li><p>Provide a formula for <span class="math inline">\(\delta_{n} ( s, y )\)</span> , the number of shares of stock that should
+be held by the replicating portfolio at time <span class="math inline">\(n\)</span> if <span class="math inline">\(S_n = s\)</span> and <span class="math inline">\(Y_n = y\)</span></p></li>
+</ol>
+<p><strong>Answer:</strong></p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
