@@ -1,0 +1,40 @@
+---
+title: "The Binomial No-Arbitrage Pricing Model"
+description: |
+  This is a proposition of solutions to the exercises in the chapter 1 of the book "Stochastic Calculus for Finance I: The Binomial Asset Pricing Model" by Steven Shreve.
+author: "DOSSEH AMECK GUY-MAX DESIRE" 
+date: 2025-08-08
+format:
+  html:
+    toc: true
+    code-fold: true
+    code-tools: true
+    reference-location: document
+    citation-location: document
+bibliography: references.bib
+categories: ["Quantitative-Finance", "Stochastic-Calculus", "Binomial-Model"]
+execute:
+  echo: true
+  warning: false
+  message: false
+  freeze: auto
+highlight-style: github
+engine: knitr
+---
+
+
+
+```{r, echo=FALSE, include=FALSE}
+library(rmarkdown)
+render("The Binomial No-Arbitrage Pricing Model.Rmd", output_format = "html_document", output_file = "The Binomial No-Arbitrage Pricing Model.html")
+```
+
+> Estimated reading time: \~15 minutes
+
+![](cover_image.jpg)
+
+<iframe src="The Binomial No-Arbitrage Pricing Model.html" width="100%" height="600px">
+
+</iframe>
+
+</html>
