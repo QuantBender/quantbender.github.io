@@ -1,0 +1,586 @@
+---
+title: "Swap Design Using Constraint Programming"
+author: "DOSSEH AMECK GUY-MAX DESIRE"
+date: "`r Sys.Date()`"
+output:
+  html_document:
+    df_print: paged
+  pdf_document: default
+header-includes:
+- \usepackage{tikz}
+- \usetikzlibrary{fadings,positioning,calc,shadows}
+- \tikzset{ bluenode/.style={ draw, white, top color=blue!50!white, bottom color=blue!90!white,
+  rounded corners,drop shadow }, graynode/.style={ draw, top color=gray!50!white!20,
+  bottom color=gray!50!black!20,drop shadow }}
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Interest Rate Swap (IRS) on Loans
+
+Companies A and B have been offered the following rates per annum on a $20 million
+5-year loan:
+
+||Fixed Rate|Floating Rate|
+|-|----|--------|
+|Company A|5%|SOFR+0.1%|
+|Company B|6.4%|SOFR+0.6%|
+
+
+Company A requires a floating-rate loan; company B requires a fixed-rate loan. Design a
+swap that will net a bank, acting as intermediary, 0.1% per annum and that will appear
+equally attractive to both companies.
+
+- Bank gain: 0.1%
+- A: floating rate loan
+- B: fixed rate loan
+
+
+\begin{tikzpicture}[font=\sf]
+\node[bluenode] (A) at (0,0) {\begin{tabular}{c}Company A\\ 0.4\%\end{tabular}};
+\node[bluenode,right=3cm of A] (Bank) {\begin{tabular}{c}Bank\\0.1\%\end{tabular}};
+\node[bluenode,right=3cm of Bank] (B) {\begin{tabular}{c}Company B\\ 0.4\%\end{tabular}};
+\draw[black!70!white,-latex,thick] ($(A.west)+(0,0.2)$) -- ($(A.west)+(-2,0.2)$)
+node[midway,above]{$rf_A$};
+\draw[black!70!white,-latex,thick] ($(A.west)+(-2,-0.2)$) -- ($(A.west)+(0,-0.2)$)
+node[midway,below]{SOFR+$s_A$};
+
+\draw[black!70!white,-latex,thick] ($(Bank.west)+(0,0.2)$) -- ($(A.east)+(0,0.2)$)
+node[midway,above]{$rf_{Bk-A}$};
+\draw[black!70!white,-latex,thick] ($(B.west)+(0,0.2)$) -- ($(Bank.east)+(0,0.2)$)
+node[midway,above]{$rf_{B-Bk}$};
+
+\draw[black!70!white,-latex,thick] ($(A.east)-(0,0.2)$) -- ($(Bank.west)-(0,0.2)$)
+node[midway,below]{SOFR+$s_{A-Bk}$};
+\draw[black!70!white,-latex,thick] ($(Bank.east)-(0,0.2)$) -- ($(B.west)-(0,0.2)$)
+node[midway,below]{SOFR+$s_{Bk-B}$};
+
+\draw[black!70!white,-latex,thick] ($(B.east)+(2,0.2)$) -- ($(B.east)+(0,0.2)$)
+node[midway,above]{$rf_B$};
+\draw[black!70!white,-latex,thick] ($(B.east)+(0,-0.2)$) -- ($(B.east)+(2,-0.2)$)
+node[midway,below]{SOFR+$s_B$};
+\end{tikzpicture}
+
+Let be:
+
+- Known parameters:
+
+    - $r_{f_{A}}$: the fixed interest rate of a loan for Company A;
+    - $s_{A}$: the spread of credit in floating rate for company A;
+    - $s_B$: the spread of credit in floating rate for company B;
+    - $G_{bank}$: Bank profit
+    - $G_A$: Company A profit
+    - $G_B$: Company B profit
+
+- Variables:
+
+    + $r_{f_{Bk-A}}$: the fixed interest rate the bank agrees to pay to company A;
+    + $s_{A-Bk}$ the spread of credit company A gives to the bank on floating rate;
+    + $r_{f_{B-Bk}}$: the fixed interest rate company B pays to the bank;
+    + $s_{Bk-B}$: the spread of credit the bank pays to company B on floating rate;
+
+
+Let's define a constraint satisfiability problem:
+
+$$
+\begin{cases}
+(r_{f_{B}}-r_{f_{B-Bk}})+(S_{Bk-B}-s_{B}) = G_B\\
+(r_{f_{Bk-A}}-r_{f_{A}})+(s_{A} - s_{A-Bk}) = G_A\\
+(r_{f_{B-Bk}}-r_{f_{Bk-A}})+(s_{A-Bk}-s_{Bk-B}) = G_{Bank}\\
+r_{f_{Bk-A}} \leq r_{f_{B-Bk}}\\
+s_{Bk-B} \leq s_{A-Bk}\\
+r_{f_{Bk-A}} \geq r_{f_{A}}\\
+r_{f_{B-Bk}} \leq r_{f_{B}}\\
+s_{A} \geq s_{A-Bk}\\
+s_{Bk-B} \leq s_B
+\end{cases}
+$$
+
+
+
+On 10 scale basis:
+
+$$
+\begin{cases}
+10(r_{f_{B}}-s_{B})+(S_{Bk-B}-r_{f_{B-Bk}}) = 10 G_B\\
+(r_{f_{Bk-A}}- s_{A-Bk})+10(s_{A} -r_{f_{A}}) = 10G_A\\
+(r_{f_{B-Bk}}-r_{f_{Bk-A}})+(s_{A-Bk}-s_{Bk-B}) = 10G_{Bank}\\
+r_{f_{Bk-A}} \leq r_{f_{B-Bk}}\\
+s_{Bk-B} \leq s_{A-Bk}\\
+r_{f_{Bk-A}} \geq 10r_{f_{A}}\\
+r_{f_{B-Bk}} \leq 10r_{f_{B}}\\
+10s_{A} \geq s_{A-Bk}\\
+s_{Bk-B} \leq 10s_B
+\end{cases}
+$$
+
+
+### Finding solutions
+
+```{python, message=FALSE, warning=FALSE, include=FALSE, echo=TRUE}
+import os
+import numpy as np 
+import pandas as pd
+import networkx as nx
+from ortools.sat.python import cp_model
+```
+
+```{python, message=FALSE, warning=FALSE}
+class VarArraySolutionPrinter(cp_model.CpSolverSolutionCallback):
+    """Print intermediate solutions."""
+
+    def __init__(self, variables, max_dec_digits):
+        cp_model.CpSolverSolutionCallback.__init__(self)
+        self.__variables = variables
+        self.max_dec_digits = max_dec_digits
+        self.__solution_count = 0
+        self.solutions = []
+        
+        
+    def on_solution_callback(self):
+        self.__solution_count += 1
+        # for v in self.__variables:
+        #     print(f"{v}={self.Value(v)/self.max_dec_digits:.2f}", end=" ")
+        # print()
+        self.solutions.append({v.Name(): self.Value(v)/self.max_dec_digits for v in self.__variables})
+
+    @property
+    def solution_count(self):
+        return self.__solution_count
+
+
+def search_for_all_solutions_sample_sat( rf_A, rf_B, s_A, s_B, G_B, G_A, G_bank):
+    """Showcases calling the solver to search for all solutions."""
+    # Creates the model.
+    model = cp_model.CpModel()
+    max_dec_digits = 10**max([len(x) for x in [str(rate).split(".")[-1] for rate in [rf_A, rf_B, s_A, s_B]]])
+    
+    rates_upper_bound = int(max_dec_digits*max(rf_A, rf_B))
+    # Define the variables
+    r_f_B_Bk = model.NewIntVar(0, rates_upper_bound, 'r_f_B_Bk')  # Upper bound 64.0
+    s_Bk_B = model.NewIntVar(-int(max_dec_digits), int(max_dec_digits), 's_Bk_B')       # Upper bound 6.0
+    r_f_Bk_A = model.NewIntVar(0, rates_upper_bound, 'r_f_Bk_A')  # Upper bound 64.0
+    s_A_Bk = model.NewIntVar(-int(max_dec_digits), int(max_dec_digits), 's_A_Bk')       # Upper bound 1.0
+
+    # Define the constraints
+    model.Add(int(max_dec_digits*(rf_B-s_B)) - r_f_B_Bk + s_Bk_B == int(max_dec_digits*G_B))  # 58 - r_f_B_Bk + s_Bk_B == 4
+    model.Add(r_f_Bk_A - s_A_Bk + int(max_dec_digits*(s_A-rf_A))== int(max_dec_digits*G_A))  # r_f_Bk_A - 49 - s_A_Bk == 4
+    model.Add(r_f_B_Bk - r_f_Bk_A + s_A_Bk - s_Bk_B == int(max_dec_digits*G_bank))  # r_f_B_Bk - r_f_Bk_A + s_A_Bk - s_Bk_B == 1
+    # model.Add(r_f_Bk_A <= r_f_B_Bk)
+    # model.Add(s_Bk_B <= s_A_Bk)
+    model.Add(r_f_Bk_A >= int(max_dec_digits*rf_A))
+    model.Add(r_f_B_Bk <= int(max_dec_digits*rf_B))
+    model.Add(s_A_Bk <= int(max_dec_digits*s_A))
+    model.Add(s_Bk_B <= int(max_dec_digits*s_B))
+
+    # Create a solver and solve.
+    solver = cp_model.CpSolver()
+    solution_printer = VarArraySolutionPrinter([r_f_B_Bk, s_Bk_B, r_f_Bk_A, s_A_Bk], max_dec_digits)
+    # Enumerate all solutions.
+    solver.parameters.enumerate_all_solutions = True
+    # Solve.
+    status = solver.Solve(model, solution_printer)
+
+    print(f"Status = {solver.StatusName(status)}")
+    print(f"Number of solutions found: {solution_printer.solution_count}")
+    return solution_printer.solutions
+
+
+solutions = search_for_all_solutions_sample_sat(5, 6.4, 0.1, 0.6, 0.4, 0.4, 0.1)
+pd.DataFrame(solutions).to_csv("solutions.csv", index=False)
+pd.DataFrame(solutions)
+```
+
+
+
+### Drawing the solutions
+
+<!-- - **Function to draw solution** -->
+
+```{r, echo=FALSE, }
+plotDiagram <- function(rf_A, rf_B, s_A, s_B, G_B, G_A, G_bank, s_A_Bk, s_Bk_B, rf_B_Bk, rf_Bk_A, Company_A, Company_B, Bank, floating_rate) {
+  # Set up an empty plot with vertical limits exactly covering the diagram.
+  plot(NA, NA,
+       xlim = c(-4, 14), ylim = c(0, 0),
+       type = "n", axes = FALSE, xlab = "", ylab = "", asp = 1)
+  
+  # Define node positions and dimensions.
+  # Company A: centered at (0, 0)
+  A.center <- c(0, 0)
+  A.left <- -1; A.right <- 1; A.top <- 0.5; A.bot <- -0.5
+  
+  # Bank: shifted further to the right
+  Bank.center <- c(4.5, 0)
+  Bank.left <- 3.5; Bank.right <- 5.5; Bank.top <- 0.5; Bank.bot <- -0.5
+  
+  # Company B: shifted further to the right
+  B.center <- c(9, 0)
+  B.left <- 8; B.right <- 10; B.top <- 0.5; B.bot <- -0.5
+  
+  # Draw nodes as rectangles with text inside.
+  rect(A.left, A.bot, A.right, A.top, col = "lightblue")
+  text(A.center[1], A.center[2], paste("Company ", Company_A, "\n", G_A, sep = ""), cex = 0.6)
+  
+  rect(Bank.left, Bank.bot, Bank.right, Bank.top, col = "lightblue")
+  text(Bank.center[1], Bank.center[2], paste("Company ", Bank, "\n", G_bank, sep = ""), cex = 0.6)
+  
+  rect(B.left, B.bot, B.right, B.top, col = "lightblue")
+  text(B.center[1], B.center[2], paste("Company ", Company_B, "\n", G_B, sep = ""), cex = 0.6)
+  
+  # Helper function to add an arrow with a label.
+  add_arrow <- function(x0, y0, x1, y1, label, label_offset = 0.1, side = "above") {
+    arrows(x0, y0, x1, y1, code = 2, length = 0.1, lwd = 2)
+    xm <- (x0 + x1) / 2
+    ym <- (y0 + y1) / 2
+    if (side == "above") {
+      text(xm, ym + label_offset, label, cex = 0.6)
+    } else {
+      text(xm, ym - label_offset, label, cex = 0.6)
+    }
+  }
+  
+  # Draw arrows using positions computed to mimic the desired offsets.
+  add_arrow(A.left, 0.2, A.right - 5, 0.2, rf_A, label_offset = 0.25, side = "above")
+  add_arrow(A.right - 5, -0.2, A.left, -0.2, paste(floating_rate, s_A, sep="+"), label_offset = 0.25, side = "below")
+  add_arrow(Bank.left, 0.2, A.right, 0.2, rf_Bk_A, label_offset = 0.25, side = "above")
+  add_arrow(B.left, 0.2, Bank.right, 0.2, rf_B_Bk, label_offset = 0.25, side = "above")
+  add_arrow(A.right, -0.2, Bank.left, -0.2, paste(floating_rate, s_A_Bk, sep="+"), label_offset = 0.25, side = "below")
+  add_arrow(Bank.right, -0.2, B.left, -0.2, paste(floating_rate, s_Bk_B, sep="+"), label_offset = 0.25, side = "below")
+  add_arrow(B.right + 2, 0.2, B.right, 0.2, rf_B, label_offset = 0.25, side = "above")
+  add_arrow(B.right, -0.2, B.right + 2, -0.2, paste(floating_rate, s_B, sep="+"), label_offset = 0.25, side = "below")
+}
+```
+
+
+- **Drawing some of the solutions**
+
+
+```{r, echo=FALSE, fig.align='center', message=FALSE, warning=FALSE, out.width="100%", fig.width=8, fig.height=2}
+# read solutions
+solutions <- read.csv("solutions.csv")
+
+# Define fixed parameters
+rf_A <- "5%"
+rf_B <- "6.4%"
+s_A <- "-0.1%"
+s_B <- "0.6%"
+G_B <- "0.4%"
+G_A <- "0.4%"
+G_bank <- "0.1%"
+Company_A <- "A"
+Company_B <- "B"
+Bank <- "Bank"
+floating_rate <- "SOFR"
+
+# Loop through each row and plot the diagram
+for (i in 1:5) {
+  rf_B_Bk <- solutions$r_f_B_Bk[i]
+  s_Bk_B <- solutions$s_Bk_B[i]
+  rf_Bk_A <- solutions$r_f_Bk_A[i]
+  s_A_Bk <- solutions$s_A_Bk[i]
+  
+  # Plot diagram with values from current row
+  par(mar = c(0, 0, 0, 0))
+  plotDiagram(rf_A, rf_B, s_A, s_B, G_B, G_A, G_bank, s_A_Bk, s_Bk_B, rf_B_Bk, rf_Bk_A, Company_A, Company_B, Bank, floating_rate)
+}
+
+
+```
+
+
+\newpage
+
+## Interest Rate Swap (IRS) on Investments
+
+Companies X and Y have been offered the following rates per annum on a $5 million
+10-year investment:
+
+||Fixed Rate|Floating Rate|
+|-|----|--------|
+|Company X|8.0%|LIBOR|
+|Company Y|8.8%|LIBOR|
+
+Company X requires a fixed-rate investment; company Y requires a floating-rate investment. Design a swap that will net a bank, acting as intermediary, 0.2% per annum and will appear equally attractive to X and Y.
+
+- Bank gain: 0.2%
+- X: fixed rate investment
+- Y: floating rate investment
+- Equal gain for X and Y: 0.3%
+
+
+\begin{tikzpicture}[font=\sf]
+\node[bluenode] (X) at (0,0) {\begin{tabular}{c}Company X\\ 0.3\%\end{tabular}};
+\node[bluenode,right=3cm of X] (Bank) {\begin{tabular}{c}Bank\\0.2\%\end{tabular}};
+\node[bluenode,right=3cm of Bank] (Y) {\begin{tabular}{c}Company Y\\ 0.3\%\end{tabular}};
+\draw[black!70!white,-latex,thick] ($(X.west)+(0,0.2)$) -- ($(X.west)+(-2,0.2)$)
+node[midway,above]{$rf_X$};
+\draw[black!70!white,-latex,thick] ($(X.west)+(-2,-0.2)$) -- ($(X.west)+(0,-0.2)$)
+node[midway,below]{LIBOR+$s_X$};
+
+\draw[black!70!white,-latex,thick] ($(Bank.west)+(0,0.2)$) -- ($(X.east)+(0,0.2)$)
+node[midway,above]{$rf_{Bk-X}$};
+\draw[black!70!white,-latex,thick] ($(Y.west)+(0,0.2)$) -- ($(Bank.east)+(0,0.2)$)
+node[midway,above]{$rf_{Y-Bk}$};
+
+\draw[black!70!white,-latex,thick] ($(X.east)-(0,0.2)$) -- ($(Bank.west)-(0,0.2)$)
+node[midway,below]{LIBOR+$s_{X-Bk}$};
+\draw[black!70!white,-latex,thick] ($(Bank.east)-(0,0.2)$) -- ($(Y.west)-(0,0.2)$)
+node[midway,below]{LIBOR+$s_{Bk-Y}$};
+
+\draw[black!70!white,-latex,thick] ($(Y.east)+(2,0.2)$) -- ($(Y.east)+(0,0.2)$)
+node[midway,above]{$rf_Y$};
+\draw[black!70!white,-latex,thick] ($(Y.east)+(0,-0.2)$) -- ($(Y.east)+(2,-0.2)$)
+node[midway,below]{LIBOR+$s_Y$};
+\end{tikzpicture}
+
+### Finding solutions
+
+```{python, message=FALSE, warning=FALSE}
+
+solutions = search_for_all_solutions_sample_sat(8, 8.8, 0.0, 0.0, 0.3, 0.3, 0.2)
+pd.DataFrame(solutions).to_csv("solutions.csv", index=False)
+pd.DataFrame(solutions)
+```
+
+### Drawing some of the solution
+
+
+
+```{r, echo=FALSE, fig.align='center', message=FALSE, warning=FALSE, out.width="100%", fig.width=8, fig.height=2}
+solutions <- read.csv("solutions.csv")
+
+rf_X <- "8%"
+rf_Y <- "8.8%"
+s_X <- "+0%"
+s_Y <- "+0%"
+G_X <- "0.3%"
+G_Y <- "0.3%"
+G_bank <- "0.2%"
+Company_X <- "X"
+Company_Y <- "Y"
+Bank <- "Bank"
+floating_rate <- "LIBOR"
+
+
+
+for (i in 1:5) {
+  rf_Y_Bk <- solutions$r_f_B_Bk[i]
+  s_Bk_Y <- solutions$s_Bk_B[i]
+  rf_Bk_X <- solutions$r_f_Bk_A[i]
+  s_X_Bk <- solutions$s_A_Bk[i]
+  
+  par(mar = c(0, 0, 0, 0))
+  
+  plotDiagram(rf_X, rf_Y, s_X, s_Y, G_X, G_Y, G_bank, s_X_Bk, s_Bk_Y, rf_Y_Bk, rf_Bk_X, Company_X, Company_Y, Bank, floating_rate)
+  
+}
+```
+
+\newpage 
+
+## Fixed for fixed Currency Swap
+
+Company X wishes to borrow U.S. dollars at a fixed rate of interest. Company Y wishes to borrow Japanese yen at a fixed rate of interest. The amounts required by the two companies are roughly the same at the current exchange rate. The companies have been quoted the following interest rates, which have been adjusted for the impact of taxes:
+
+||Yen|Dollars|
+|-|----|--------|
+|Company X|5.0%|9.6%|
+|Company Y|6.5%|10.0%|
+
+Design a swap that will net a bank, acting as intermediary, 50 basis points per annum.
+Make the swap equally attractive to the two companies and ensure that all foreign
+exchange risk is assumed by the bank.
+
+- Bank gain: 0.5%
+- X: fixed rate loan in dollars
+- Y: fixed rate loan in yen
+- Equal gain for X and Y: ((6.5-5)-(10-9.6)-0.5)/2=0.3%
+
+\begin{tikzpicture}[font=\sf]
+\node[bluenode] (X) at (0,0) {\begin{tabular}{c}Company X\\ 0.3\%\end{tabular}};
+\node[bluenode,right=3cm of X] (Bank) {\begin{tabular}{c}Bank\\0.5\%\end{tabular}};
+\node[bluenode,right=3cm of Bank] (Y) {\begin{tabular}{c}Company Y\\ 0.3\%\end{tabular}};
+\draw[black!70!white,latex-,thick] ($(X.west)+(0,0.2)$) -- ($(X.west)+(-2,0.2)$)
+node[midway,above]{$rfDollar_X$};
+\draw[black!70!white,latex-,thick] ($(X.west)+(-2,-0.2)$) -- ($(X.west)+(0,-0.2)$)
+node[midway,below]{$rfYen_X$};
+
+\draw[black!70!white,latex-,thick] ($(Bank.west)+(0,0.2)$) -- ($(X.east)+(0,0.2)$)
+node[midway,above]{$rfDollar_{X-Bk}$};
+\draw[black!70!white,latex-,thick] ($(Y.west)+(0,0.2)$) -- ($(Bank.east)+(0,0.2)$)
+node[midway,above]{$rfDollar_{Bk-Y}$};
+
+\draw[black!70!white,latex-,thick] ($(X.east)-(0,0.2)$) -- ($(Bank.west)-(0,0.2)$)
+node[midway,below]{$rfYen_{Bk-X}$};
+\draw[black!70!white,latex-,thick] ($(Bank.east)-(0,0.2)$) -- ($(Y.west)-(0,0.2)$)
+node[midway,below]{$rfYen_{Y-Bk}$};
+
+\draw[black!70!white,latex-,thick] ($(Y.east)+(2,0.2)$) -- ($(Y.east)+(0,0.2)$)
+node[midway,above]{$rfDollar_Y$};
+\draw[black!70!white,latex-,thick] ($(Y.east)+(0,-0.2)$) -- ($(Y.east)+(2,-0.2)$)
+node[midway,below]{$rfYen_Y$};
+\end{tikzpicture}
+
+
+### Finding solutions
+
+```{python, message=FALSE, warning=FALSE}
+class VarArraySolutionPrinter(cp_model.CpSolverSolutionCallback):
+    """Print intermediate solutions."""
+
+    def __init__(self, variables, max_dec_digits):
+        cp_model.CpSolverSolutionCallback.__init__(self)
+        self.__variables = variables
+        self.max_dec_digits = max_dec_digits
+        self.__solution_count = 0
+        self.solutions = []
+        
+        
+    def on_solution_callback(self):
+        self.__solution_count += 1
+        # for v in self.__variables:
+        #     print(f"{v}={self.Value(v)/self.max_dec_digits:.2f}", end=" ")
+        # print()
+        self.solutions.append({v.Name(): self.Value(v)/self.max_dec_digits for v in self.__variables})
+
+    @property
+    def solution_count(self):
+        return self.__solution_count
+
+
+def search_for_all_solutions_sample_sat( rfDollar_A, rfDollar_B, rfYen_A, rfYen_B, G_B, G_A, G_bank):
+    """Showcases calling the solver to search for all solutions."""
+    # Creates the model.
+    model = cp_model.CpModel()
+    max_dec_digits = 10**max([len(x) for x in [str(rate).split(".")[-1] for rate in [rfDollar_A, rfDollar_B, rfYen_A, rfYen_B]]])
+    
+    rates_upper_bound = int(max_dec_digits*max(rfDollar_A, rfDollar_B, rfYen_A, rfYen_B))
+    
+    # Define the variables
+    r_f_Dollar_A_Bk = model.NewIntVar(0, rates_upper_bound, 'r_f_Dollar_A_Bk')
+    r_f_Yen_Bk_A = model.NewIntVar(0, rates_upper_bound, 'r_f_Yen_Bk_A')  
+    r_f_Dollar_Bk_B = model.NewIntVar(0, rates_upper_bound, 'r_f_Dollar_Bk_B')
+    r_f_Yen_B_Bk = model.NewIntVar(0, rates_upper_bound, 'r_f_Yen_B_Bk') 
+
+    # Define the constraints
+    model.Add(int(max_dec_digits*(rfDollar_B)) - r_f_Dollar_Bk_B - r_f_Yen_B_Bk+int(max_dec_digits*rfYen_B) == int(max_dec_digits*G_B))  
+    model.Add(int(max_dec_digits*rfDollar_A) - r_f_Dollar_A_Bk  - int(max_dec_digits*(rfYen_A))+ r_f_Yen_Bk_A== int(max_dec_digits*G_A))  
+    model.Add(r_f_Dollar_A_Bk - r_f_Dollar_Bk_B + r_f_Yen_B_Bk - r_f_Yen_Bk_A == int(max_dec_digits*G_bank))
+    model.Add(r_f_Dollar_Bk_B >= r_f_Dollar_A_Bk)
+    model.Add(r_f_Yen_Bk_A <= r_f_Yen_B_Bk)
+    model.Add(r_f_Dollar_A_Bk <= int(max_dec_digits*rfDollar_A))
+    model.Add(r_f_Dollar_Bk_B <= int(max_dec_digits*rfDollar_B))
+    model.Add(r_f_Yen_B_Bk <= int(max_dec_digits*rfYen_B))
+    model.Add(r_f_Yen_Bk_A <= int(max_dec_digits*rfYen_A))
+    
+    solver = cp_model.CpSolver()
+    solution_printer = VarArraySolutionPrinter([r_f_Dollar_A_Bk, r_f_Yen_Bk_A, r_f_Dollar_Bk_B, r_f_Yen_B_Bk], max_dec_digits)
+    # Enumerate all solutions.
+    solver.parameters.enumerate_all_solutions = True
+    # Solve.
+    status = solver.Solve(model, solution_printer)
+
+    print(f"Status = {solver.StatusName(status)}")
+    print(f"Number of solutions found: {solution_printer.solution_count}")
+    return solution_printer.solutions
+
+
+solutions = search_for_all_solutions_sample_sat(9.6, 10, 5, 6.5, 0.3, 0.3, 0.5)
+pd.DataFrame(solutions).to_csv("solutions.csv", index=False)
+pd.DataFrame(solutions)
+```
+
+### Drawing some of the solutions
+
+<!-- - **Function to draw solution** -->
+
+```{r, echo=FALSE, }
+plotDiagram <- function(rfDollar_A, rfDollar_B, rfYen_A, rfYen_B, G_B, G_A, G_bank, rfYen_Bk_A, rf_Dollar_Bk_B, rf_Dollar_A_Bk, rf_Yen_B_Bk, Company_X, Company_Y, Bank, currency1, currency2) {
+  # Set up an empty plot with vertical limits exactly covering the diagram.
+  plot(NA, NA,
+       xlim = c(-4, 14), ylim = c(0, 0),
+       type = "n", axes = FALSE, xlab = "", ylab = "", asp = 1)
+  
+  # Define node positions and dimensions.
+  # Company X: centered at (0, 0)
+  X.center <- c(0, 0)
+  X.left <- -1; X.right <- 1; X.top <- 0.5; X.bot <- -0.5
+  
+  # Bank: shifted further to the right
+  Bank.center <- c(4.5, 0)
+  Bank.left <- 3.5; Bank.right <- 5.5; Bank.top <- 0.5; Bank.bot <- -0.5
+  
+  # Company Y: shifted further to the right
+  Y.center <- c(9, 0)
+  Y.left <- 8; Y.right <- 10; Y.top <- 0.5; Y.bot <- -0.5
+  
+  # Draw nodes as rectangles with text inside.
+  rect(X.left, X.bot, X.right, X.top, col = "lightblue")
+  text(X.center[1], X.center[2], paste("Company ", Company_X, "\n", G_A, sep = ""), cex = 0.6)
+  
+  rect(Bank.left, Bank.bot, Bank.right, Bank.top, col = "lightblue")
+  text(Bank.center[1], Bank.center[2], paste("Company ", Bank, "\n", G_bank, sep = ""), cex = 0.6)
+  
+  rect(Y.left, Y.bot, Y.right, Y.top, col = "lightblue")
+  text(Y.center[1], Y.center[2], paste("Company ", Company_Y, "\n", G_B, sep = ""), cex = 0.6)
+  
+  # Helper function to add an arrow with
+  add_arrow <- function(x0, y0, x1, y1, label, label_offset = 0.1, side = "above") {
+    arrows(x0, y0, x1, y1, code = 2, length = 0.1, lwd = 2)
+    xm <- (x0 + x1) / 2
+    ym <- (y0 + y1) / 2
+    if (side == "above") {
+      text(xm, ym + label_offset, label, cex = 0.6)
+    } else {
+      text(xm, ym - label_offset, label, cex = 0.6)
+    }
+  }
+  
+  # Draw arrows using positions computed to mimic the desired offsets.
+  add_arrow(X.left, 0.2, X.right - 5, 0.2, paste(currency1, rfDollar_A, sep=" : "), label_offset = 0.25, side = "above")
+  add_arrow(X.right - 5, -0.2, X.left, -0.2, paste(currency2, rfYen_A, sep=" : "), label_offset = 0.25, side = "below")
+  add_arrow(Bank.left, 0.2, X.right, 0.2, rf_Dollar_A_Bk, label_offset = 0.25, side = "above")
+  add_arrow(Y.left, 0.2, Bank.right, 0.2, rf_Dollar_Bk_B, label_offset = 0.25, side = "above")
+  add_arrow(X.right, -0.2, Bank.left, -0.2, rfYen_Bk_A, label_offset = 0.25, side = "below")
+  add_arrow(Bank.right, -0.2, Y.left, -0.2, rf_Yen_B_Bk, label_offset = 0.25, side = "below")
+  add_arrow(Y.right + 2, 0.2, Y.right, 0.2, rfDollar_B, label_offset = 0.25, side = "above")
+  add_arrow(Y.right, -0.2, Y.right + 2, -0.2, rfYen_B, label_offset = 0.25, side = "below")
+}
+```
+
+
+- **Drawing some of the solutions**
+
+```{r, echo=FALSE, fig.align='center', message=FALSE, warning=FALSE, out.width="100%", fig.width=8, fig.height=2}
+solutions <- read.csv("solutions.csv")
+
+rfDollar_X <- "9.6%"
+rfDollar_Y <- "10%"
+rfYen_X <- "5%"
+rfYen_Y <- "6.5%"
+G_X <- "0.3%"
+G_Y <- "0.3%"
+G_bank <- "0.5%"
+Company_X <- "X"
+Company_Y <- "Y"
+Bank <- "Bank"
+currency1 <- "Dollar"
+currency2 <- "Yen"
+
+for (i in 1:5) {
+  rfYen_Bk_A <- paste(solutions$r_f_Yen_Bk_A[i], "%", sep="")
+  rf_Dollar_Bk_B <- paste(solutions$r_f_Dollar_Bk_B[i], "%", sep="")
+  rf_Dollar_A_Bk <- paste(solutions$r_f_Dollar_A_Bk[i], "%", sep="")
+  rf_Yen_B_Bk <- paste(solutions$r_f_Yen_B_Bk[i], "%", sep="")
+  
+  par(mar = c(0, 0, 0, 0))
+  
+  plotDiagram(rfDollar_X, rfDollar_Y, rfYen_X, rfYen_Y, G_X, G_Y, G_bank, rfYen_Bk_A, rf_Dollar_Bk_B, rf_Dollar_A_Bk, rf_Yen_B_Bk, Company_X, Company_Y, Bank, currency1, currency2)
+  
+}
+```
+
+
+\newpage
