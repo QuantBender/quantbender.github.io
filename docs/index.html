@@ -71,20 +71,48 @@ ul.task-list li input[type="checkbox"] {
 <script>
 
   window.document.addEventListener("DOMContentLoaded", function (_event) {
-    const listingTargetEl = window.document.querySelector('#listing-listing .list');
+    const listingTargetEl = window.document.querySelector('#listing-quantitative-finance .list');
     if (!listingTargetEl) {
       // No listing discovered, do not attach.
       return; 
     }
 
     const options = {
-      valueNames: ['listing-title','listing-author','listing-date','listing-image','listing-description','listing-categories',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
+      valueNames: ['listing-date','listing-title','listing-author','listing-subtitle','listing-image','listing-description','listing-categories',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
       
-      searchColumns: ["listing-title","listing-author","listing-date","listing-image","listing-description","listing-categories"],
+      searchColumns: ["listing-date","listing-title","listing-author","listing-subtitle","listing-image","listing-description","listing-categories"],
     };
 
     window['quarto-listings'] = window['quarto-listings'] || {};
-    window['quarto-listings']['listing-listing'] = new List('listing-listing', options);
+    window['quarto-listings']['listing-quantitative-finance'] = new List('listing-quantitative-finance', options);
+
+    if (window['quarto-listing-loaded']) {
+      window['quarto-listing-loaded']();
+    }
+  });
+
+  window.addEventListener('hashchange',() => {
+    if (window['quarto-listing-loaded']) {
+      window['quarto-listing-loaded']();
+    }
+  })
+  
+
+  window.document.addEventListener("DOMContentLoaded", function (_event) {
+    const listingTargetEl = window.document.querySelector('#listing-rag-and-agentic-ai .list');
+    if (!listingTargetEl) {
+      // No listing discovered, do not attach.
+      return; 
+    }
+
+    const options = {
+      valueNames: ['listing-date','listing-title','listing-author','listing-image','listing-description','listing-categories',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
+      
+      searchColumns: ["listing-date","listing-title","listing-author","listing-image","listing-description","listing-categories"],
+    };
+
+    window['quarto-listings'] = window['quarto-listings'] || {};
+    window['quarto-listings']['listing-rag-and-agentic-ai'] = new List('listing-rag-and-agentic-ai', options);
 
     if (window['quarto-listing-loaded']) {
       window['quarto-listing-loaded']();
@@ -203,16 +231,21 @@ window.Quarto = {
 
 
 
-<div class="quarto-listing quarto-listing-container-grid" id="listing-listing">
-<div class="list grid quarto-listing-cols-3">
-<div class="g-col-1" data-index="0" data-categories="UXVhbnRpdGF0aXZlLUZpbmFuY2UlMkNTdG9jaGFzdGljLUNhbGN1bHVzJTJDQmlub21pYWwtTW9kZWw=" data-listing-date-sort="1754607600000" data-listing-file-modified-sort="1754661747213" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="29">
-<a href="./posts/The-Binomial-No-Arbitrage-Pricing-Model/index.html" class="quarto-grid-link">
-<div class="quarto-grid-item card h-100 card-left">
-<p class="card-img-top"><img src="posts/The-Binomial-No-Arbitrage-Pricing-Model/cover_image.jpg" style="height: 150px;"  class="thumbnail-image card-img"/></p>
-<div class="card-body post-contents">
-<h5 class="no-anchor card-title listing-title">
-The Binomial No-Arbitrage Pricing Model
-</h5>
+<div class="quarto-listing quarto-listing-container-default" id="listing-quantitative-finance">
+<div class="list quarto-listing-default">
+<div class="quarto-post image-left" data-index="0" data-categories="UXVhbnRpdGF0aXZlLUZpbmFuY2UlMkNTdG9jaGFzdGljLUNhbGN1bHVzJTJDQmlub21pYWwtTW9kZWw=" data-listing-date-sort="1754607600000" data-listing-file-modified-sort="1754661747213" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="29">
+<div class="thumbnail">
+<p><a href="./posts/Quantitative-Finance/The-Binomial-No-Arbitrage-Pricing-Model/index.html" class="no-external"></a></p><a href="./posts/Quantitative-Finance/The-Binomial-No-Arbitrage-Pricing-Model/index.html" class="no-external">
+<p class="card-img-top"><img src="posts/Quantitative-Finance/The-Binomial-No-Arbitrage-Pricing-Model/cover_image.jpg"  class="thumbnail-image card-img"/></p>
+</a><p><a href="./posts/Quantitative-Finance/The-Binomial-No-Arbitrage-Pricing-Model/index.html" class="no-external"></a></p>
+</div>
+<div class="body">
+<h3 class="no-anchor listing-title">
+<a href="./posts/Quantitative-Finance/The-Binomial-No-Arbitrage-Pricing-Model/index.html" class="no-external">The Binomial No-Arbitrage Pricing Model</a>
+</h3>
+<div class="listing-subtitle">
+<a href="./posts/Quantitative-Finance/The-Binomial-No-Arbitrage-Pricing-Model/index.html" class="no-external"></a>
+</div>
 <div class="listing-categories">
 <div class="listing-category" onclick="window.quartoListingCategory('UXVhbnRpdGF0aXZlLUZpbmFuY2U='); return false;">
 Quantitative-Finance
@@ -224,169 +257,34 @@ Stochastic-Calculus
 Binomial-Model
 </div>
 </div>
-<div class="card-text listing-description">
-<p>This is a proposition of solutions to the exercises in the chapter 1 of the book “Stochastic Calculus for Finance I: The Binomial Asset Pricing Model” by Steven Shreve.</p>
+<div class="listing-description">
+<a href="./posts/Quantitative-Finance/The-Binomial-No-Arbitrage-Pricing-Model/index.html" class="no-external">This is a proposition of solutions to the exercises in the chapter 1 of the book “Stochastic Calculus for Finance I: The Binomial Asset Pricing Model” by Steven Shreve. </a>
 </div>
-<div class="card-attribution card-text-small justify">
-<div class="listing-author">
-DOSSEH AMECK GUY-MAX DESIRE
 </div>
+<div class="metadata">
+<a href="./posts/Quantitative-Finance/The-Binomial-No-Arbitrage-Pricing-Model/index.html" class="no-external">
 <div class="listing-date">
 Aug 8, 2025
 </div>
-</div>
-</div>
-</div>
-</a>
-</div>
-<div class="g-col-1" data-index="1" data-categories="UkFHLUFORC1BR0VOVElDLUFJ" data-listing-date-sort="1754607600000" data-listing-file-modified-sort="1754649888888" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="8" data-listing-word-count-sort="1414">
-<a href="./posts/gen-ai-in-practice/index.html" class="quarto-grid-link">
-<div class="quarto-grid-item card h-100 card-left">
-<p class="card-img-top"><img src="posts/gen-ai-in-practice/cover_image.jpg" style="height: 150px;"  class="thumbnail-image card-img"/></p>
-<div class="card-body post-contents">
-<h5 class="no-anchor card-title listing-title">
-Generative AI in Practice: A Concise Field Primer
-</h5>
-<div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('UkFHLUFORC1BR0VOVElDLUFJ'); return false;">
-RAG-AND-AGENTIC-AI
-</div>
-</div>
-<div class="card-text listing-description">
-A streamlined, rephrased summary of core Generative AI concepts distilled from a longer reference guide: foundations, retrieval augmentation, agents, prompting patterns…
-</div>
-<div class="card-attribution card-text-small justify">
 <div class="listing-author">
 DOSSEH AMECK GUY-MAX DESIRE
 </div>
-<div class="listing-date">
-Aug 8, 2025
-</div>
-</div>
-</div>
-</div>
 </a>
 </div>
-<div class="g-col-1" data-index="2" data-categories="UkFHLUFORC1BR0VOVElDLUFJ" data-listing-date-sort="1754607600000" data-listing-file-modified-sort="1754649872631" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="5" data-listing-word-count-sort="990">
-<a href="./posts/gen-ai-models/index.html" class="quarto-grid-link">
-<div class="quarto-grid-item card h-100 card-left">
-<p class="card-img-top"><img src="posts/gen-ai-models/cover_image.png" style="height: 150px;"  class="thumbnail-image card-img"/></p>
-<div class="card-body post-contents">
-<h5 class="no-anchor card-title listing-title">
-Foundation Models and Large Language Models: A Practical Business Overview
-</h5>
-<div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('UkFHLUFORC1BR0VOVElDLUFJ'); return false;">
-RAG-AND-AGENTIC-AI
 </div>
+<div class="quarto-post image-left" data-index="1" data-categories="ZGVyaXZhdGl2ZXMlMkNzd2FwcyUyQ1F1YW50aXRhdGl2ZS1GaW5hbmNlJTJDY29uc3RyYWludC1wcm9ncmFtbWluZyUyQ29wdGltaXphdGlvbg==" data-listing-date-sort="1754607600000" data-listing-file-modified-sort="1754662758102" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="395">
+<div class="thumbnail">
+<p><a href="./posts/Quantitative-Finance/swap-design/index.html" class="no-external"></a></p><a href="./posts/Quantitative-Finance/swap-design/index.html" class="no-external">
+<p class="card-img-top"><img src="posts/Quantitative-Finance/swap-design/cover_image.png"  class="thumbnail-image card-img"/></p>
+</a><p><a href="./posts/Quantitative-Finance/swap-design/index.html" class="no-external"></a></p>
 </div>
-<div class="card-text listing-description">
-This article provides a concise, practitioner-focused overview of foundation models (including large language models), their advantages, limitations, adaptation techniques…
+<div class="body">
+<h3 class="no-anchor listing-title">
+<a href="./posts/Quantitative-Finance/swap-design/index.html" class="no-external">Designing Interest Rate &amp; Currency Swaps with Constraint Programming</a>
+</h3>
+<div class="listing-subtitle">
+<a href="./posts/Quantitative-Finance/swap-design/index.html" class="no-external">From classic comparative advantage to enumerating feasible swap structures via CP-SAT</a>
 </div>
-<div class="card-attribution card-text-small justify">
-<div class="listing-author">
-DOSSEH AMECK GUY-MAX DESIRE
-</div>
-<div class="listing-date">
-Aug 8, 2025
-</div>
-</div>
-</div>
-</div>
-</a>
-</div>
-<div class="g-col-1" data-index="3" data-categories="UkFHLUFORC1BR0VOVElDLUFJ" data-listing-date-sort="1754607600000" data-listing-file-modified-sort="1754646329956" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-word-count-sort="572">
-<a href="./posts/gen-ai/index.html" class="quarto-grid-link">
-<div class="quarto-grid-item card h-100 card-left">
-<p class="card-img-top"><img src="posts/gen-ai/cover_image.png" style="height: 150px;"  class="thumbnail-image card-img"/></p>
-<div class="card-body post-contents">
-<h5 class="no-anchor card-title listing-title">
-Introduction to Generative AI
-</h5>
-<div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('UkFHLUFORC1BR0VOVElDLUFJ'); return false;">
-RAG-AND-AGENTIC-AI
-</div>
-</div>
-<div class="card-text listing-description">
-This post is an introduction to Generative AI, a fascinating field of artificial intelligence that focuses on creating new content rather than just analyzing existing data.…
-</div>
-<div class="card-attribution card-text-small justify">
-<div class="listing-author">
-DOSSEH AMECK GUY-MAX DESIRE
-</div>
-<div class="listing-date">
-Aug 8, 2025
-</div>
-</div>
-</div>
-</div>
-</a>
-</div>
-<div class="g-col-1" data-index="4" data-categories="UkFHLUFORC1BR0VOVElDLUFJ" data-listing-date-sort="1754607600000" data-listing-file-modified-sort="1754646342721" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="6" data-listing-word-count-sort="1029">
-<a href="./posts/in-context-learning/index.html" class="quarto-grid-link">
-<div class="quarto-grid-item card h-100 card-left">
-<p class="card-img-top"><img src="posts/in-context-learning/cover_image.png" style="height: 150px;"  class="thumbnail-image card-img"/></p>
-<div class="card-body post-contents">
-<h5 class="no-anchor card-title listing-title">
-In‑Context Learning &amp; Prompt Engineering: A Practitioner’s Primer
-</h5>
-<div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('UkFHLUFORC1BR0VOVElDLUFJ'); return false;">
-RAG-AND-AGENTIC-AI
-</div>
-</div>
-<div class="card-text listing-description">
-Concise, rephrased overview of in‑context learning and prompt engineering: what they are, why they matter, core components of a robust prompt, strengths, limits, and a…
-</div>
-<div class="card-attribution card-text-small justify">
-<div class="listing-author">
-DOSSEH AMECK GUY-MAX DESIRE
-</div>
-<div class="listing-date">
-Aug 8, 2025
-</div>
-</div>
-</div>
-</div>
-</a>
-</div>
-<div class="g-col-1" data-index="5" data-categories="UkFHLUFORC1BR0VOVElDLUFJ" data-listing-date-sort="1754607600000" data-listing-file-modified-sort="1754646345464" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="5" data-listing-word-count-sort="851">
-<a href="./posts/nlp-explanation/index.html" class="quarto-grid-link">
-<div class="quarto-grid-item card h-100 card-left">
-<p class="card-img-top"><img src="posts/nlp-explanation/cover_image.png" style="height: 150px;"  class="thumbnail-image card-img"/></p>
-<div class="card-body post-contents">
-<h5 class="no-anchor card-title listing-title">
-Natural Language Processing: From Unstructured Text to Structured Intelligence
-</h5>
-<div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('UkFHLUFORC1BR0VOVElDLUFJ'); return false;">
-RAG-AND-AGENTIC-AI
-</div>
-</div>
-<div class="card-text listing-description">
-Practitioner-oriented overview of core Natural Language Processing (NLP) concepts: transforming unstructured language into structured representations for downstream AI…
-</div>
-<div class="card-attribution card-text-small justify">
-<div class="listing-author">
-DOSSEH AMECK GUY-MAX DESIRE
-</div>
-<div class="listing-date">
-Aug 8, 2025
-</div>
-</div>
-</div>
-</div>
-</a>
-</div>
-<div class="g-col-1" data-index="6" data-categories="ZGVyaXZhdGl2ZXMlMkNzd2FwcyUyQ1F1YW50aXRhdGl2ZS1GaW5hbmNlJTJDY29uc3RyYWludC1wcm9ncmFtbWluZyUyQ29wdGltaXphdGlvbg==" data-listing-date-sort="1754607600000" data-listing-file-modified-sort="1754662758102" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="395">
-<a href="./posts/swap-design/index.html" class="quarto-grid-link">
-<div class="quarto-grid-item card h-100 card-left">
-<p class="card-img-top"><img src="posts/swap-design/cover_image.png" style="height: 150px;"  class="thumbnail-image card-img"/></p>
-<div class="card-body post-contents">
-<h5 class="no-anchor card-title listing-title">
-Designing Interest Rate &amp; Currency Swaps with Constraint Programming
-</h5>
 <div class="listing-categories">
 <div class="listing-category" onclick="window.quartoListingCategory('ZGVyaXZhdGl2ZXM='); return false;">
 derivatives
@@ -404,20 +302,191 @@ constraint-programming
 optimization
 </div>
 </div>
-<div class="card-text listing-description">
-We revisit three standard structured finance situations (two interest rate swaps and one fixed-for-fixed currency swap) and show how to transform the qualitative…
+<div class="listing-description">
+<a href="./posts/Quantitative-Finance/swap-design/index.html" class="no-external">We revisit three standard structured finance situations (two interest rate swaps and one fixed-for-fixed currency swap) and show how to transform the qualitative comparative-advantage reasoning into an explicit constraint programming model (CP-SAT) that systematically enumerates feasible swap rate configurations while enforcing fairness and intermediary (bank) profit conditions. </a>
 </div>
-<div class="card-attribution card-text-small justify">
-<div class="listing-author">
-DOSSEH AMECK GUY-MAX DESIRE
 </div>
+<div class="metadata">
+<a href="./posts/Quantitative-Finance/swap-design/index.html" class="no-external">
 <div class="listing-date">
 Aug 8, 2025
 </div>
-</div>
-</div>
+<div class="listing-author">
+DOSSEH AMECK GUY-MAX DESIRE
 </div>
 </a>
+</div>
+</div>
+</div>
+<div class="listing-no-matching d-none">
+No matching items
+</div>
+</div><div class="quarto-listing quarto-listing-container-default" id="listing-rag-and-agentic-ai">
+<div class="list quarto-listing-default">
+<div class="quarto-post image-left" data-index="0" data-categories="UkFHLUFORC1BR0VOVElDLUFJ" data-listing-date-sort="1754607600000" data-listing-file-modified-sort="1754649888888" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="8" data-listing-word-count-sort="1414">
+<div class="thumbnail">
+<p><a href="./posts/RAG-AND-AGENTIC-AI/gen-ai-in-practice/index.html" class="no-external"></a></p><a href="./posts/RAG-AND-AGENTIC-AI/gen-ai-in-practice/index.html" class="no-external">
+<p class="card-img-top"><img src="posts/RAG-AND-AGENTIC-AI/gen-ai-in-practice/cover_image.jpg"  class="thumbnail-image card-img"/></p>
+</a><p><a href="./posts/RAG-AND-AGENTIC-AI/gen-ai-in-practice/index.html" class="no-external"></a></p>
+</div>
+<div class="body">
+<h3 class="no-anchor listing-title">
+<a href="./posts/RAG-AND-AGENTIC-AI/gen-ai-in-practice/index.html" class="no-external">Generative AI in Practice: A Concise Field Primer</a>
+</h3>
+<div class="listing-subtitle">
+<a href="./posts/RAG-AND-AGENTIC-AI/gen-ai-in-practice/index.html" class="no-external"></a>
+</div>
+<div class="listing-categories">
+<div class="listing-category" onclick="window.quartoListingCategory('UkFHLUFORC1BR0VOVElDLUFJ'); return false;">
+RAG-AND-AGENTIC-AI
+</div>
+</div>
+<div class="listing-description">
+<a href="./posts/RAG-AND-AGENTIC-AI/gen-ai-in-practice/index.html" class="no-external">A streamlined, rephrased summary of core Generative AI concepts distilled from a longer reference guide: foundations, retrieval augmentation, agents, prompting patterns, system architectures, and essential tools— with pragmatic checklists and references for deeper exploration. </a>
+</div>
+</div>
+<div class="metadata">
+<a href="./posts/RAG-AND-AGENTIC-AI/gen-ai-in-practice/index.html" class="no-external">
+<div class="listing-date">
+Aug 8, 2025
+</div>
+<div class="listing-author">
+DOSSEH AMECK GUY-MAX DESIRE
+</div>
+</a>
+</div>
+</div>
+<div class="quarto-post image-left" data-index="1" data-categories="UkFHLUFORC1BR0VOVElDLUFJ" data-listing-date-sort="1754607600000" data-listing-file-modified-sort="1754649872631" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="5" data-listing-word-count-sort="990">
+<div class="thumbnail">
+<p><a href="./posts/RAG-AND-AGENTIC-AI/gen-ai-models/index.html" class="no-external"></a></p><a href="./posts/RAG-AND-AGENTIC-AI/gen-ai-models/index.html" class="no-external">
+<p class="card-img-top"><img src="posts/RAG-AND-AGENTIC-AI/gen-ai-models/cover_image.png"  class="thumbnail-image card-img"/></p>
+</a><p><a href="./posts/RAG-AND-AGENTIC-AI/gen-ai-models/index.html" class="no-external"></a></p>
+</div>
+<div class="body">
+<h3 class="no-anchor listing-title">
+<a href="./posts/RAG-AND-AGENTIC-AI/gen-ai-models/index.html" class="no-external">Foundation Models and Large Language Models: A Practical Business Overview</a>
+</h3>
+<div class="listing-subtitle">
+<a href="./posts/RAG-AND-AGENTIC-AI/gen-ai-models/index.html" class="no-external"></a>
+</div>
+<div class="listing-categories">
+<div class="listing-category" onclick="window.quartoListingCategory('UkFHLUFORC1BR0VOVElDLUFJ'); return false;">
+RAG-AND-AGENTIC-AI
+</div>
+</div>
+<div class="listing-description">
+<a href="./posts/RAG-AND-AGENTIC-AI/gen-ai-models/index.html" class="no-external">This article provides a concise, practitioner-focused overview of foundation models (including large language models), their advantages, limitations, adaptation techniques, governance considerations, and strategic adoption patterns for enterprise value creation. </a>
+</div>
+</div>
+<div class="metadata">
+<a href="./posts/RAG-AND-AGENTIC-AI/gen-ai-models/index.html" class="no-external">
+<div class="listing-date">
+Aug 8, 2025
+</div>
+<div class="listing-author">
+DOSSEH AMECK GUY-MAX DESIRE
+</div>
+</a>
+</div>
+</div>
+<div class="quarto-post image-left" data-index="2" data-categories="UkFHLUFORC1BR0VOVElDLUFJ" data-listing-date-sort="1754607600000" data-listing-file-modified-sort="1754646329956" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-word-count-sort="572">
+<div class="thumbnail">
+<p><a href="./posts/RAG-AND-AGENTIC-AI/gen-ai/index.html" class="no-external"></a></p><a href="./posts/RAG-AND-AGENTIC-AI/gen-ai/index.html" class="no-external">
+<p class="card-img-top"><img src="posts/RAG-AND-AGENTIC-AI/gen-ai/cover_image.png"  class="thumbnail-image card-img"/></p>
+</a><p><a href="./posts/RAG-AND-AGENTIC-AI/gen-ai/index.html" class="no-external"></a></p>
+</div>
+<div class="body">
+<h3 class="no-anchor listing-title">
+<a href="./posts/RAG-AND-AGENTIC-AI/gen-ai/index.html" class="no-external">Introduction to Generative AI</a>
+</h3>
+<div class="listing-subtitle">
+<a href="./posts/RAG-AND-AGENTIC-AI/gen-ai/index.html" class="no-external"></a>
+</div>
+<div class="listing-categories">
+<div class="listing-category" onclick="window.quartoListingCategory('UkFHLUFORC1BR0VOVElDLUFJ'); return false;">
+RAG-AND-AGENTIC-AI
+</div>
+</div>
+<div class="listing-description">
+<a href="./posts/RAG-AND-AGENTIC-AI/gen-ai/index.html" class="no-external">This post is an introduction to Generative AI, a fascinating field of artificial intelligence that focuses on creating new content rather than just analyzing existing data.…</a>
+</div>
+</div>
+<div class="metadata">
+<a href="./posts/RAG-AND-AGENTIC-AI/gen-ai/index.html" class="no-external">
+<div class="listing-date">
+Aug 8, 2025
+</div>
+<div class="listing-author">
+DOSSEH AMECK GUY-MAX DESIRE
+</div>
+</a>
+</div>
+</div>
+<div class="quarto-post image-left" data-index="3" data-categories="UkFHLUFORC1BR0VOVElDLUFJ" data-listing-date-sort="1754607600000" data-listing-file-modified-sort="1754646342721" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="6" data-listing-word-count-sort="1029">
+<div class="thumbnail">
+<p><a href="./posts/RAG-AND-AGENTIC-AI/in-context-learning/index.html" class="no-external"></a></p><a href="./posts/RAG-AND-AGENTIC-AI/in-context-learning/index.html" class="no-external">
+<p class="card-img-top"><img src="posts/RAG-AND-AGENTIC-AI/in-context-learning/cover_image.png"  class="thumbnail-image card-img"/></p>
+</a><p><a href="./posts/RAG-AND-AGENTIC-AI/in-context-learning/index.html" class="no-external"></a></p>
+</div>
+<div class="body">
+<h3 class="no-anchor listing-title">
+<a href="./posts/RAG-AND-AGENTIC-AI/in-context-learning/index.html" class="no-external">In‑Context Learning &amp; Prompt Engineering: A Practitioner’s Primer</a>
+</h3>
+<div class="listing-subtitle">
+<a href="./posts/RAG-AND-AGENTIC-AI/in-context-learning/index.html" class="no-external"></a>
+</div>
+<div class="listing-categories">
+<div class="listing-category" onclick="window.quartoListingCategory('UkFHLUFORC1BR0VOVElDLUFJ'); return false;">
+RAG-AND-AGENTIC-AI
+</div>
+</div>
+<div class="listing-description">
+<a href="./posts/RAG-AND-AGENTIC-AI/in-context-learning/index.html" class="no-external">Concise, rephrased overview of in‑context learning and prompt engineering: what they are, why they matter, core components of a robust prompt, strengths, limits, and a practical workflow with references for deeper exploration. </a>
+</div>
+</div>
+<div class="metadata">
+<a href="./posts/RAG-AND-AGENTIC-AI/in-context-learning/index.html" class="no-external">
+<div class="listing-date">
+Aug 8, 2025
+</div>
+<div class="listing-author">
+DOSSEH AMECK GUY-MAX DESIRE
+</div>
+</a>
+</div>
+</div>
+<div class="quarto-post image-left" data-index="4" data-categories="UkFHLUFORC1BR0VOVElDLUFJ" data-listing-date-sort="1754607600000" data-listing-file-modified-sort="1754646345464" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="5" data-listing-word-count-sort="851">
+<div class="thumbnail">
+<p><a href="./posts/RAG-AND-AGENTIC-AI/nlp-explanation/index.html" class="no-external"></a></p><a href="./posts/RAG-AND-AGENTIC-AI/nlp-explanation/index.html" class="no-external">
+<p class="card-img-top"><img src="posts/RAG-AND-AGENTIC-AI/nlp-explanation/cover_image.png"  class="thumbnail-image card-img"/></p>
+</a><p><a href="./posts/RAG-AND-AGENTIC-AI/nlp-explanation/index.html" class="no-external"></a></p>
+</div>
+<div class="body">
+<h3 class="no-anchor listing-title">
+<a href="./posts/RAG-AND-AGENTIC-AI/nlp-explanation/index.html" class="no-external">Natural Language Processing: From Unstructured Text to Structured Intelligence</a>
+</h3>
+<div class="listing-subtitle">
+<a href="./posts/RAG-AND-AGENTIC-AI/nlp-explanation/index.html" class="no-external"></a>
+</div>
+<div class="listing-categories">
+<div class="listing-category" onclick="window.quartoListingCategory('UkFHLUFORC1BR0VOVElDLUFJ'); return false;">
+RAG-AND-AGENTIC-AI
+</div>
+</div>
+<div class="listing-description">
+<a href="./posts/RAG-AND-AGENTIC-AI/nlp-explanation/index.html" class="no-external">Practitioner-oriented overview of core Natural Language Processing (NLP) concepts: transforming unstructured language into structured representations for downstream AI applications. Covers preprocessing steps, representative use cases, evaluation, and seminal references. </a>
+</div>
+</div>
+<div class="metadata">
+<a href="./posts/RAG-AND-AGENTIC-AI/nlp-explanation/index.html" class="no-external">
+<div class="listing-date">
+Aug 8, 2025
+</div>
+<div class="listing-author">
+DOSSEH AMECK GUY-MAX DESIRE
+</div>
+</a>
+</div>
 </div>
 </div>
 <div class="listing-no-matching d-none">

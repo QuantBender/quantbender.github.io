@@ -2,13 +2,13 @@
   {
     "listing": "/index.html",
     "items": [
-      "/posts/The-Binomial-No-Arbitrage-Pricing-Model/index.html",
-      "/posts/gen-ai-in-practice/index.html",
-      "/posts/gen-ai-models/index.html",
-      "/posts/gen-ai/index.html",
-      "/posts/in-context-learning/index.html",
-      "/posts/nlp-explanation/index.html",
-      "/posts/swap-design/index.html"
+      "/posts/Quantitative-Finance/The-Binomial-No-Arbitrage-Pricing-Model/index.html",
+      "/posts/Quantitative-Finance/swap-design/index.html",
+      "/posts/RAG-AND-AGENTIC-AI/gen-ai-in-practice/index.html",
+      "/posts/RAG-AND-AGENTIC-AI/gen-ai-models/index.html",
+      "/posts/RAG-AND-AGENTIC-AI/gen-ai/index.html",
+      "/posts/RAG-AND-AGENTIC-AI/in-context-learning/index.html",
+      "/posts/RAG-AND-AGENTIC-AI/nlp-explanation/index.html"
     ]
   }
 ]
