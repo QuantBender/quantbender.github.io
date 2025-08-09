@@ -1,0 +1,23 @@
+---
+title: "QuantBender"
+listing:
+  - id: quantitative-finance
+    contents: "posts/Quantitative-Finance/*/*.qmd"
+    type: default
+    sort: "date desc"
+    categories: true
+    sort-ui: false
+    filter-ui: false
+    image-placeholder: "images/qf.webp"
+    image-align: left
+  - id: rag-and-agentic-ai
+    contents: "posts/RAG-AND-AGENTIC-AI/*/*.qmd"
+    type: default
+    sort: "date desc"
+    categories: true
+    sort-ui: false
+    filter-ui: false
+    image-align: left
+page-layout: full
+title-block-banner: true
+---

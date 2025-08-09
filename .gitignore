@@ -1,4 +1,17 @@
-.Rproj.user
+# Quarto cache directories (may contain executed cell outputs)
+.quarto/_freeze/
+_freeze/
+
+# Quarto local build output (publish docs/ instead)
+_site/
+
+# OS/editor noise
+.DS_Store
+*.log
+*.tmp
+*.swp
+*.swo
+*.bak.Rproj.user
 .Rhistory
 .RData
 .Ruserdata
