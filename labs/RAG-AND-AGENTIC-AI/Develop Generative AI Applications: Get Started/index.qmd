@@ -168,11 +168,6 @@ from langchain_core.messages import HumanMessage, SystemMessage
 from langchain.chains import LLMChain  # Still using this for backward compatibility
 ```
 
-```{python}
-from huggingface_hub import login
-login(token="HF_TOKEN_REDACTED")  # DO NOT hard‑code in shared notebooks
-```
-
 ### Set up the LLM
 
 In this section, you will build an LLM using IBM watsonx.ai. The following code initializes a Granite model on IBM's watsonx.ai platform and wraps it into a function that allows for repeat use.
