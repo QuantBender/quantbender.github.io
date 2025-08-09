@@ -86,7 +86,7 @@
         "\n",
         "### Example (LangChain)"
       ],
-      "id": "bff32ca5"
+      "id": "6ca2e638"
     },
     {
       "cell_type": "code",
@@ -103,7 +103,7 @@
         "print(prompt)\n",
         "# -> \"Tell me a witty joke about penguins.\""
       ],
-      "id": "915e7613",
+      "id": "cfb5803b",
       "execution_count": null,
       "outputs": []
     }

@@ -72,7 +72,7 @@
         "\n",
         "A simple pipeline: format → generate → parse."
       ],
-      "id": "1592673b"
+      "id": "b3d7a834"
     },
     {
       "cell_type": "code",
@@ -117,7 +117,7 @@
         "\n",
         "print(joke_chain.invoke({\"adjective\": \"absurd\", \"topic\": \"penguins\"}))"
       ],
-      "id": "e8e97324",
+      "id": "6140ff11",
       "execution_count": null,
       "outputs": []
     },
@@ -129,7 +129,7 @@
         "\n",
         "Add a preprocessing function before generation."
       ],
-      "id": "9d2cd70e"
+      "id": "7622af99"
     },
     {
       "cell_type": "code",
@@ -148,7 +148,7 @@
         "\n",
         "print(chain.invoke({\"adjective\": \" Witty \", \"topic\": \" Space Exploration  \"}))"
       ],
-      "id": "b95b76ef",
+      "id": "cfa5da61",
       "execution_count": null,
       "outputs": []
     },
@@ -160,7 +160,7 @@
         "\n",
         "Run multiple tasks (summary, translation, sentiment) simultaneously. A dict automatically becomes a parallel runnable."
       ],
-      "id": "8b84e01b"
+      "id": "5db6dd53"
     },
     {
       "cell_type": "code",
@@ -214,7 +214,7 @@
         "sample = \"The product launch exceeded expectations, delighting early adopters despite minor shipping delays.\"\n",
         "print(parallel.invoke({\"text\": sample}))"
       ],
-      "id": "38a4af52",
+      "id": "fd97f603",
       "execution_count": null,
       "outputs": []
     },
@@ -226,7 +226,7 @@
         "\n",
         "Functions become transformation runnables; dictionaries become parallel composites—no manual wrapping required."
       ],
-      "id": "5e0f1d64"
+      "id": "cc70a543"
     },
     {
       "cell_type": "code",
@@ -241,7 +241,7 @@
         "coercion_chain = enrich | prompt | llm | parser\n",
         "print(coercion_chain.invoke({\"adjective\": \"\", \"topic\": \"Quantum Computing\"}))"
       ],
-      "id": "725189fd",
+      "id": "601a8b99",
       "execution_count": null,
       "outputs": []
     },
@@ -253,7 +253,7 @@
         "\n",
         "Add resilient parsing to guard against minor format drift."
       ],
-      "id": "ed998caf"
+      "id": "e950a0c4"
     },
     {
       "cell_type": "code",
@@ -280,7 +280,7 @@
         "\n",
         "print(analysis_chain.invoke({\"text\": \"User adoption is accelerating and early feedback is enthusiastic.\"}))"
       ],
-      "id": "b5284a7a",
+      "id": "a15ebeb5",
       "execution_count": null,
       "outputs": []
     },
@@ -292,7 +292,7 @@
         "\n",
         "Receive incremental output for responsive UIs."
       ],
-      "id": "ad7c0edf"
+      "id": "1b4a13c6"
     },
     {
       "cell_type": "code",
@@ -305,7 +305,7 @@
         "    print(chunk, end=\"\", flush=True)\n",
         "print()"
       ],
-      "id": "1ef9a7d1",
+      "id": "de136972",
       "execution_count": null,
       "outputs": []
     },
@@ -317,7 +317,7 @@
         "\n",
         "Use `.ainvoke()` for concurrency (e.g. in web servers)."
       ],
-      "id": "1e73b5f4"
+      "id": "d5702652"
     },
     {
       "cell_type": "code",
@@ -331,7 +331,7 @@
         "\n",
         "asyncio.run(run_async())"
       ],
-      "id": "d2708307",
+      "id": "f18ef819",
       "execution_count": null,
       "outputs": []
     },
@@ -343,7 +343,7 @@
         "\n",
         "Hybrid pipeline: preprocessing → parallel enrichment → consolidation."
       ],
-      "id": "c270c9f6"
+      "id": "cdfbac79"
     },
     {
       "cell_type": "code",
@@ -372,7 +372,7 @@
         "pipeline = base | (lambda d: {\"original\": d[\"original\"], **fanout.invoke({\"text\": d[\"text\"]})}) | merge\n",
         "print(pipeline.invoke({\"text\": \"Platform signups rose while churn decreased steadily.\"}))"
       ],
-      "id": "ff2d4e26",
+      "id": "57a67db5",
       "execution_count": null,
       "outputs": []
     },
@@ -435,7 +435,7 @@
         "5.  Li, D. et al. (2023). A Survey on Prompt Engineering. arXiv:2305.00050.\\\n",
         "6.  Best Practices in LLM Chaining (Community Discussions). (Consult official docs for authoritative updates.)"
       ],
-      "id": "b56f0308"
+      "id": "19349e07"
     }
   ],
   "metadata": {
