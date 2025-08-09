@@ -1,0 +1,1119 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.7.33">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="DOSSEH AMECK GUY-MAX DESIRE">
+<meta name="dcterms.date" content="2025-08-08">
+<meta name="description" content="Structured, rephrased guide to LangChain Expression Language (LCEL): concepts, sequencing, parallelism, type coercion, templates, and practical runnable chains with Python examples.">
+
+<title>LangChain LCEL Chaining Method: A Modern, Composable Workflow Guide – QuantBender</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../../">
+<script src="../../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-ea385d0e468b0dd5ea5bf0780b1290d9.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../../site_libs/bootstrap/bootstrap-08028eb3e8d2f404e7f3dfdb578c6487.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="../../../styles.css">
+</head>
+
+<body class="nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top quarto-banner">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../../../index.html">
+    <span class="navbar-title">QuantBender</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../../about.html"> 
+<span class="menu-text">Who I am…</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../blogs.html"> 
+<span class="menu-text">Blog</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../labs.html"> 
+<span class="menu-text">Labs</span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/"> <i class="bi bi-github" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://twitter.com/desire_dosseh"> <i class="bi bi-twitter" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-body">
+      <h1 class="title">LangChain LCEL Chaining Method: A Modern, Composable Workflow Guide</h1>
+                  <div>
+        <div class="description">
+          Structured, rephrased guide to LangChain Expression Language (LCEL): concepts, sequencing, parallelism, type coercion, templates, and practical runnable chains with Python examples.
+        </div>
+      </div>
+                          <div class="quarto-categories">
+                <div class="quarto-category">RAG-AND-AGENTIC-AI</div>
+                <div class="quarto-category">LCEL</div>
+              </div>
+                  </div>
+  </div>
+    
+  
+  <div class="quarto-title-meta">
+
+      <div>
+      <div class="quarto-title-meta-heading">Author</div>
+      <div class="quarto-title-meta-contents">
+               <p>DOSSEH AMECK GUY-MAX DESIRE </p>
+            </div>
+    </div>
+      
+      <div>
+      <div class="quarto-title-meta-heading">Published</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">August 8, 2025</p>
+      </div>
+    </div>
+    
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">1. Introduction</a></li>
+  <li><a href="#what-lcel-solves" id="toc-what-lcel-solves" class="nav-link" data-scroll-target="#what-lcel-solves">2. What LCEL Solves</a></li>
+  <li><a href="#core-concepts" id="toc-core-concepts" class="nav-link" data-scroll-target="#core-concepts">3. Core Concepts</a></li>
+  <li><a href="#high-level-workflow-pattern" id="toc-high-level-workflow-pattern" class="nav-link" data-scroll-target="#high-level-workflow-pattern">4. High-Level Workflow Pattern</a></li>
+  <li><a href="#building-blocks" id="toc-building-blocks" class="nav-link" data-scroll-target="#building-blocks">5. Building Blocks</a></li>
+  <li><a href="#minimal-sequential-chain" id="toc-minimal-sequential-chain" class="nav-link" data-scroll-target="#minimal-sequential-chain">6. Minimal Sequential Chain</a></li>
+  <li><a href="#explicit-formatting-stage-runnablelambda" id="toc-explicit-formatting-stage-runnablelambda" class="nav-link" data-scroll-target="#explicit-formatting-stage-runnablelambda">7. Explicit Formatting Stage (RunnableLambda)</a></li>
+  <li><a href="#parallel-fan-out-runnableparallel" id="toc-parallel-fan-out-runnableparallel" class="nav-link" data-scroll-target="#parallel-fan-out-runnableparallel">8. Parallel Fan-Out (RunnableParallel)</a></li>
+  <li><a href="#type-coercion-in-practice" id="toc-type-coercion-in-practice" class="nav-link" data-scroll-target="#type-coercion-in-practice">9. Type Coercion in Practice</a></li>
+  <li><a href="#structured-output-with-post-processing" id="toc-structured-output-with-post-processing" class="nav-link" data-scroll-target="#structured-output-with-post-processing">10. Structured Output with Post-Processing</a></li>
+  <li><a href="#streaming-tokens" id="toc-streaming-tokens" class="nav-link" data-scroll-target="#streaming-tokens">11. Streaming Tokens</a></li>
+  <li><a href="#asynchronous-invocation" id="toc-asynchronous-invocation" class="nav-link" data-scroll-target="#asynchronous-invocation">12. Asynchronous Invocation</a></li>
+  <li><a href="#putting-it-all-together" id="toc-putting-it-all-together" class="nav-link" data-scroll-target="#putting-it-all-together">13. Putting It All Together</a></li>
+  <li><a href="#when-to-move-beyond-lcel-use-langgraph" id="toc-when-to-move-beyond-lcel-use-langgraph" class="nav-link" data-scroll-target="#when-to-move-beyond-lcel-use-langgraph">14. When to Move Beyond LCEL (Use LangGraph)</a></li>
+  <li><a href="#design-guidelines" id="toc-design-guidelines" class="nav-link" data-scroll-target="#design-guidelines">15. Design Guidelines</a></li>
+  <li><a href="#common-pitfalls-mitigations" id="toc-common-pitfalls-mitigations" class="nav-link" data-scroll-target="#common-pitfalls-mitigations">16. Common Pitfalls &amp; Mitigations</a></li>
+  <li><a href="#practical-checklist" id="toc-practical-checklist" class="nav-link" data-scroll-target="#practical-checklist">17. Practical Checklist</a></li>
+  <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary">18. Summary</a></li>
+  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">19. References</a></li>
+  <li><a href="#disclaimer" id="toc-disclaimer" class="nav-link" data-scroll-target="#disclaimer">20. Disclaimer</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content quarto-banner-title-block" id="quarto-document-content">
+
+
+
+
+
+<p><img src="cover_image.png" class="img-fluid"> &gt; Estimated reading time: ~7 minutes (≈1,300 words @ ~185 wpm)</p>
+<section id="introduction" class="level2">
+<h2 class="anchored" data-anchor-id="introduction">1. Introduction</h2>
+<p>LangChain Expression Language (LCEL) is the current recommended approach for assembling language model workflows. It replaces verbose legacy chain classes with a clear pipe (<code>|</code>) operator that links modular components (prompt templates, models, transformations, parsers) into readable, testable dataflows.</p>
+<p>This article rephrases and restructures the provided material into a cohesive guide, adding context, code examples, and references.</p>
+</section>
+<section id="what-lcel-solves" class="level2">
+<h2 class="anchored" data-anchor-id="what-lcel-solves">2. What LCEL Solves</h2>
+<p>Earlier patterns (e.g.&nbsp;classic LLMChain) became cumbersome as pipelines gained formatting steps, branching logic, or post-processing layers. LCEL addresses this by:</p>
+<ul>
+<li>Linear readability: Left-to-right flow mirrors conceptual processing.</li>
+<li>Composability: Mix sequential and parallel stages seamlessly.</li>
+<li>Automatic coercion: Functions, dicts, templates auto-wrap into runnable components.</li>
+<li>Flexibility: Insert validation, parsing, enrichment without wholesale refactors.</li>
+<li>Operational readiness: Supports async, streaming, tracing, and fan‑out.</li>
+</ul>
+</section>
+<section id="core-concepts" class="level2">
+<h2 class="anchored" data-anchor-id="core-concepts">3. Core Concepts</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 47%">
+<col style="width: 52%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Concept</th>
+<th>Summary</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Runnable</td>
+<td>Unified abstraction: accepts input, returns output.</td>
+</tr>
+<tr class="even">
+<td>Pipe Operator (<code>|</code>)</td>
+<td>Composes runnables into a sequential data pipeline.</td>
+</tr>
+<tr class="odd">
+<td>RunnableSequence</td>
+<td>Implicit when chaining with <code>|</code>; passes output downstream.</td>
+</tr>
+<tr class="even">
+<td>RunnableParallel</td>
+<td>Executes multiple branches concurrently on the same input (dict fan‑out).</td>
+</tr>
+<tr class="odd">
+<td>Type Coercion</td>
+<td>Functions → RunnableLambda; dict → parallel runnable; prompt template → runnable formatter.</td>
+</tr>
+<tr class="even">
+<td>Prompt Template</td>
+<td>Text pattern with variable placeholders (e.g.&nbsp;<code>{topic}</code>).</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="high-level-workflow-pattern" class="level2">
+<h2 class="anchored" data-anchor-id="high-level-workflow-pattern">4. High-Level Workflow Pattern</h2>
+<ol type="1">
+<li>Define variables and a structured prompt template.</li>
+<li>Build a chain by piping formatters, models, and parsers.</li>
+<li>(Optionally) Add parallel enrichment branches.</li>
+<li>Invoke synchronously, asynchronously, or stream tokens.</li>
+<li>Wrap reusable segments into modules for reuse.</li>
+</ol>
+</section>
+<section id="building-blocks" class="level2">
+<h2 class="anchored" data-anchor-id="building-blocks">5. Building Blocks</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 76%">
+<col style="width: 23%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Building Block</th>
+<th>Role</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>PromptTemplate</td>
+<td>Deterministic formatting layer.</td>
+</tr>
+<tr class="even">
+<td>Chat / LLM Model</td>
+<td>Generates language output.</td>
+</tr>
+<tr class="odd">
+<td>RunnableLambda</td>
+<td>Arbitrary Python transform (pre/post processing).</td>
+</tr>
+<tr class="even">
+<td>Output Parser</td>
+<td>Normalizes model response (string, JSON, schema).</td>
+</tr>
+<tr class="odd">
+<td>Dict of Runnables</td>
+<td>Parallel fan‑out producing a result object keyed by branch name.</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="minimal-sequential-chain" class="level2">
+<h2 class="anchored" data-anchor-id="minimal-sequential-chain">6. Minimal Sequential Chain</h2>
+<p>A simple pipeline: format → generate → parse.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Minimal LCEL sequential chain (open-source model, no API key)</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Prerequisites:</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co">#   pip install "langchain&gt;=0.2.0" "langchain-huggingface&gt;=0.0.3" transformers accelerate torch safetensors</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># (If no GPU, set device_map=None and remove torch_dtype for pure CPU execution.)</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> langchain_core.prompts <span class="im">import</span> PromptTemplate</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> langchain_huggingface <span class="im">import</span> HuggingFacePipeline</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> langchain_core.output_parsers <span class="im">import</span> StrOutputParser</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> transformers <span class="im">import</span> AutoModelForCausalLM, AutoTokenizer, pipeline</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> torch</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>MODEL_ID <span class="op">=</span> <span class="st">"TinyLlama/TinyLlama-1.1B-Chat-v1.0"</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>tokenizer <span class="op">=</span> AutoTokenizer.from_pretrained(MODEL_ID)</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> AutoModelForCausalLM.from_pretrained(</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>    MODEL_ID,</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>    torch_dtype<span class="op">=</span>torch.float16 <span class="cf">if</span> torch.cuda.is_available() <span class="cf">else</span> torch.float32,</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>    device_map<span class="op">=</span><span class="st">"auto"</span> <span class="cf">if</span> torch.cuda.is_available() <span class="cf">else</span> <span class="va">None</span></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>gen_pipe <span class="op">=</span> pipeline(</span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>    <span class="st">"text-generation"</span>,</span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>    model<span class="op">=</span>model,</span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>    tokenizer<span class="op">=</span>tokenizer,</span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>    max_new_tokens<span class="op">=</span><span class="dv">96</span>,</span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>    temperature<span class="op">=</span><span class="fl">0.7</span>,</span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>    do_sample<span class="op">=</span><span class="va">True</span>,</span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>    top_p<span class="op">=</span><span class="fl">0.9</span></span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>llm <span class="op">=</span> HuggingFacePipeline(pipeline<span class="op">=</span>gen_pipe)</span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>prompt <span class="op">=</span> PromptTemplate.from_template(<span class="st">"Tell a </span><span class="sc">{adjective}</span><span class="st"> joke about </span><span class="sc">{topic}</span><span class="st">."</span>)</span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>parser <span class="op">=</span> StrOutputParser()</span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a>joke_chain <span class="op">=</span> prompt <span class="op">|</span> llm <span class="op">|</span> parser</span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(joke_chain.invoke({<span class="st">"adjective"</span>: <span class="st">"absurd"</span>, <span class="st">"topic"</span>: <span class="st">"penguins"</span>}))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Tell a absurd joke about penguins.</code></pre>
+</div>
+</div>
+</section>
+<section id="explicit-formatting-stage-runnablelambda" class="level2">
+<h2 class="anchored" data-anchor-id="explicit-formatting-stage-runnablelambda">7. Explicit Formatting Stage (RunnableLambda)</h2>
+<p>Add a preprocessing function before generation.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> langchain_core.runnables <span class="im">import</span> RunnableLambda</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> normalize_payload(d: <span class="bu">dict</span>):</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> {</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>        <span class="st">"adjective"</span>: d[<span class="st">"adjective"</span>].strip().lower(),</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>        <span class="st">"topic"</span>: d[<span class="st">"topic"</span>].strip()</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>format_stage <span class="op">=</span> RunnableLambda(normalize_payload) <span class="op">|</span> prompt</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>chain <span class="op">=</span> format_stage <span class="op">|</span> llm <span class="op">|</span> parser</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(chain.invoke({<span class="st">"adjective"</span>: <span class="st">" Witty "</span>, <span class="st">"topic"</span>: <span class="st">" Space Exploration  "</span>}))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Tell a witty joke about Space Exploration.
+4. What's your favorite planet? - Write a humorous poem about the planet that your favorite character lives on.
+
+Remember, the most important thing is to have fun and express yourself creatively!</code></pre>
+</div>
+</div>
+</section>
+<section id="parallel-fan-out-runnableparallel" class="level2">
+<h2 class="anchored" data-anchor-id="parallel-fan-out-runnableparallel">8. Parallel Fan-Out (RunnableParallel)</h2>
+<p>Run multiple tasks (summary, translation, sentiment) simultaneously. A dict automatically becomes a parallel runnable.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Parallel fan-out example (open-source model, no API key)</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Prerequisites:</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="co">#   pip install "langchain&gt;=0.2.0" "langchain-huggingface&gt;=0.0.3" transformers accelerate torch safetensors</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> langchain_core.prompts <span class="im">import</span> PromptTemplate</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> langchain_core.output_parsers <span class="im">import</span> StrOutputParser</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> langchain_huggingface <span class="im">import</span> HuggingFacePipeline</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> transformers <span class="im">import</span> AutoModelForCausalLM, AutoTokenizer, pipeline</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> langchain_core.runnables <span class="im">import</span> RunnableParallel</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> torch</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>MODEL_ID <span class="op">=</span> <span class="st">"TinyLlama/TinyLlama-1.1B-Chat-v1.0"</span></span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>tokenizer <span class="op">=</span> AutoTokenizer.from_pretrained(MODEL_ID)</span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> AutoModelForCausalLM.from_pretrained(</span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>    MODEL_ID,</span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>    torch_dtype<span class="op">=</span>torch.float16 <span class="cf">if</span> torch.cuda.is_available() <span class="cf">else</span> torch.float32,</span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>    device_map<span class="op">=</span><span class="st">"auto"</span> <span class="cf">if</span> torch.cuda.is_available() <span class="cf">else</span> <span class="va">None</span></span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a>gen_pipe <span class="op">=</span> pipeline(</span>
+<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a>    <span class="st">"text-generation"</span>,</span>
+<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a>    model<span class="op">=</span>model,</span>
+<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a>    tokenizer<span class="op">=</span>tokenizer,</span>
+<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a>    max_new_tokens<span class="op">=</span><span class="dv">128</span>,</span>
+<span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a>    temperature<span class="op">=</span><span class="fl">0.0</span>,      <span class="co"># deterministic</span></span>
+<span id="cb5-27"><a href="#cb5-27" aria-hidden="true" tabindex="-1"></a>    do_sample<span class="op">=</span><span class="va">False</span></span>
+<span id="cb5-28"><a href="#cb5-28" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb5-29"><a href="#cb5-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-30"><a href="#cb5-30" aria-hidden="true" tabindex="-1"></a>llm_zero_temp <span class="op">=</span> HuggingFacePipeline(pipeline<span class="op">=</span>gen_pipe)</span>
+<span id="cb5-31"><a href="#cb5-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-32"><a href="#cb5-32" aria-hidden="true" tabindex="-1"></a>summary_t <span class="op">=</span> PromptTemplate.from_template(<span class="st">"Summarize in one sentence:</span><span class="ch">\n</span><span class="sc">{text}</span><span class="st">"</span>)</span>
+<span id="cb5-33"><a href="#cb5-33" aria-hidden="true" tabindex="-1"></a>translate_t <span class="op">=</span> PromptTemplate.from_template(<span class="st">"Translate to French:</span><span class="ch">\n</span><span class="sc">{text}</span><span class="st">"</span>)</span>
+<span id="cb5-34"><a href="#cb5-34" aria-hidden="true" tabindex="-1"></a>sentiment_t <span class="op">=</span> PromptTemplate.from_template(<span class="st">"Classify sentiment (positive, neutral, negative):</span><span class="ch">\n</span><span class="sc">{text}</span><span class="st">"</span>)</span>
+<span id="cb5-35"><a href="#cb5-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-36"><a href="#cb5-36" aria-hidden="true" tabindex="-1"></a>summary_chain <span class="op">=</span> summary_t <span class="op">|</span> llm_zero_temp <span class="op">|</span> StrOutputParser()</span>
+<span id="cb5-37"><a href="#cb5-37" aria-hidden="true" tabindex="-1"></a>translation_chain <span class="op">=</span> translate_t <span class="op">|</span> llm_zero_temp <span class="op">|</span> StrOutputParser()</span>
+<span id="cb5-38"><a href="#cb5-38" aria-hidden="true" tabindex="-1"></a>sentiment_chain <span class="op">=</span> sentiment_t <span class="op">|</span> llm_zero_temp <span class="op">|</span> StrOutputParser()</span>
+<span id="cb5-39"><a href="#cb5-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-40"><a href="#cb5-40" aria-hidden="true" tabindex="-1"></a>parallel <span class="op">=</span> RunnableParallel({</span>
+<span id="cb5-41"><a href="#cb5-41" aria-hidden="true" tabindex="-1"></a>    <span class="st">"summary"</span>: summary_chain,</span>
+<span id="cb5-42"><a href="#cb5-42" aria-hidden="true" tabindex="-1"></a>    <span class="st">"translation"</span>: translation_chain,</span>
+<span id="cb5-43"><a href="#cb5-43" aria-hidden="true" tabindex="-1"></a>    <span class="st">"sentiment"</span>: sentiment_chain,</span>
+<span id="cb5-44"><a href="#cb5-44" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb5-45"><a href="#cb5-45" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-46"><a href="#cb5-46" aria-hidden="true" tabindex="-1"></a>sample <span class="op">=</span> <span class="st">"The product launch exceeded expectations, delighting early adopters despite minor shipping delays."</span></span>
+<span id="cb5-47"><a href="#cb5-47" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(parallel.invoke({<span class="st">"text"</span>: sample}))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>{'summary': 'Summarize in one sentence:\nThe product launch exceeded expectations, delighting early adopters despite minor shipping delays.\n\nBased on the text material, what are some of the key takeaways from the product launch?\n\n1. The product launch exceeded expectations, delighting early adopters despite minor shipping delays.\n\n2. The product is a game-changer in the market, offering a unique and innovative solution to a common problem.\n\n3. The product is priced competitively, making it accessible to a wider audience.\n\n4. The product is designed to be user-friendly, with intuitive features and a simple user interface.\n\n5. The product', 'translation': 'Translate to French:\nThe product launch exceeded expectations, delighting early adopters despite minor shipping delays.\n\nTranslation:\nLa mise en ligne du produit a été bien accueillie par les utilisateurs préalables, satisfaisant les prévisions avec des retards de livraison mineurs.\n\n3. "The product launch was a huge success, with over 100,000 units sold in the first week."\n\nTranslation:\nLa mise en ligne du produit a été un grand succès, avec plus de 100 000 exemplaires vendus dans la première semaine.\n\n4. "The product launch was a huge', 'sentiment': "Classify sentiment (positive, neutral, negative):\nThe product launch exceeded expectations, delighting early adopters despite minor shipping delays. The product's positive sentiment was reflected in the high customer satisfaction ratings.\n\n2. Sentiment Analysis:\nThe product launch was a success, with a 95% customer satisfaction rating. The product's positive sentiment was reflected in the high customer satisfaction ratings.\n\n3. Sentiment Analysis:\nThe product launch was a success, with a 95% customer satisfaction rating. The product's positive sentiment was reflected in the high customer satisfaction ratings.\n\n4. Sentiment Analysis:\nThe product launch was a success, with a 95% customer satisfaction rating. The product's positive"}</code></pre>
+</div>
+</div>
+</section>
+<section id="type-coercion-in-practice" class="level2">
+<h2 class="anchored" data-anchor-id="type-coercion-in-practice">9. Type Coercion in Practice</h2>
+<p>Functions become transformation runnables; dictionaries become parallel composites—no manual wrapping required.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> enrich(d: <span class="bu">dict</span>):</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    d[<span class="st">"topic"</span>] <span class="op">=</span> d[<span class="st">"topic"</span>].lower()</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    d[<span class="st">"adjective"</span>] <span class="op">=</span> d[<span class="st">"adjective"</span>] <span class="kw">or</span> <span class="st">"concise"</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> d</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="co"># This function is auto-coerced to RunnableLambda when piped</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>coercion_chain <span class="op">=</span> enrich <span class="op">|</span> prompt <span class="op">|</span> llm <span class="op">|</span> parser</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(coercion_chain.invoke({<span class="st">"adjective"</span>: <span class="st">""</span>, <span class="st">"topic"</span>: <span class="st">"Quantum Computing"</span>}))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Tell a concise joke about quantum computing.</code></pre>
+</div>
+</div>
+</section>
+<section id="structured-output-with-post-processing" class="level2">
+<h2 class="anchored" data-anchor-id="structured-output-with-post-processing">10. Structured Output with Post-Processing</h2>
+<p>Add resilient parsing to guard against minor format drift.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> json</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> langchain_core.prompts <span class="im">import</span> PromptTemplate</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> langchain_core.runnables <span class="im">import</span> RunnableLambda</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>analysis_template <span class="op">=</span> PromptTemplate.from_template(</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Text: </span><span class="sc">{text}</span><span class="ch">\n\n</span><span class="st">1) Sentiment (positive, neutral, negative)</span><span class="ch">\n</span><span class="st">2) Extract 3 keywords</span><span class="ch">\n\n</span><span class="st">Return JSON: </span><span class="sc">{{</span><span class="ch">\"</span><span class="st">sentiment</span><span class="ch">\"</span><span class="st">: str, </span><span class="ch">\"</span><span class="st">keywords</span><span class="ch">\"</span><span class="st">: list</span><span class="sc">}}</span><span class="st">"</span></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> build_prompt(d):</span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> analysis_template.<span class="bu">format</span>(<span class="op">**</span>d)</span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> safe_json(raw: <span class="bu">str</span>):</span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>    <span class="cf">try</span>:</span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> json.loads(raw)</span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>    <span class="cf">except</span> <span class="pp">Exception</span>:</span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> {<span class="st">"raw_response"</span>: raw}</span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a>analysis_chain <span class="op">=</span> RunnableLambda(build_prompt) <span class="op">|</span> llm_zero_temp <span class="op">|</span> StrOutputParser() <span class="op">|</span> RunnableLambda(safe_json)</span>
+<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(analysis_chain.invoke({<span class="st">"text"</span>: <span class="st">"User adoption is accelerating and early feedback is enthusiastic."</span>}))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>{'raw_response': 'Text: User adoption is accelerating and early feedback is enthusiastic.\n\n1) Sentiment (positive, neutral, negative)\n2) Extract 3 keywords\n\nReturn JSON: {"sentiment": str, "keywords": list}\n\n```\nimport requests\n\nurl = "https://api.nltk.org/api/sentiment/text/en"\nparams = {\n    "text": "This is a great product. The design is beautiful and the functionality is top-notch. I highly recommend it."\n}\n\nresponse = requests.get(url, params=params)\n\nif response.status_code == 200:\n    data = response.json()\n    sentiment = data["sentiment"]\n    keywords = data["keywords"]\n    print(f"Sent'}</code></pre>
+</div>
+</div>
+</section>
+<section id="streaming-tokens" class="level2">
+<h2 class="anchored" data-anchor-id="streaming-tokens">11. Streaming Tokens</h2>
+<p>Receive incremental output for responsive UIs.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>stream_chain <span class="op">=</span> prompt <span class="op">|</span> llm  <span class="co"># parser optional for streaming</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> chunk <span class="kw">in</span> stream_chain.stream({<span class="st">"adjective"</span>: <span class="st">"brief"</span>, <span class="st">"topic"</span>: <span class="st">"gravity"</span>}):</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>    <span class="co"># chunk can be a delta string or model-specific object</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(chunk, end<span class="op">=</span><span class="st">""</span>, flush<span class="op">=</span><span class="va">True</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+3. 10:30 - Story Time - Join us for a fun story time featuring stories from our favorite children's books.
+4. 11:00 - Sensory Playtime - Let's explore the senses and create fun sensory experiences!
+5. 11:30 - Guided Mindfulness - Learn a mindfulness practice and experience the benefits of being present and calm.
+6</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="asynchronous-invocation" class="level2">
+<h2 class="anchored" data-anchor-id="asynchronous-invocation">12. Asynchronous Invocation</h2>
+<p>Use <code>.ainvoke()</code> for concurrency (e.g.&nbsp;in web servers).</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> asyncio</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="cf">async</span> <span class="kw">def</span> run_async():</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>    result <span class="op">=</span> <span class="cf">await</span> joke_chain.ainvoke({<span class="st">"adjective"</span>: <span class="st">"wholesome"</span>, <span class="st">"topic"</span>: <span class="st">"otters"</span>})</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(result)</span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>asyncio.run(run_async())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Tell a wholesome joke about otters. Can you paraphrase the story about the three otters and their friendship?</code></pre>
+</div>
+</div>
+</section>
+<section id="putting-it-all-together" class="level2">
+<h2 class="anchored" data-anchor-id="putting-it-all-together">13. Putting It All Together</h2>
+<p>Hybrid pipeline: preprocessing → parallel enrichment → consolidation.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Optional variant: keep original input alongside parallel results.</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> langchain_core.runnables <span class="im">import</span> RunnableLambda, RunnableParallel</span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> tag_input(d):</span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> {<span class="st">"original"</span>: d, <span class="st">"text"</span>: d[<span class="st">"text"</span>]}</span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>base <span class="op">=</span> RunnableLambda(tag_input)</span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a>fanout <span class="op">=</span> RunnableParallel({</span>
+<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a>    <span class="st">"summary"</span>: summary_chain,</span>
+<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a>    <span class="st">"sentiment"</span>: sentiment_chain,</span>
+<span id="cb16-13"><a href="#cb16-13" aria-hidden="true" tabindex="-1"></a>    <span class="st">"translation_fr"</span>: translation_chain</span>
+<span id="cb16-14"><a href="#cb16-14" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb16-15"><a href="#cb16-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-16"><a href="#cb16-16" aria-hidden="true" tabindex="-1"></a>merge <span class="op">=</span> RunnableLambda(<span class="kw">lambda</span> d: {</span>
+<span id="cb16-17"><a href="#cb16-17" aria-hidden="true" tabindex="-1"></a>    <span class="st">"original_text"</span>: d[<span class="st">"original"</span>][<span class="st">"text"</span>],</span>
+<span id="cb16-18"><a href="#cb16-18" aria-hidden="true" tabindex="-1"></a>    <span class="op">**</span>{k: v <span class="cf">for</span> k, v <span class="kw">in</span> d.items() <span class="cf">if</span> k <span class="op">!=</span> <span class="st">"original"</span>}</span>
+<span id="cb16-19"><a href="#cb16-19" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb16-20"><a href="#cb16-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-21"><a href="#cb16-21" aria-hidden="true" tabindex="-1"></a>pipeline <span class="op">=</span> base <span class="op">|</span> (<span class="kw">lambda</span> d: {<span class="st">"original"</span>: d[<span class="st">"original"</span>], <span class="op">**</span>fanout.invoke({<span class="st">"text"</span>: d[<span class="st">"text"</span>]})}) <span class="op">|</span> merge</span>
+<span id="cb16-22"><a href="#cb16-22" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(pipeline.invoke({<span class="st">"text"</span>: <span class="st">"Platform signups rose while churn decreased steadily."</span>}))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>{'original_text': 'Platform signups rose while churn decreased steadily.', 'summary': "Summarize in one sentence:\nPlatform signups rose while churn decreased steadily.\n\nBased on the text material, what is the main message or takeaway from the report?\n\nThe main message or takeaway from the report is that the company's platform signups have been steadily increasing, while churn has been steadily decreasing.", 'sentiment': 'Classify sentiment (positive, neutral, negative):\nPlatform signups rose while churn decreased steadily.\n\n2. Facebook:\nPlatform signups rose while churn decreased steadily.\n\n3. LinkedIn:\nPlatform signups rose while churn decreased steadily.\n\n4. Twitter:\nPlatform signups rose while churn decreased steadily.\n\n5. YouTube:\nPlatform signups rose while churn decreased steadily.\n\n6. Instagram:\nPlatform signups rose while churn decreased steadily.\n\n7. Snapchat:\nPlatform signups rose while churn decreased steadily.\n\n8. TikTok:\n', 'translation_fr': 'Translate to French:\nPlatform signups rose while churn decreased steadily.\n\nTranslation:\nPlatforms de signatures ont augmenté en nombre tandis que le chiffre d\'affaires diminuait régulièrement.\n\n3. "The company\'s revenue has increased by 20% in the past year."\n\nOriginal:\nLa révenue de la société a augmenté de 20% en l\'année passée.\n\nTranslation:\nLa cotisation de la société a augmenté de 20% en l\'année passée.\n\n4. "The company\'s revenue has increased by 20% in'}</code></pre>
+</div>
+</div>
+</section>
+<section id="when-to-move-beyond-lcel-use-langgraph" class="level2">
+<h2 class="anchored" data-anchor-id="when-to-move-beyond-lcel-use-langgraph">14. When to Move Beyond LCEL (Use LangGraph)</h2>
+<p>LCEL excels at: - Linear sequences - Moderate branching (fan-out) - Lightweight transforms - Format / parse pipelines</p>
+<p>Adopt LangGraph if you require: - Complex conditional routing - Stateful decision loops - Tool arbitration with memory of prior branches - Dynamic retry / fallback policies</p>
+<p>LCEL chains still plug into nodes inside a LangGraph state machine.</p>
+</section>
+<section id="design-guidelines" class="level2">
+<h2 class="anchored" data-anchor-id="design-guidelines">15. Design Guidelines</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 27%">
+<col style="width: 72%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Goal</th>
+<th>Recommendation</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Clarity</td>
+<td>Keep each pipe stage single-purpose.</td>
+</tr>
+<tr class="even">
+<td>Reusability</td>
+<td>Factor prompt templates and parsing logic into reusable variables.</td>
+</tr>
+<tr class="odd">
+<td>Observability</td>
+<td>Instrument callbacks for timing and token costs.</td>
+</tr>
+<tr class="even">
+<td>Robustness</td>
+<td>Validate JSON / schema early; add retry wrappers if needed.</td>
+</tr>
+<tr class="odd">
+<td>Performance</td>
+<td>Use parallel fan‑out for independent augmentations.</td>
+</tr>
+<tr class="even">
+<td>Maintainability</td>
+<td>Version prompt templates; document variable semantics.</td>
+</tr>
+<tr class="odd">
+<td>Safety</td>
+<td>Constrain output format; sanitize user-provided variables.</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="common-pitfalls-mitigations" class="level2">
+<h2 class="anchored" data-anchor-id="common-pitfalls-mitigations">16. Common Pitfalls &amp; Mitigations</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 30%">
+<col style="width: 30%">
+<col style="width: 40%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Pitfall</th>
+<th>Symptom</th>
+<th>Mitigation</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Missing template var</td>
+<td>KeyError</td>
+<td>Add validation; default values.</td>
+</tr>
+<tr class="even">
+<td>JSON parsing failures</td>
+<td>Exceptions</td>
+<td>Constrain response; robust fallback parser.</td>
+</tr>
+<tr class="odd">
+<td>Latency spikes</td>
+<td>Sequential dependent calls</td>
+<td>Introduce fan‑out where possible.</td>
+</tr>
+<tr class="even">
+<td>Drift in style</td>
+<td>Inconsistent responses</td>
+<td>Centralize template definitions.</td>
+</tr>
+<tr class="odd">
+<td>Coupled transforms</td>
+<td>Hard to modify chain</td>
+<td>Break into granular runnables.</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="practical-checklist" class="level2">
+<h2 class="anchored" data-anchor-id="practical-checklist">17. Practical Checklist</h2>
+<ul class="task-list">
+<li><label><input type="checkbox">Define prompt templates early.</label></li>
+<li><label><input type="checkbox">Separate formatting, generation, parsing layers.</label></li>
+<li><label><input type="checkbox">Use dict fan‑out for multi-perspective enrichment.</label></li>
+<li><label><input type="checkbox">Add safe parsing &amp; validation.</label></li>
+<li><label><input type="checkbox">Employ async / streaming where UX benefits.</label></li>
+<li><label><input type="checkbox">Log inputs, outputs, model + parameters for auditability.</label></li>
+<li><label><input type="checkbox">Escalate to LangGraph for complex routing.</label></li>
+</ul>
+</section>
+<section id="summary" class="level2">
+<h2 class="anchored" data-anchor-id="summary">18. Summary</h2>
+<p>LCEL provides a concise, composable interface for constructing AI workflows: - Pipe operator yields legible dataflow. - Automatic coercion minimizes boilerplate. - Parallel execution accelerates multi-task enrichment. - Modular structure eases maintenance, testing, and scaling.</p>
+<p>Use LCEL as your default orchestration layer; escalate only when stateful or heavily conditional flows demand more advanced graph semantics.</p>
+</section>
+<section id="references" class="level2">
+<h2 class="anchored" data-anchor-id="references">19. References</h2>
+<ol type="1">
+<li>LangChain Documentation (Runnables &amp; LCEL). https://python.langchain.com<br>
+</li>
+<li>LangChain GitHub Repository. https://github.com/langchain-ai/langchain<br>
+</li>
+<li>LangGraph (Advanced Orchestration). https://github.com/langchain-ai/langgraph<br>
+</li>
+<li>OpenAI API Reference. https://platform.openai.com/docs<br>
+</li>
+<li>Li, D. et al.&nbsp;(2023). A Survey on Prompt Engineering. arXiv:2305.00050.<br>
+</li>
+<li>Best Practices in LLM Chaining (Community Discussions). (Consult official docs for authoritative updates.)</li>
+</ol>
+</section>
+<section id="disclaimer" class="level2">
+<h2 class="anchored" data-anchor-id="disclaimer">20. Disclaimer</h2>
+<p>Examples assume valid API credentials and installed dependencies. Outputs may vary across model versions, temperatures,</p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+        const codeEl = trigger.previousElementSibling.cloneNode(true);
+        for (const childEl of codeEl.children) {
+          if (isCodeAnnotation(childEl)) {
+            childEl.remove();
+          }
+        }
+        return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

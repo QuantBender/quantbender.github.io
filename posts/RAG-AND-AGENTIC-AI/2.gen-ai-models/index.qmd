@@ -37,7 +37,7 @@ In language, common objectives include next-token prediction (autoregressive) an
 ## Adaptation Techniques
 
 | Technique | Data Need | Update Scope | Typical Use Case |
-|-----------------|----------------:|-----------------|---------------------|
+|----|---:|----|----|
 | Full Fine-Tuning | Medium–High | All parameters | High-stakes domain shifts |
 | Parameter-Efficient Tuning (Adapters, LoRA, Prefix) | Low–Medium | \<5% parameters | Multi-task / multi-tenant deployments |
 | In-Context Prompting (Zero/Few-Shot) | Minimal | None | Rapid prototyping & evaluation |
@@ -60,7 +60,7 @@ Foundation model paradigms now span: - Text-to-Image & Vision (diffusion + text 
 ## Key Challenges
 
 | Category | Challenge | Impact |
-|-------------------------|---------------------------|--------------------|
+|----|----|----|
 | Compute & Cost | Training + inference expense | Higher operational TCO |
 | Latency | Large parameter counts | UX degradation under concurrency |
 | Trust & Safety | Bias, toxicity, hallucination, provenance gaps [1](https://arxiv.org/abs/2108.07258) | Compliance & reputation risk |
@@ -83,7 +83,7 @@ Foundation model paradigms now span: - Text-to-Image & Vision (diffusion + text 
 ## Adoption Playbook
 
 | Phase | Goal | Selected Actions |
-|------------------|------------------|-------------------------------------|
+|----|----|----|
 | Discovery | Identify high-ROI, low-risk targets | Task triage, feasibility scoring |
 | Prototype | Validate utility & cost envelope | Prompt variants, small eval set |
 | Pilot | Measure KPIs & safety | A/B test vs. baseline models |
@@ -133,4 +133,3 @@ Foundation models provide a unifying substrate for diverse AI capabilities, unlo
 \[13\] Rombach et al. 2022. High-Resolution Image Synthesis with Latent Diffusion Models. CVPR.\
 \[14\] Wei et al. 2022. Chain-of-Thought Prompting Elicits Reasoning in Large Language Models. arXiv:2201.11903.\
 \[15\] Dettmers et al. 2023. QLoRA: Efficient Finetuning of Quantized LLMs. arXiv:2305.14314.
-

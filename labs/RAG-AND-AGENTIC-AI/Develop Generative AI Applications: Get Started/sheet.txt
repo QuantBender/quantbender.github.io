@@ -1,0 +1,2 @@
+quarto convert "1.In-Context Learning and Prompt Templates for Advanced AI.ipynb" -o /tmp/_debug.qmd
+Converted to /tmp/_debug.qmd

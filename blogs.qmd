@@ -1,5 +1,5 @@
 ---
-title: "QuantBender"
+title: "Blog"
 listing:
   - id: quantitative-finance
     contents: "posts/Quantitative-Finance/*/*.qmd"
