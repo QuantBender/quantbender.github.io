@@ -18,13 +18,9 @@ execute:
   message: false
 ---
 
-
 ![](cover_image.png)
 
-
->Estimated time needed: **45** minutes
-
-
+> Estimated time needed: **45** minutes
 
 ## Overview
 
@@ -36,91 +32,145 @@ As you progress, you'll learn to apply these skills in practical scenarios, crea
 
 By the end of this tutorial, you'll not only master various prompt engineering techniques but also gain hands-on experience applying these techniques to real-world problems, ensuring you're well-prepared to harness the full potential of AI in diverse settings.
 
-## __Table of Contents__
+## **Table of Contents**
 
 <ol>
-    <li><a href="#Objectives">Objectives</a></li>
-    <li>
-        <a href="#Setup">Setup</a>
-        <ol>
-            <li><a href="#Install-required-libraries">Install required libraries</a></li>
-            <li><a href="#Import-required-libraries">Import required libraries</a></li>
-            <li><a href="#Set-up-the-LLM">Set up the LLM</a></li>
-        </ol>
-    </li>
-    <li>
-        <a href="#Prompt-engineering">Prompt engineering</a>
-        <ol>
-            <li>
-                <a href="#Basic-prompt">Basic prompt</a>
-                <ol>
-                    <li><a href="#Exercise-1">Exercise 1</a></li>
-                </ol>
-            </li>
-            <li>
-                <a href="#Zero-shot-prompt">Zero-shot prompt</a>
-                <ol>
-                    <li><a href="#Exercise-2">Exercise 2</a></li>
-                </ol>
-            </li>
-            <li>
-                <a href="#One-shot-prompt">One-shot prompt</a>
-                <ol>
-                    <li><a href="#Exercise-3">Exercise 3</a></li>
-                </ol>
-            </li>
-            <li><a href="#Few-shot-prompt">Few-shot prompt</a></li>
-            <li>
-                <a href="#Chain-of-thought-(CoT)-prompt">Chain-of-thought (CoT) prompt</a>
-                <ol>
-                    <li><a href="#Exercise-4">Exercise 4</a></li>
-                </ol>
-            </li>
-            <li><a href="#Self-consistency">Self-consistency</a></li>
-        </ol>
-    </li>
-    <li>
-        <a href="#Applications-of-prompting-in-different-use-cases">Applications of prompting in different use cases</a>
-        <ol>
-            <li><a href="#Introduction-to-LangChain">Introduction to LangChain</a></li>
-            <li><a href="#Prompt-template">Prompt template</a></li>
-            <li><a href="#Text-summarization">Text summarization</a></li>
-            <li><a href="#Question-answering">Question answering</a></li>
-            <li><a href="#Text-classification">Text classification</a></li>
-            <li><a href="#Code-generation">Code generation</a></li>
-            <li><a href="#Role-playing">Role playing</a></li>
-            <li><a href="#Exercise-5">Exercise 5</a></li>
-        </ol>
-    </li>
-    <li><a href="#Conclusion">Conclusion</a></li>
-    <li><a href="#Authors">Authors</a></li>
+
+<li><a href="#Objectives">Objectives</a></li>
+
+<li>
+
+<a href="#Setup">Setup</a>
+
+<ol>
+
+<li><a href="#Install-required-libraries">Install required libraries</a></li>
+
+<li><a href="#Import-required-libraries">Import required libraries</a></li>
+
+<li><a href="#Set-up-the-LLM">Set up the LLM</a></li>
+
+</ol>
+
+</li>
+
+<li>
+
+<a href="#Prompt-engineering">Prompt engineering</a>
+
+<ol>
+
+<li>
+
+<a href="#Basic-prompt">Basic prompt</a>
+
+<ol>
+
+<li><a href="#Exercise-1">Exercise 1</a></li>
+
+</ol>
+
+</li>
+
+<li>
+
+<a href="#Zero-shot-prompt">Zero-shot prompt</a>
+
+<ol>
+
+<li><a href="#Exercise-2">Exercise 2</a></li>
+
+</ol>
+
+</li>
+
+<li>
+
+<a href="#One-shot-prompt">One-shot prompt</a>
+
+<ol>
+
+<li><a href="#Exercise-3">Exercise 3</a></li>
+
+</ol>
+
+</li>
+
+<li><a href="#Few-shot-prompt">Few-shot prompt</a></li>
+
+<li>
+
+<a href="#Chain-of-thought-(CoT)-prompt">Chain-of-thought (CoT) prompt</a>
+
+<ol>
+
+<li><a href="#Exercise-4">Exercise 4</a></li>
+
+</ol>
+
+</li>
+
+<li><a href="#Self-consistency">Self-consistency</a></li>
+
+</ol>
+
+</li>
+
+<li>
+
+<a href="#Applications-of-prompting-in-different-use-cases">Applications of prompting in different use cases</a>
+
+<ol>
+
+<li><a href="#Introduction-to-LangChain">Introduction to LangChain</a></li>
+
+<li><a href="#Prompt-template">Prompt template</a></li>
+
+<li><a href="#Text-summarization">Text summarization</a></li>
+
+<li><a href="#Question-answering">Question answering</a></li>
+
+<li><a href="#Text-classification">Text classification</a></li>
+
+<li><a href="#Code-generation">Code generation</a></li>
+
+<li><a href="#Role-playing">Role playing</a></li>
+
+<li><a href="#Exercise-5">Exercise 5</a></li>
+
+</ol>
+
+</li>
+
+<li><a href="#Conclusion">Conclusion</a></li>
+
+<li><a href="#Authors">Authors</a></li>
+
 </ol>
 
 ## Objectives
 
 After completing this lab, you will be able to:
 
-- **Understand the basics of prompt engineering**: Gain a solid foundation in how to effectively communicate with LLM using prompts, setting the stage for more advanced techniques.
+-   **Understand the basics of prompt engineering**: Gain a solid foundation in how to effectively communicate with LLM using prompts, setting the stage for more advanced techniques.
 
-- **Master advanced prompt techniques**: Learn and apply advanced prompt engineering methods such as few-shot and self-consistent learning to optimize the LLM's response.
+-   **Master advanced prompt techniques**: Learn and apply advanced prompt engineering methods such as few-shot and self-consistent learning to optimize the LLM's response.
 
-- **Utilize LangChain prompt templates**: Become proficient in using LangChain's prompt template to structure and optimize your interactions with LLMs.
+-   **Utilize LangChain prompt templates**: Become proficient in using LangChain's prompt template to structure and optimize your interactions with LLMs.
 
-- **Develop practical LLM agents**: Acquire the skills to create and implement agents such as QA bots and text summarization tools using the LangChain prompt template, translating theoretical knowledge into practical solutions.
-
-
+-   **Develop practical LLM agents**: Acquire the skills to create and implement agents such as QA bots and text summarization tools using the LangChain prompt template, translating theoretical knowledge into practical solutions.
 
 ## Setup
 
 For this lab, you will use the following libraries:
 
-*   [`ibm-watsonx-ai`](https://ibm.github.io/watson-machine-learning-sdk/index.html): Enables the use of LLMs from IBM's watsonx.ai.
-*   [`langchain`](https://www.langchain.com/): Provides various chain and prompt functions from LangChain.
-*   [`langchain-ibm`](https://python.langchain.com/v0.1/docs/integrations/llms/ibm_watsonx/): Facilitates integration between LangChain and IBM watsonx.ai.
+-   [`ibm-watsonx-ai`](https://ibm.github.io/watson-machine-learning-sdk/index.html): Enables the use of LLMs from IBM's watsonx.ai.
+-   [`langchain`](https://www.langchain.com/): Provides various chain and prompt functions from LangChain.
+-   [`langchain-ibm`](https://python.langchain.com/v0.1/docs/integrations/llms/ibm_watsonx/): Facilitates integration between LangChain and IBM watsonx.ai.
 
 ### Install required libraries
 
-The following required libraries are __not__ preinstalled in the Skills Network Labs environment. __You must run the following cell__ to install them:
+The following required libraries are **not** preinstalled in the Skills Network Labs environment. **You must run the following cell** to install them:
 
 **Note:** The version has been pinned to ensure compatibility. It's recommended that you do the same. While future updates may be available, the pinned version ensures that the library continues to support this lab.
 
@@ -141,9 +191,9 @@ This might take approximately 1-2 minutes.
 
 After installing the libraries, you must restart your kernel by clicking the **Restart the kernel** icon.
 
-<img src="https://cf-courses-data.s3.us.cloud-object-storage.appdomain.cloud/6DtO5_X9SAK4tYJCnsre2w/restart-kernel.png" width="80%" alt="Restart kernel">
+<img src="https://cf-courses-data.s3.us.cloud-object-storage.appdomain.cloud/6DtO5_X9SAK4tYJCnsre2w/restart-kernel.png" alt="Restart kernel" width="80%"/>
 
-_It is recommended that you import all required libraries in one place (here):_
+*It is recommended that you import all required libraries in one place (here):*
 
 ```{python}
 # You can also use this section to suppress warnings generated by your code:
@@ -172,16 +222,14 @@ from langchain.chains import LLMChain  # Still using this for backward compatibi
 
 In this section, you will build an LLM using IBM watsonx.ai. The following code initializes a Granite model on IBM's watsonx.ai platform and wraps it into a function that allows for repeat use.
 
-Some key parameters are explained here:
-- `model_id` specifies which model you want to use. There are various model options available; refer to the [Foundation Models](https://ibm.github.io/watsonx-ai-python-sdk/foundation_models.html) documentation for more options. In this tutorial, you'll use the `granite-3-2-8b-instruct` model.
-- `parameters` define the model's configuration. Set five commonly used parameters for this tutorial. To explore additional commonly used parameters, you can run the code `GenParams().get_example_values()`. If no custom parameters are passed to the function, the model will use `default_params`.
-- `credentials` and `project_id` are required to successfully run LLMs from watsonx.ai. (Leave `credentials` and `project_id` as they are so you don't need to create your own keys to run models.) This ensures you can run the model inside this lab environment. However, if you want to run the model locally, refer to this [tutorial](https://medium.com/the-power-of-ai/ibm-watsonx-ai-the-interface-and-api-e8e1c7227358) for creating your own keys.
-- `WatsonxLLM()` is used to create an instance of the LLM.
+Some key parameters are explained here: - `model_id` specifies which model you want to use. There are various model options available; refer to the [Foundation Models](https://ibm.github.io/watsonx-ai-python-sdk/foundation_models.html) documentation for more options. In this tutorial, you'll use the `granite-3-2-8b-instruct` model. - `parameters` define the model's configuration. Set five commonly used parameters for this tutorial. To explore additional commonly used parameters, you can run the code `GenParams().get_example_values()`. If no custom parameters are passed to the function, the model will use `default_params`. - `credentials` and `project_id` are required to successfully run LLMs from watsonx.ai. (Leave `credentials` and `project_id` as they are so you don't need to create your own keys to run models.) This ensures you can run the model inside this lab environment. However, if you want to run the model locally, refer to this [tutorial](https://medium.com/the-power-of-ai/ibm-watsonx-ai-the-interface-and-api-e8e1c7227358) for creating your own keys. - `WatsonxLLM()` is used to create an instance of the LLM.
 
 ## API Disclaimer
+
 This lab uses LLMs provided by **Watsonx.ai**. This environment has been configured to allow LLM use without API keys so you can prompt them for **free (with limitations)**. With that in mind, if you wish to run this notebook **locally outside** of Skills Network's JupyterLab environment, you will have to **configure your own API keys**. Please note that using your own API keys means that you will incur personal charges.
 
 ### Running Locally
+
 If you are running this lab locally, you will need to configure your own API keys. This lab uses the `WatsonxLLM` module from `IBM`, we'll need to initialize the `granite_llm` with credentials to use the LLM locally. Fill out the commented out `api_key` field in the cell below and pass in the credentials if you are running locally.
 
 ##### Run the following code to initialize the LLM locally. If you are using Skills Network's JupyterLab environment, skip the following cell code.
@@ -332,7 +380,7 @@ GenParams().get_example_values()
 
 [Prompt engineering](https://www.ibm.com/think/topics/prompt-engineering?utm_source=skills_network&utm_content=in_lab_content_link&utm_id=Lab-In-Context+Learning+and+Prompt+Templates-v3-GenAIcourse_1741386184) is the art and science of crafting effective inputs for large language models to generate desired outputs. As language models have evolved in capability and size, so too has the importance of how we communicate with them. Prompt engineering involves strategically designing text prompts that guide an AI model's responses toward specific goals, formats, or reasoning patterns.
 
-**[In-context learning](https://research.ibm.com/blog/demystifying-in-context-learning-in-large-language-model?utm_source=skills_network&utm_content=in_lab_content_link&utm_id=Lab-In-Context+Learning+and+Prompt+Templates-v3-GenAIcourse_1741386184)** represents one of the most fascinating capabilities of modern large language models. It is a model's ability to "learn" from examples provided directly within the prompt itself, without any updates to its underlying parameters or weights. This capability allows models to adapt to new tasks or domains simply by demonstrating what success looks like through examples.
+[**In-context learning**](https://research.ibm.com/blog/demystifying-in-context-learning-in-large-language-model?utm_source=skills_network&utm_content=in_lab_content_link&utm_id=Lab-In-Context+Learning+and+Prompt+Templates-v3-GenAIcourse_1741386184) represents one of the most fascinating capabilities of modern large language models. It is a model's ability to "learn" from examples provided directly within the prompt itself, without any updates to its underlying parameters or weights. This capability allows models to adapt to new tasks or domains simply by demonstrating what success looks like through examples.
 
 By combining the principles of prompt engineering with the power of in-context learning, developers can guide language models to perform a remarkably diverse range of tasks with unprecedented flexibility and efficiency. Let's now explore these methods in detail.
 
@@ -366,10 +414,8 @@ As you can see from the response, the model continues generating content based o
 Try adjusting the parameters and observe how the response changes.
 
 ### Exercise 1
-Experiment with different basic prompts by changing the input phrase. Try these prompts and compare the different responses:
-1. "The future of artificial intelligence is"
-2. "Once upon a time in a distant galaxy"
-3. "The benefits of sustainable energy include"
+
+Experiment with different basic prompts by changing the input phrase. Try these prompts and compare the different responses: 1. "The future of artificial intelligence is" 2. "Once upon a time in a distant galaxy" 3. "The benefits of sustainable energy include"
 
 ```{python}
 ## Your code here
@@ -399,9 +445,10 @@ print(f"response : {response3}\n")
 ```
 
 <details>
-    <summary>Click here for hints</summary>
 
-```python
+<summary>Click here for hints</summary>
+
+``` python
 params = {
     "max_new_tokens": 128, # Try 256 or 512 for more detailed answers
     "min_new_tokens": 10, # Increase to 25-50 if you want more substantial answers
@@ -428,12 +475,12 @@ for prompt in prompts:
     print(f"prompt: {prompt}\n")
     print(f"response : {response}\n")
 ```
+
 </details>
 
 ### Zero-shot prompt
 
 [**Zero-shot prompting**](https://www.ibm.com/think/topics/zero-shot-prompting?utm_source=skills_network&utm_content=in_lab_content_link&utm_id=Lab-In-Context+Learning+and+Prompt+Templates-v3-GenAIcourse_1741386184) is a technique where the model performs a task without any examples or prior specific training on that task. This approach tests the model's ability to understand instructions and apply its knowledge to a new context without demonstration. Zero-shot prompts typically include clear instructions about what the model should do, allowing it to leverage its pre-trained knowledge effectively.
-
 
 Here is an example of a zero-shot prompt:
 
@@ -459,10 +506,8 @@ print(f"response : {response}\n")
 The model responds with the 'False' answer, which is correct. It also gives the reason for the answer.
 
 ### Exercise 2
-Create zero-shot prompts for the following tasks:
-1. Write a prompt that asks the model to classify a movie review as positive or negative.
-2. Create a prompt that instructs the model to summarize a paragraph about climate change.
-3. Design a prompt that asks the model to translate an English phrase to Spanish without showing any examples.
+
+Create zero-shot prompts for the following tasks: 1. Write a prompt that asks the model to classify a movie review as positive or negative. 2. Create a prompt that instructs the model to summarize a paragraph about climate change. 3. Design a prompt that asks the model to translate an English phrase to Spanish without showing any examples.
 
 ```{python}
 ## Starter code: provide your solutions in the TODO parts
@@ -505,9 +550,10 @@ for prompt_type, response in responses.items():
 ```
 
 <details>
-    <summary>Click here for hints</summary>
 
-```python
+<summary>Click here for hints</summary>
+
+``` python
 # 1. Prompt for Movie Review Classification
 movie_review_prompt = """
 Classify the following movie review as either 'positive' or 'negative'.
@@ -545,6 +591,7 @@ for prompt_type, response in responses.items():
     print(response)
     print()
 ```
+
 </details>
 
 ### One-shot prompt
@@ -581,10 +628,8 @@ The model's response shows how it applies the structure and context provided by 
 Consider experimenting with different sentences or adjusting the parameters to see how these changes impact the model's translations.
 
 ### Exercise 3
-Develop one-shot prompts for these scenarios:
-1. Create a prompt with one example of a formal email, then ask the model to write another formal email on a different topic.
-2. Provide one example of converting a technical concept into a simple explanation, then ask the model to explain a different concept.
-3. Give one example of extracting keywords from a sentence, then ask the model to extract keywords from a new sentence.
+
+Develop one-shot prompts for these scenarios: 1. Create a prompt with one example of a formal email, then ask the model to write another formal email on a different topic. 2. Provide one example of converting a technical concept into a simple explanation, then ask the model to explain a different concept. 3. Give one example of extracting keywords from a sentence, then ask the model to extract keywords from a new sentence.
 
 ```{python}
 ## Starter code: provide your solutions in the TODO parts
@@ -633,9 +678,10 @@ for prompt_type, response in responses.items():
 ```
 
 <details>
-    <summary>Click here for hints</summary>
 
-```python
+<summary>Click here for hints</summary>
+
+``` python
 # 1. One-shot prompt for formal email writing
 formal_email_prompt = """
 Here is an example of a formal email requesting information:
@@ -699,17 +745,18 @@ for prompt_type, response in responses.items():
     print(response)
     print()
 ```
+
 </details>
 
 ### Few-shot prompt
 
 [**Few-shot prompting**](https://www.ibm.com/think/topics/few-shot-prompting?utm_source=skills_network&utm_content=in_lab_content_link&utm_id=Lab-In-Context+Learning+and+Prompt+Templates-v3-GenAIcourse_1741386184) extends the one-shot approach by providing multiple examples (typically 2-5) before asking the model to perform the task. These examples establish a clearer pattern and context, helping the model better understand the expected output format, style, and reasoning. This technique is particularly effective for complex tasks where a single example might not convey all the nuances.
 
-Here is an example of few-shot learning by classifying emotions from text statements. 
+Here is an example of few-shot learning by classifying emotions from text statements.
 
 Let's provide the model with three examples, each labeled with an appropriate emotion—joy, frustration, and sadness—to establish a pattern or guideline on how to categorize emotions in statements.
 
-After presenting these examples, let's challenge the model with a new statement: "That movie was so scary I had to cover my eyes." The task for the model is to classify the emotion expressed in this new statement based on the learning from the provided examples. 
+After presenting these examples, let's challenge the model with a new statement: "That movie was so scary I had to cover my eyes." The task for the model is to classify the emotion expressed in this new statement based on the learning from the provided examples.
 
 ```{python}
  #parameters  `max_new_tokens` to 10, which constrains the model to generate brief responses
@@ -770,15 +817,14 @@ print(f"response : {response}\n")
 
 From the response of the model, you can see the prompt directs the model to:
 
-1. Add the initial number of apples to the apples received in the new delivery.
-2. Subtract the number of apples sold from the sum obtained in the first step.
+1.  Add the initial number of apples to the apples received in the new delivery.
+2.  Subtract the number of apples sold from the sum obtained in the first step.
 
 By breaking down the problem into specific steps, the model is better able to understand the sequence of operations required to arrive at the correct answer.
 
 ### Exercise 4
-Create CoT prompts for these scenarios:
-1. Write a prompt that asks the model to think through whether a student should study tonight or go to a movie with friends, considering their upcoming test in two days.
-2. Write a prompt that instructs the model to explain the step-by-step process of making a peanut butter and jelly sandwich.
+
+Create CoT prompts for these scenarios: 1. Write a prompt that asks the model to think through whether a student should study tonight or go to a movie with friends, considering their upcoming test in two days. 2. Write a prompt that instructs the model to explain the step-by-step process of making a peanut butter and jelly sandwich.
 
 ```{python}
 ## Starter code: provide your solutions in the TODO parts
@@ -804,9 +850,10 @@ for prompt_type, response in responses.items():
 ```
 
 <details>
-    <summary>Click here for hints</summary>
 
-```python
+<summary>Click here for hints</summary>
+
+``` python
 # 1. Prompt for decision-making process
 decision_making_prompt = """
 Consider this situation: A student is trying to decide whether to study tonight or go to a movie with friends. They have a test in two days.
@@ -830,6 +877,7 @@ for prompt_type, response in responses.items():
     print(response)
     print()
 ```
+
 </details>
 
 ### Self-consistency
@@ -863,22 +911,24 @@ Self-consistency can help identify the most accurate and reliable answer in scen
 
 In this section, we'll demonstrate how to leverage LangChain's prompt templates to build practical applications with consistent, reproducible results. Each application follows a common pattern using the LCEL approach:
 
-1. Define the content or problem to be addressed.
-2. Create a template with variables for dynamic content.
-3. Convert the template into a LangChain PromptTemplate.
-4. Build a chain using the pipe operator `|` to connect:
+1.  Define the content or problem to be addressed.
 
-    - Input variables
-    - The prompt template
-    - The LLM
-    - An output parser
+2.  Create a template with variables for dynamic content.
 
+3.  Convert the template into a LangChain PromptTemplate.
 
-5. Invoke the chain with specific inputs to generate results.
+4.  Build a chain using the pipe operator `|` to connect:
+
+    -   Input variables
+    -   The prompt template
+    -   The LLM
+    -   An output parser
+
+5.  Invoke the chain with specific inputs to generate results.
 
 This structured approach enables you to create reusable components for various NLP tasks while maintaining flexibility to adjust parameters and inputs. You'll see how this pattern applies across different use cases.
 
-### Introduction to LangChain 
+### Introduction to LangChain
 
 [LangChain](https://www.langchain.com/) is a powerful framework designed to simplify the development of applications powered by language models. Built to address the challenges of working with LLMs in practical settings, LangChain provides a standardized interface for connecting models with various data sources and application environments.
 
@@ -894,17 +944,17 @@ A prompt template acts as a reusable structure for generating prompts with dynam
 
 **Modern LangChain (as of 2025) offers two main approaches to working with templates:**
 
-- The traditional `LLMChain` approach
-- The newer LangChain Expression Language (LCEL) pattern using the pipe operator `|` for more flexible composition
+-   The traditional `LLMChain` approach
+-   The newer LangChain Expression Language (LCEL) pattern using the pipe operator `|` for more flexible composition
 
 LCEL has become the recommended pattern for building LangChain applications as it offers better composability, clearer visualization of data flow, and more flexibility when constructing complex chains.
 
 **To use a prompt template with LCEL, you typically follow these steps:**
 
-- Define your template with variables in curly braces `{}`
-- Create a `PromptTemplate` instance
-- Build a chain using the pipe operator `|` to connect components
-- Invoke the chain with your input values
+-   Define your template with variables in curly braces `{}`
+-   Create a `PromptTemplate` instance
+-   Build a chain using the pipe operator `|` to connect components
+-   Invoke the chain with your input values
 
 Let's initialize an LLM first, then demonstrate this approach. In this section, we will use the model `meta-llama/llama-3-3-70b-instruct`:
 
@@ -1182,20 +1232,20 @@ You can also configure the LLM to assume specific roles as defined by us, enabli
 
 This approach separates the role definition from the prompt structure, allowing for easy role-switching without rewriting the entire prompt. The key components are:
 
-- `role`: Specifies the character, expertise, or persona the LLM should embody
-- `tone`: Defines the communication style and emotional quality of responses
-- `question`: Contains the user's query that needs addressing
+-   `role`: Specifies the character, expertise, or persona the LLM should embody
+-   `tone`: Defines the communication style and emotional quality of responses
+-   `question`: Contains the user's query that needs addressing
 
 By parameterizing these elements, you can rapidly change the LLM's behavior by adjusting single variables rather than rewriting entire prompts. This pattern is particularly valuable for building conversational agents that need to serve different functions or adapt to various contexts.
 
 For example, the code below configures the LLM to act as a game master. In this role, the LLM answers questions about games while maintaining an engaging and immersive tone, enhancing the user experience. You can test the bot by asking questions related to tabletop role-playing games or game mastering. Try asking about game rules, storytelling techniques, player management, or setting descriptions such as:
 
-1. "Who are you?"
-2. "What are the basic rules of Dungeons & Dragons?"
-3. "How do I create a balanced encounter for my players?"
-4. "Can you describe a mysterious forest setting for my adventure?"
-5. "What's a good puzzle I could use in my dungeon?"
-6. "How do I handle a player who is constantly interrupting others?"
+1.  "Who are you?"
+2.  "What are the basic rules of Dungeons & Dragons?"
+3.  "How do I create a balanced encounter for my players?"
+4.  "Can you describe a mysterious forest setting for my adventure?"
+5.  "What's a good puzzle I could use in my dungeon?"
+6.  "How do I handle a player who is constantly interrupting others?"
 
 The function is written within a while loop, allowing continuous interaction. **To exit the loop and terminate the conversation, type "quit," "exit," or "bye" into the input box.**
 
@@ -1250,23 +1300,13 @@ for query in questions:
 
 In this exercise, you'll create your own LCEL chain that uses prompt templates to build a custom application.
 
-**Task:** Create a product review analyzer that can:
-1. Identify the sentiment (positive, negative, or neutral).
-2. Extract mentioned product features.
-3. Provide a one-sentence summary of the review.
+**Task:** Create a product review analyzer that can: 1. Identify the sentiment (positive, negative, or neutral). 2. Extract mentioned product features. 3. Provide a one-sentence summary of the review.
 
-**Steps:**
-1. Create a prompt template with placeholders for the review text.
-2. Build an LCEL chain that formats your prompt properly.
-3. Process the sample reviews and display the results.
-4. Try modifying the chain to change the output format.
+**Steps:** 1. Create a prompt template with placeholders for the review text. 2. Build an LCEL chain that formats your prompt properly. 3. Process the sample reviews and display the results. 4. Try modifying the chain to change the output format.
 
 **Sample input:**
 
-reviews = [
-    "I love this smartphone! The camera quality is exceptional and the battery lasts all day. The only downside is that it heats up a bit during gaming.",
-    "This laptop is terrible. It's slow, crashes frequently, and the keyboard stopped working after just two months. Customer service was unhelpful."
-]
+reviews = \[ "I love this smartphone! The camera quality is exceptional and the battery lasts all day. The only downside is that it heats up a bit during gaming.", "This laptop is terrible. It's slow, crashes frequently, and the keyboard stopped working after just two months. Customer service was unhelpful."\]
 
 ```{python}
 
@@ -1329,9 +1369,10 @@ for i, review in enumerate(reviews):
 ```
 
 <details>
-    <summary>Click here for hints</summary>
 
-```python
+<summary>Click here for hints</summary>
+
+``` python
 from langchain_core.prompts import PromptTemplate
 from langchain_core.runnables import RunnableLambda
 from langchain_core.output_parsers import StrOutputParser
@@ -1389,6 +1430,7 @@ for i, review in enumerate(reviews):
     print(result)
     print()
 ```
+
 </details>
 
 ## Conclusion
@@ -1396,5 +1438,3 @@ for i, review in enumerate(reviews):
 Congratulations on completing this lab on prompt engineering and LangChain prompt templates! You've successfully navigated from basic prompting techniques to more advanced approaches including zero-shot, one-shot, few-shot learning, as well as chain-of-thought reasoning and self-consistency prompting. You then applied these concepts practically using LangChain's prompt templates with the modern LCEL pattern to create various applications.
 
 By learning how to properly structure prompts and build composable chains with the pipe operator (`|`), you've gained essential skills for developing robust LLM applications. These techniques provide a solid foundation for creating more complex systems and getting the most out of any language model you work with.
-
-
