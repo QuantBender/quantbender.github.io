@@ -11,7 +11,7 @@ format:
     toc-depth: 3
     code-overflow: wrap
     number-sections: false
-execute: 
+execute:
   echo: true
   warning: false
   message: false
@@ -93,5 +93,3 @@ print(prompt)
 # -> "Tell me a witty joke about penguins."
 
 ````
-
-

@@ -1,9 +1,18 @@
 [
   {
-    "listing": "/blogs.html",
+    "listing": "/cheat_sheets.html",
+    "items": [
+      "/cheat sheets/RAG-AND-AGENTIC-AI/Foundations of Generative AI and LangChain.html"
+    ]
+  },
+  {
+    "listing": "/index.html",
     "items": [
       "/posts/Quantitative-Finance/swap-design/index.html",
       "/posts/Quantitative-Finance/The-Binomial-No-Arbitrage-Pricing-Model/index.html",
+      "/posts/RAG-AND-AGENTIC-AI/10. langchain-and-agents-for-building-applications/index.html",
+      "/posts/RAG-AND-AGENTIC-AI/11. LCEL-chaining-method/index.html",
+      "/posts/RAG-AND-AGENTIC-AI/9.langchain-core-concepts/index.html",
       "/posts/RAG-AND-AGENTIC-AI/1.gen-ai/index.html",
       "/posts/RAG-AND-AGENTIC-AI/2.gen-ai-models/index.html",
       "/posts/RAG-AND-AGENTIC-AI/3.nlp-explanation/index.html",
@@ -17,14 +26,19 @@
   {
     "listing": "/labs.html",
     "items": [
-      "/labs/RAG-AND-AGENTIC-AI/Develop Generative AI Applications: Get Started/index.html"
+      "/labs/RAG-AND-AGENTIC-AI/2. Langchain Core Components And Advanced Features Part 1/index.html",
+      "/labs/RAG-AND-AGENTIC-AI/3. Langchain Core Components And Advanced Features Part 2/index.html",
+      "/labs/RAG-AND-AGENTIC-AI/1. Develop Generative AI Applications: Get Started/index.html"
     ]
   },
   {
-    "listing": "/index.html",
+    "listing": "/blogs.html",
     "items": [
       "/posts/Quantitative-Finance/swap-design/index.html",
       "/posts/Quantitative-Finance/The-Binomial-No-Arbitrage-Pricing-Model/index.html",
+      "/posts/RAG-AND-AGENTIC-AI/10. langchain-and-agents-for-building-applications/index.html",
+      "/posts/RAG-AND-AGENTIC-AI/11. LCEL-chaining-method/index.html",
+      "/posts/RAG-AND-AGENTIC-AI/9.langchain-core-concepts/index.html",
       "/posts/RAG-AND-AGENTIC-AI/1.gen-ai/index.html",
       "/posts/RAG-AND-AGENTIC-AI/2.gen-ai-models/index.html",
       "/posts/RAG-AND-AGENTIC-AI/3.nlp-explanation/index.html",

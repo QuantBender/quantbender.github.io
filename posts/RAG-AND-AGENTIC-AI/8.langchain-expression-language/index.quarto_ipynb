@@ -72,7 +72,7 @@
         "\n",
         "A simple pipeline: format → generate → parse."
       ],
-      "id": "b3d7a834"
+      "id": "38dcad72"
     },
     {
       "cell_type": "code",
@@ -84,7 +84,12 @@
         "# (If no GPU, set device_map=None and remove torch_dtype for pure CPU execution.)\n",
         "\n",
         "from langchain_core.prompts import PromptTemplate\n",
-        "from langchain_huggingface import HuggingFacePipeline\n",
+        "\n",
+        "# Prefer new package; fall back to community if needed\n",
+        "try:\n",
+        "    from langchain_huggingface import HuggingFacePipeline\n",
+        "except Exception:\n",
+        "    from langchain_community.llms import HuggingFacePipeline\n",
         "from langchain_core.output_parsers import StrOutputParser\n",
         "from transformers import AutoModelForCausalLM, AutoTokenizer, pipeline\n",
         "import torch\n",
@@ -117,7 +122,7 @@
         "\n",
         "print(joke_chain.invoke({\"adjective\": \"absurd\", \"topic\": \"penguins\"}))"
       ],
-      "id": "6140ff11",
+      "id": "8b20999b",
       "execution_count": null,
       "outputs": []
     },
@@ -129,7 +134,7 @@
         "\n",
         "Add a preprocessing function before generation."
       ],
-      "id": "7622af99"
+      "id": "2080f02d"
     },
     {
       "cell_type": "code",
@@ -148,7 +153,7 @@
         "\n",
         "print(chain.invoke({\"adjective\": \" Witty \", \"topic\": \" Space Exploration  \"}))"
       ],
-      "id": "cfa5da61",
+      "id": "c4ac730a",
       "execution_count": null,
       "outputs": []
     },
@@ -160,7 +165,7 @@
         "\n",
         "Run multiple tasks (summary, translation, sentiment) simultaneously. A dict automatically becomes a parallel runnable."
       ],
-      "id": "5db6dd53"
+      "id": "763b796c"
     },
     {
       "cell_type": "code",
@@ -214,7 +219,7 @@
         "sample = \"The product launch exceeded expectations, delighting early adopters despite minor shipping delays.\"\n",
         "print(parallel.invoke({\"text\": sample}))"
       ],
-      "id": "fd97f603",
+      "id": "6351feb3",
       "execution_count": null,
       "outputs": []
     },
@@ -226,7 +231,7 @@
         "\n",
         "Functions become transformation runnables; dictionaries become parallel composites—no manual wrapping required."
       ],
-      "id": "cc70a543"
+      "id": "67ba8b04"
     },
     {
       "cell_type": "code",
@@ -241,7 +246,7 @@
         "coercion_chain = enrich | prompt | llm | parser\n",
         "print(coercion_chain.invoke({\"adjective\": \"\", \"topic\": \"Quantum Computing\"}))"
       ],
-      "id": "601a8b99",
+      "id": "15d622a1",
       "execution_count": null,
       "outputs": []
     },
@@ -253,7 +258,7 @@
         "\n",
         "Add resilient parsing to guard against minor format drift."
       ],
-      "id": "e950a0c4"
+      "id": "13de7f33"
     },
     {
       "cell_type": "code",
@@ -280,7 +285,7 @@
         "\n",
         "print(analysis_chain.invoke({\"text\": \"User adoption is accelerating and early feedback is enthusiastic.\"}))"
       ],
-      "id": "a15ebeb5",
+      "id": "80589d08",
       "execution_count": null,
       "outputs": []
     },
@@ -292,7 +297,7 @@
         "\n",
         "Receive incremental output for responsive UIs."
       ],
-      "id": "1b4a13c6"
+      "id": "ca4096c2"
     },
     {
       "cell_type": "code",
@@ -305,7 +310,7 @@
         "    print(chunk, end=\"\", flush=True)\n",
         "print()"
       ],
-      "id": "de136972",
+      "id": "9a98625b",
       "execution_count": null,
       "outputs": []
     },
@@ -317,7 +322,7 @@
         "\n",
         "Use `.ainvoke()` for concurrency (e.g. in web servers)."
       ],
-      "id": "d5702652"
+      "id": "df4cc20c"
     },
     {
       "cell_type": "code",
@@ -329,9 +334,9 @@
         "    result = await joke_chain.ainvoke({\"adjective\": \"wholesome\", \"topic\": \"otters\"})\n",
         "    print(result)\n",
         "\n",
-        "asyncio.run(run_async())"
+        "await run_async()"
       ],
-      "id": "f18ef819",
+      "id": "f82f70f5",
       "execution_count": null,
       "outputs": []
     },
@@ -343,7 +348,7 @@
         "\n",
         "Hybrid pipeline: preprocessing → parallel enrichment → consolidation."
       ],
-      "id": "cdfbac79"
+      "id": "cb1972c7"
     },
     {
       "cell_type": "code",
@@ -372,7 +377,7 @@
         "pipeline = base | (lambda d: {\"original\": d[\"original\"], **fanout.invoke({\"text\": d[\"text\"]})}) | merge\n",
         "print(pipeline.invoke({\"text\": \"Platform signups rose while churn decreased steadily.\"}))"
       ],
-      "id": "57a67db5",
+      "id": "f01893a1",
       "execution_count": null,
       "outputs": []
     },
@@ -435,7 +440,7 @@
         "5.  Li, D. et al. (2023). A Survey on Prompt Engineering. arXiv:2305.00050.\\\n",
         "6.  Best Practices in LLM Chaining (Community Discussions). (Consult official docs for authoritative updates.)"
       ],
-      "id": "19349e07"
+      "id": "55855538"
     }
   ],
   "metadata": {

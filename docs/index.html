@@ -17,7 +17,7 @@ div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
   width: 0.8em;
-  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */
   vertical-align: middle;
 }
 </style>
@@ -75,12 +75,12 @@ ul.task-list li input[type="checkbox"] {
     const listingTargetEl = window.document.querySelector('#listing-quantitative-finance .list');
     if (!listingTargetEl) {
       // No listing discovered, do not attach.
-      return; 
+      return;
     }
 
     const options = {
       valueNames: ['listing-date','listing-title','listing-author','listing-subtitle','listing-image','listing-description','listing-categories',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
-      
+
       searchColumns: ["listing-date","listing-title","listing-author","listing-subtitle","listing-image","listing-description","listing-categories"],
     };
 
@@ -97,18 +97,18 @@ ul.task-list li input[type="checkbox"] {
       window['quarto-listing-loaded']();
     }
   })
-  
+
 
   window.document.addEventListener("DOMContentLoaded", function (_event) {
     const listingTargetEl = window.document.querySelector('#listing-rag-and-agentic-ai .list');
     if (!listingTargetEl) {
       // No listing discovered, do not attach.
-      return; 
+      return;
     }
 
     const options = {
       valueNames: ['listing-date','listing-title','listing-author','listing-image','listing-description','listing-categories',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
-      
+
       searchColumns: ["listing-date","listing-title","listing-author","listing-image","listing-description","listing-categories"],
     };
 
@@ -178,27 +178,31 @@ window.Quarto = {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item">
-    <a class="nav-link" href="./about.html"> 
+    <a class="nav-link" href="./about.html">
 <span class="menu-text">Who I am…</span></a>
-  </li>  
+  </li>
   <li class="nav-item">
-    <a class="nav-link" href="./blogs.html"> 
+    <a class="nav-link" href="./blogs.html">
 <span class="menu-text">Blog</span></a>
-  </li>  
+  </li>
   <li class="nav-item">
-    <a class="nav-link" href="./labs.html"> 
+    <a class="nav-link" href="./labs.html">
 <span class="menu-text">Labs</span></a>
-  </li>  
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="./cheat_sheets.html">
+<span class="menu-text">Chat Sheets</span></a>
+  </li>
   <li class="nav-item compact">
     <a class="nav-link" href="https://github.com/"> <i class="bi bi-github" role="img">
-</i> 
+</i>
 <span class="menu-text"></span></a>
-  </li>  
+  </li>
   <li class="nav-item compact">
     <a class="nav-link" href="https://twitter.com/desire_dosseh"> <i class="bi bi-twitter" role="img">
-</i> 
+</i>
 <span class="menu-text"></span></a>
-  </li>  
+  </li>
 </ul>
           </div> <!-- /navcollapse -->
             <div class="quarto-navbar-tools">
@@ -213,22 +217,22 @@ window.Quarto = {
       <h1 class="title">QuantBender</h1>
                       </div>
   </div>
-    
-  
+
+
   <div class="quarto-title-meta column-page-left">
 
-      
-    
-      
+
+
+
     </div>
-    
-  
+
+
   </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
-    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(10)</span></div><div class="category" data-category="Qmlub21pYWwtTW9kZWw=">Binomial-Model <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Y29uc3RyYWludC1wcm9ncmFtbWluZw==">constraint-programming <span class="quarto-category-count">(1)</span></div><div class="category" data-category="ZGVyaXZhdGl2ZXM=">derivatives <span class="quarto-category-count">(1)</span></div><div class="category" data-category="TEFOR0NIQUlO">LANGCHAIN <span class="quarto-category-count">(1)</span></div><div class="category" data-category="TENFTA==">LCEL <span class="quarto-category-count">(1)</span></div><div class="category" data-category="b3B0aW1pemF0aW9u">optimization <span class="quarto-category-count">(1)</span></div><div class="category" data-category="UHJvbXB0JTIwRW5naW5lZXJpbmc=">Prompt Engineering <span class="quarto-category-count">(1)</span></div><div class="category" data-category="UXVhbnRpdGF0aXZlLUZpbmFuY2U=">Quantitative-Finance <span class="quarto-category-count">(2)</span></div><div class="category" data-category="UkFHLUFORC1BR0VOVElDLUFJ">RAG-AND-AGENTIC-AI <span class="quarto-category-count">(8)</span></div><div class="category" data-category="U3RvY2hhc3RpYy1DYWxjdWx1cw==">Stochastic-Calculus <span class="quarto-category-count">(1)</span></div><div class="category" data-category="c3dhcHM=">swaps <span class="quarto-category-count">(1)</span></div></div></div>
+
+    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(13)</span></div><div class="category" data-category="Qmlub21pYWwtTW9kZWw=">Binomial-Model <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Y29uc3RyYWludC1wcm9ncmFtbWluZw==">constraint-programming <span class="quarto-category-count">(1)</span></div><div class="category" data-category="ZGVyaXZhdGl2ZXM=">derivatives <span class="quarto-category-count">(1)</span></div><div class="category" data-category="TEFOR0NIQUlO">LANGCHAIN <span class="quarto-category-count">(1)</span></div><div class="category" data-category="TENFTA==">LCEL <span class="quarto-category-count">(2)</span></div><div class="category" data-category="b3B0aW1pemF0aW9u">optimization <span class="quarto-category-count">(1)</span></div><div class="category" data-category="UHJvbXB0JTIwRW5naW5lZXJpbmc=">Prompt Engineering <span class="quarto-category-count">(1)</span></div><div class="category" data-category="UXVhbnRpdGF0aXZlLUZpbmFuY2U=">Quantitative-Finance <span class="quarto-category-count">(2)</span></div><div class="category" data-category="UkFHLUFORC1BR0VOVElDLUFJ">RAG-AND-AGENTIC-AI <span class="quarto-category-count">(11)</span></div><div class="category" data-category="U3RvY2hhc3RpYy1DYWxjdWx1cw==">Stochastic-Calculus <span class="quarto-category-count">(1)</span></div><div class="category" data-category="c3dhcHM=">swaps <span class="quarto-category-count">(1)</span></div></div></div>
 <!-- main -->
 <main class="content quarto-banner-title-block column-page-left" id="quarto-document-content">
 
@@ -242,7 +246,7 @@ window.Quarto = {
 
 <div class="quarto-listing quarto-listing-container-default" id="listing-quantitative-finance">
 <div class="list quarto-listing-default">
-<div class="quarto-post image-left" data-index="0" data-categories="ZGVyaXZhdGl2ZXMlMkNzd2FwcyUyQ1F1YW50aXRhdGl2ZS1GaW5hbmNlJTJDY29uc3RyYWludC1wcm9ncmFtbWluZyUyQ29wdGltaXphdGlvbg==" data-listing-date-sort="1754694000000" data-listing-file-modified-sort="1754662758102" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="395">
+<div class="quarto-post image-left" data-index="0" data-categories="ZGVyaXZhdGl2ZXMlMkNzd2FwcyUyQ1F1YW50aXRhdGl2ZS1GaW5hbmNlJTJDY29uc3RyYWludC1wcm9ncmFtbWluZyUyQ29wdGltaXphdGlvbg==" data-listing-date-sort="1754866800000" data-listing-file-modified-sort="1754662758102" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="395">
 <div class="thumbnail"><a href="./posts/Quantitative-Finance/swap-design/index.html" class="no-external">
 
 <p class="card-img-top"><img src="posts/Quantitative-Finance/swap-design/cover_image.png"  class="thumbnail-image card-img"/></p>
@@ -275,7 +279,7 @@ window.Quarto = {
 <div class="metadata">
 <a href="./posts/Quantitative-Finance/swap-design/index.html" class="no-external">
 <div class="listing-date">
-Aug 9, 2025
+Aug 11, 2025
 </div>
 <div class="listing-author">
 DOSSEH AMECK GUY-MAX DESIRE
@@ -324,7 +328,99 @@ DOSSEH AMECK GUY-MAX DESIRE
 <div class="listing-no-matching d-none">No matching items</div>
 </div><div class="quarto-listing quarto-listing-container-default" id="listing-rag-and-agentic-ai">
 <div class="list quarto-listing-default">
-<div class="quarto-post image-left" data-index="0" data-categories="UkFHLUFORC1BR0VOVElDLUFJ" data-listing-date-sort="1754607600000" data-listing-file-modified-sort="1754746457269" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-word-count-sort="572">
+<div class="quarto-post image-left" data-index="0" data-categories="UkFHLUFORC1BR0VOVElDLUFJ" data-listing-date-sort="1754694000000" data-listing-file-modified-sort="1754754728229" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="4" data-listing-word-count-sort="683">
+<div class="thumbnail"><a href="./posts/RAG-AND-AGENTIC-AI/10. langchain-and-agents-for-building-applications/index.html" class="no-external">
+
+<img loading="lazy" src="./posts/RAG-AND-AGENTIC-AI/10. langchain-and-agents-for-building-applications/cover_image.png" class="thumbnail-image">
+
+</a></div>
+<div class="body">
+<h3 class="no-anchor listing-title">
+<a href="./posts/RAG-AND-AGENTIC-AI/10. langchain-and-agents-for-building-applications/index.html" class="no-external">From Chains to Agents: A Short Tour of LangChain</a>
+</h3>
+<div class="listing-categories">
+
+<div class="listing-category" onclick="window.quartoListingCategory('UkFHLUFORC1BR0VOVElDLUFJ'); return false;">RAG-AND-AGENTIC-AI</div>
+
+</div>
+<div class="delink listing-description"><a href="./posts/RAG-AND-AGENTIC-AI/10. langchain-and-agents-for-building-applications/index.html" class="no-external">
+<p>A concise overview of LangChain’s chains, memory, and agents—plus a quick look at a Pandas DataFrame agent.</p>
+</a></div>
+</div>
+<div class="metadata">
+<a href="./posts/RAG-AND-AGENTIC-AI/10. langchain-and-agents-for-building-applications/index.html" class="no-external">
+<div class="listing-date">
+Aug 9, 2025
+</div>
+<div class="listing-author">
+DOSSEH AMECK GUY-MAX DESIRE
+</div>
+</a>
+</div>
+</div>
+<div class="quarto-post image-left" data-index="1" data-categories="UkFHLUFORC1BR0VOVElDLUFJJTJDTENFTA==" data-listing-date-sort="1754694000000" data-listing-file-modified-sort="1754757828301" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="4" data-listing-word-count-sort="672">
+<div class="thumbnail"><a href="./posts/RAG-AND-AGENTIC-AI/11. LCEL-chaining-method/index.html" class="no-external">
+
+<img loading="lazy" src="./posts/RAG-AND-AGENTIC-AI/11. LCEL-chaining-method/cover_image.png" class="thumbnail-image">
+
+</a></div>
+<div class="body">
+<h3 class="no-anchor listing-title">
+<a href="./posts/RAG-AND-AGENTIC-AI/11. LCEL-chaining-method/index.html" class="no-external">Building Flexible AI Workflows with LangChain Expression Language (LCEL)</a>
+</h3>
+<div class="listing-categories">
+
+<div class="listing-category" onclick="window.quartoListingCategory('UkFHLUFORC1BR0VOVElDLUFJ'); return false;">RAG-AND-AGENTIC-AI</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('TENFTA=='); return false;">LCEL</div>
+
+</div>
+<div class="delink listing-description"><a href="./posts/RAG-AND-AGENTIC-AI/11. LCEL-chaining-method/index.html" class="no-external">
+<p>Learn how to use LCEL to create composable, readable AI applications with LangChain. Explore its core concepts, automatic type coercion, and practical examples.</p>
+</a></div>
+</div>
+<div class="metadata">
+<a href="./posts/RAG-AND-AGENTIC-AI/11. LCEL-chaining-method/index.html" class="no-external">
+<div class="listing-date">
+Aug 9, 2025
+</div>
+<div class="listing-author">
+DOSSEH AMECK GUY-MAX DESIRE
+</div>
+</a>
+</div>
+</div>
+<div class="quarto-post image-left" data-index="2" data-categories="UkFHLUFORC1BR0VOVElDLUFJ" data-listing-date-sort="1754694000000" data-listing-file-modified-sort="1754754449199" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="4" data-listing-word-count-sort="604">
+<div class="thumbnail"><a href="./posts/RAG-AND-AGENTIC-AI/9.langchain-core-concepts/index.html" class="no-external">
+
+<img loading="lazy" src="./posts/RAG-AND-AGENTIC-AI/9.langchain-core-concepts/cover_image.png" class="thumbnail-image">
+
+</a></div>
+<div class="body">
+<h3 class="no-anchor listing-title">
+<a href="./posts/RAG-AND-AGENTIC-AI/9.langchain-core-concepts/index.html" class="no-external">LangChain Core Concepts — A Concise Guide</a>
+</h3>
+<div class="listing-categories">
+
+<div class="listing-category" onclick="window.quartoListingCategory('UkFHLUFORC1BR0VOVElDLUFJ'); return false;">RAG-AND-AGENTIC-AI</div>
+
+</div>
+<div class="delink listing-description"><a href="./posts/RAG-AND-AGENTIC-AI/9.langchain-core-concepts/index.html" class="no-external">
+<p>A quick overview of LangChain’s core concepts, including language models, chat models, prompt templates, example selectors, and output parsers.</p>
+</a></div>
+</div>
+<div class="metadata">
+<a href="./posts/RAG-AND-AGENTIC-AI/9.langchain-core-concepts/index.html" class="no-external">
+<div class="listing-date">
+Aug 9, 2025
+</div>
+<div class="listing-author">
+DOSSEH AMECK GUY-MAX DESIRE
+</div>
+</a>
+</div>
+</div>
+<div class="quarto-post image-left" data-index="3" data-categories="UkFHLUFORC1BR0VOVElDLUFJ" data-listing-date-sort="1754607600000" data-listing-file-modified-sort="1754746457269" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-word-count-sort="572">
 <div class="thumbnail"><a href="./posts/RAG-AND-AGENTIC-AI/1.gen-ai/index.html" class="no-external">
 
 <p class="card-img-top"><img src="posts/RAG-AND-AGENTIC-AI/1.gen-ai/cover_image.png"  class="thumbnail-image card-img"/></p>
@@ -354,7 +450,7 @@ DOSSEH AMECK GUY-MAX DESIRE
 </a>
 </div>
 </div>
-<div class="quarto-post image-left" data-index="1" data-categories="UkFHLUFORC1BR0VOVElDLUFJ" data-listing-date-sort="1754607600000" data-listing-file-modified-sort="1754746457272" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="5" data-listing-word-count-sort="990">
+<div class="quarto-post image-left" data-index="4" data-categories="UkFHLUFORC1BR0VOVElDLUFJ" data-listing-date-sort="1754607600000" data-listing-file-modified-sort="1754746457272" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="5" data-listing-word-count-sort="990">
 <div class="thumbnail"><a href="./posts/RAG-AND-AGENTIC-AI/2.gen-ai-models/index.html" class="no-external">
 
 <p class="card-img-top"><img src="posts/RAG-AND-AGENTIC-AI/2.gen-ai-models/cover_image.png"  class="thumbnail-image card-img"/></p>
@@ -384,7 +480,7 @@ DOSSEH AMECK GUY-MAX DESIRE
 </a>
 </div>
 </div>
-<div class="quarto-post image-left" data-index="2" data-categories="UkFHLUFORC1BR0VOVElDLUFJ" data-listing-date-sort="1754607600000" data-listing-file-modified-sort="1754746457273" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="5" data-listing-word-count-sort="851">
+<div class="quarto-post image-left" data-index="5" data-categories="UkFHLUFORC1BR0VOVElDLUFJ" data-listing-date-sort="1754607600000" data-listing-file-modified-sort="1754746457273" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="5" data-listing-word-count-sort="851">
 <div class="thumbnail"><a href="./posts/RAG-AND-AGENTIC-AI/3.nlp-explanation/index.html" class="no-external">
 
 <p class="card-img-top"><img src="posts/RAG-AND-AGENTIC-AI/3.nlp-explanation/cover_image.png"  class="thumbnail-image card-img"/></p>
@@ -414,7 +510,7 @@ DOSSEH AMECK GUY-MAX DESIRE
 </a>
 </div>
 </div>
-<div class="quarto-post image-left" data-index="3" data-categories="UkFHLUFORC1BR0VOVElDLUFJ" data-listing-date-sort="1754607600000" data-listing-file-modified-sort="1754746457274" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="8" data-listing-word-count-sort="1414">
+<div class="quarto-post image-left" data-index="6" data-categories="UkFHLUFORC1BR0VOVElDLUFJ" data-listing-date-sort="1754607600000" data-listing-file-modified-sort="1754746457274" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="8" data-listing-word-count-sort="1414">
 <div class="thumbnail"><a href="./posts/RAG-AND-AGENTIC-AI/4.gen-ai-in-practice/index.html" class="no-external">
 
 <p class="card-img-top"><img src="posts/RAG-AND-AGENTIC-AI/4.gen-ai-in-practice/cover_image.jpg"  class="thumbnail-image card-img"/></p>
@@ -444,7 +540,7 @@ DOSSEH AMECK GUY-MAX DESIRE
 </a>
 </div>
 </div>
-<div class="quarto-post image-left" data-index="4" data-categories="UkFHLUFORC1BR0VOVElDLUFJ" data-listing-date-sort="1754607600000" data-listing-file-modified-sort="1754746457275" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="6" data-listing-word-count-sort="1029">
+<div class="quarto-post image-left" data-index="7" data-categories="UkFHLUFORC1BR0VOVElDLUFJ" data-listing-date-sort="1754607600000" data-listing-file-modified-sort="1754746457275" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="6" data-listing-word-count-sort="1029">
 <div class="thumbnail"><a href="./posts/RAG-AND-AGENTIC-AI/5.in-context-learning/index.html" class="no-external">
 
 <p class="card-img-top"><img src="posts/RAG-AND-AGENTIC-AI/5.in-context-learning/cover_image.png"  class="thumbnail-image card-img"/></p>
@@ -474,7 +570,7 @@ DOSSEH AMECK GUY-MAX DESIRE
 </a>
 </div>
 </div>
-<div class="quarto-post image-left" data-index="5" data-categories="UkFHLUFORC1BR0VOVElDLUFJJTJDTEFOR0NIQUlO" data-listing-date-sort="1754607600000" data-listing-file-modified-sort="1754746457276" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="397">
+<div class="quarto-post image-left" data-index="8" data-categories="UkFHLUFORC1BR0VOVElDLUFJJTJDTEFOR0NIQUlO" data-listing-date-sort="1754607600000" data-listing-file-modified-sort="1754746457276" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="397">
 <div class="thumbnail"><a href="./posts/RAG-AND-AGENTIC-AI/6.intro-to-langchain/index.html" class="no-external">
 
 <p class="card-img-top"><img src="posts/RAG-AND-AGENTIC-AI/6.intro-to-langchain/cover_image.png"  class="thumbnail-image card-img"/></p>
@@ -506,7 +602,7 @@ DOSSEH AMECK GUY-MAX DESIRE
 </a>
 </div>
 </div>
-<div class="quarto-post image-left" data-index="6" data-categories="UkFHLUFORC1BR0VOVElDLUFJJTJDUHJvbXB0JTIwRW5naW5lZXJpbmc=" data-listing-date-sort="1754607600000" data-listing-file-modified-sort="1754746457277" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-word-count-sort="465">
+<div class="quarto-post image-left" data-index="9" data-categories="UkFHLUFORC1BR0VOVElDLUFJJTJDUHJvbXB0JTIwRW5naW5lZXJpbmc=" data-listing-date-sort="1754607600000" data-listing-file-modified-sort="1754746457277" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-word-count-sort="465">
 <div class="thumbnail"><a href="./posts/RAG-AND-AGENTIC-AI/7.prompt-engineering-techniques/index.html" class="no-external">
 
 <p class="card-img-top"><img src="posts/RAG-AND-AGENTIC-AI/7.prompt-engineering-techniques/cover_image.png"  class="thumbnail-image card-img"/></p>
@@ -538,7 +634,7 @@ DOSSEH AMECK GUY-MAX DESIRE
 </a>
 </div>
 </div>
-<div class="quarto-post image-left" data-index="7" data-categories="UkFHLUFORC1BR0VOVElDLUFJJTJDTENFTA==" data-listing-date-sort="1754607600000" data-listing-file-modified-sort="1754746457278" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="7" data-listing-word-count-sort="1388">
+<div class="quarto-post image-left" data-index="10" data-categories="UkFHLUFORC1BR0VOVElDLUFJJTJDTENFTA==" data-listing-date-sort="1754607600000" data-listing-file-modified-sort="1754752987082" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="8" data-listing-word-count-sort="1410">
 <div class="thumbnail"><a href="./posts/RAG-AND-AGENTIC-AI/8.langchain-expression-language/index.html" class="no-external">
 
 <p class="card-img-top"><img src="posts/RAG-AND-AGENTIC-AI/8.langchain-expression-language/cover_image.png"  class="thumbnail-image card-img"/></p>
@@ -584,7 +680,7 @@ DOSSEH AMECK GUY-MAX DESIRE
     anchorJS.add('.anchored');
     const isCodeAnnotation = (el) => {
       for (const clz of el.classList) {
-        if (clz.startsWith('code-annotation-')) {                     
+        if (clz.startsWith('code-annotation-')) {
           return true;
         }
       }
@@ -604,11 +700,11 @@ DOSSEH AMECK GUY-MAX DESIRE
         button.setAttribute("data-bs-toggle", "tooltip");
         button.setAttribute("data-bs-placement", "left");
         button.setAttribute("data-bs-title", "Copied!");
-        tooltip = new bootstrap.Tooltip(button, 
-          { trigger: "manual", 
+        tooltip = new bootstrap.Tooltip(button,
+          { trigger: "manual",
             customClass: "code-copy-button-tooltip",
             offset: [0, -8]});
-        tooltip.show();    
+        tooltip.show();
       }
       setTimeout(function() {
         if (tooltip) {
@@ -684,7 +780,7 @@ DOSSEH AMECK GUY-MAX DESIRE
       if (onUntriggerFn) {
         config.onUntrigger = onUntriggerFn;
       }
-      window.tippy(el, config); 
+      window.tippy(el, config);
     }
     const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
     for (var i=0; i<noterefs.length; i++) {
@@ -759,7 +855,7 @@ DOSSEH AMECK GUY-MAX DESIRE
       tippyHover(xref, undefined, function(instance) {
         instance.disable();
         let url = xref.getAttribute('href');
-        let hash = undefined; 
+        let hash = undefined;
         if (url.startsWith('#')) {
           hash = url;
         } else {
@@ -787,7 +883,7 @@ DOSSEH AMECK GUY-MAX DESIRE
               if (note !== null) {
                 const html = processXRef(id, note);
                 instance.setContent(html);
-              } 
+              }
             }).finally(() => {
               instance.enable();
               instance.show();
@@ -811,7 +907,7 @@ DOSSEH AMECK GUY-MAX DESIRE
               }
               const html = processXRef(null, note);
               instance.setContent(html);
-            } 
+            }
           }).finally(() => {
             instance.enable();
             instance.show();
@@ -851,7 +947,7 @@ DOSSEH AMECK GUY-MAX DESIRE
               height = bottom - top;
             }
             if (top !== null && height !== null && parent !== null) {
-              // cook up a div (if necessary) and position it 
+              // cook up a div (if necessary) and position it
               let div = window.document.getElementById("code-annotation-line-highlight");
               if (div === null) {
                 div = window.document.createElement("div");

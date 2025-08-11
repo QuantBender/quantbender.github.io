@@ -20,7 +20,7 @@ div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
   width: 0.8em;
-  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */
   vertical-align: middle;
 }
 </style>
@@ -93,27 +93,31 @@ ul.task-list li input[type="checkbox"] {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item">
-    <a class="nav-link" href="../../../about.html"> 
+    <a class="nav-link" href="../../../about.html">
 <span class="menu-text">Who I am…</span></a>
-  </li>  
+  </li>
   <li class="nav-item">
-    <a class="nav-link" href="../../../blogs.html"> 
+    <a class="nav-link" href="../../../blogs.html">
 <span class="menu-text">Blog</span></a>
-  </li>  
+  </li>
   <li class="nav-item">
-    <a class="nav-link" href="../../../labs.html"> 
+    <a class="nav-link" href="../../../labs.html">
 <span class="menu-text">Labs</span></a>
-  </li>  
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="../../../cheat_sheets.html">
+<span class="menu-text">Chat Sheets</span></a>
+  </li>
   <li class="nav-item compact">
     <a class="nav-link" href="https://github.com/"> <i class="bi bi-github" role="img">
-</i> 
+</i>
 <span class="menu-text"></span></a>
-  </li>  
+  </li>
   <li class="nav-item compact">
     <a class="nav-link" href="https://twitter.com/desire_dosseh"> <i class="bi bi-twitter" role="img">
-</i> 
+</i>
 <span class="menu-text"></span></a>
-  </li>  
+  </li>
 </ul>
           </div> <!-- /navcollapse -->
             <div class="quarto-navbar-tools">
@@ -131,8 +135,8 @@ ul.task-list li input[type="checkbox"] {
               </div>
                   </div>
   </div>
-    
-  
+
+
   <div class="quarto-title-meta">
 
       <div>
@@ -141,17 +145,17 @@ ul.task-list li input[type="checkbox"] {
                <p>DOSSEH AMECK GUY-MAX DESIRE </p>
             </div>
     </div>
-      
+
       <div>
       <div class="quarto-title-meta-heading">Published</div>
       <div class="quarto-title-meta-contents">
         <p class="date">August 8, 2025</p>
       </div>
     </div>
-    
-      
+
+
     </div>
-    
+
   <div>
     <div class="abstract">
       <div class="block-title">Abstract</div>
@@ -165,14 +169,14 @@ ul.task-list li input[type="checkbox"] {
       <p>foundation models, large language models, LLM, prompt engineering, AI governance, efficient fine-tuning</p>
     </div>
   </div>
-  
+
   </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         <nav id="TOC" role="doc-toc" class="toc-active">
     <h2 id="toc-title">On this page</h2>
-   
+
   <ul>
   <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction"><span class="header-section-number">1</span> Introduction</a></li>
   <li><a href="#what-are-foundation-models" id="toc-what-are-foundation-models" class="nav-link" data-scroll-target="#what-are-foundation-models"><span class="header-section-number">2</span> What Are Foundation Models?</a></li>
@@ -458,7 +462,7 @@ Reduction: retrieval augmentation, constrained decoding, citation enforcement, a
     anchorJS.add('.anchored');
     const isCodeAnnotation = (el) => {
       for (const clz of el.classList) {
-        if (clz.startsWith('code-annotation-')) {                     
+        if (clz.startsWith('code-annotation-')) {
           return true;
         }
       }
@@ -478,11 +482,11 @@ Reduction: retrieval augmentation, constrained decoding, citation enforcement, a
         button.setAttribute("data-bs-toggle", "tooltip");
         button.setAttribute("data-bs-placement", "left");
         button.setAttribute("data-bs-title", "Copied!");
-        tooltip = new bootstrap.Tooltip(button, 
-          { trigger: "manual", 
+        tooltip = new bootstrap.Tooltip(button,
+          { trigger: "manual",
             customClass: "code-copy-button-tooltip",
             offset: [0, -8]});
-        tooltip.show();    
+        tooltip.show();
       }
       setTimeout(function() {
         if (tooltip) {
@@ -558,7 +562,7 @@ Reduction: retrieval augmentation, constrained decoding, citation enforcement, a
       if (onUntriggerFn) {
         config.onUntrigger = onUntriggerFn;
       }
-      window.tippy(el, config); 
+      window.tippy(el, config);
     }
     const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
     for (var i=0; i<noterefs.length; i++) {
@@ -633,7 +637,7 @@ Reduction: retrieval augmentation, constrained decoding, citation enforcement, a
       tippyHover(xref, undefined, function(instance) {
         instance.disable();
         let url = xref.getAttribute('href');
-        let hash = undefined; 
+        let hash = undefined;
         if (url.startsWith('#')) {
           hash = url;
         } else {
@@ -661,7 +665,7 @@ Reduction: retrieval augmentation, constrained decoding, citation enforcement, a
               if (note !== null) {
                 const html = processXRef(id, note);
                 instance.setContent(html);
-              } 
+              }
             }).finally(() => {
               instance.enable();
               instance.show();
@@ -685,7 +689,7 @@ Reduction: retrieval augmentation, constrained decoding, citation enforcement, a
               }
               const html = processXRef(null, note);
               instance.setContent(html);
-            } 
+            }
           }).finally(() => {
             instance.enable();
             instance.show();
@@ -725,7 +729,7 @@ Reduction: retrieval augmentation, constrained decoding, citation enforcement, a
               height = bottom - top;
             }
             if (top !== null && height !== null && parent !== null) {
-              // cook up a div (if necessary) and position it 
+              // cook up a div (if necessary) and position it
               let div = window.document.getElementById("code-annotation-line-highlight");
               if (div === null) {
                 div = window.document.createElement("div");

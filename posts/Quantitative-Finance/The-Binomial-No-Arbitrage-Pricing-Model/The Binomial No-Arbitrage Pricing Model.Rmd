@@ -1,6 +1,6 @@
 ---
 title: "The Binomial No-Arbitrage Pricing Model"
-author: "DOSSEH AMECK GUY-MAX DESIRE" 
+author: "DOSSEH AMECK GUY-MAX DESIRE"
 date: 2025-08-08
 ---
 
@@ -38,7 +38,7 @@ X_1(T) &= \Delta_0 d S_0 + (1+r)(X_0-\Delta_0 S_0)
 \Delta_{0} = \frac{X_1(H) - (1+r)X_0}{uS_0 - (1+r)S_0} \\
 X_1(T) = \frac{X_1(H) - (1+r)X_0}{uS_0 - (1+r)S_0} d S_0 + (1+r)(X_0-\frac{X_1(H) - (1+r)X_0}{uS_0 - (1+r)S_0} S_0)
 \end{cases}\\
-&\Rightarrow 
+&\Rightarrow
 X_1(T) = \frac{X_1(H) - (1+r)X_0}{u - (1+r)} d + (1+r)(X_0-\frac{X_1(H) - (1+r)X_0}{u - (1+r)})\\
 &\Rightarrow
 X_1(T)(u-1-r) = dX_1(H) - (1+r)dX_0 - X_1(H) + (1+r)(u-1-r)X_0 - (1+r)X_1(H) + (1+r)^2 X_0\\
@@ -160,7 +160,7 @@ genlattice <- function(X0=4, u=1.1, d=.75, N=5) {
   X <- c()
   X[1] <- X0
   count <- 2
-  
+
   for (i in 1:N) {
     for (j in 0:i) {
       X[count] <- X0 * u^(i-j) * d^j
@@ -172,22 +172,22 @@ genlattice <- function(X0=4, u=1.1, d=.75, N=5) {
 
 dotlattice <- function(S, labels=FALSE) {
   shape <- ifelse(labels == TRUE, "plaintext", "point")
-  
+
   cat("digraph G {", "\n", sep="")
   cat("node[shape=",shape,"];","\n", sep="")
   cat("rankdir=LR;","\n")
-  
+
   cat("edge[arrowhead=none];","\n")
-  
+
   # Create a dot node for each element in the lattice
   for (i in 1:length(S)) {
     cat("node", i, "[label=\"", S[i], "\"];", "\n", sep="")
   }
-  
+
   # The number of levels in a binomial lattice of length N
-  # is 
+  # is
   L <- ((sqrt(8*length(S)+1)-1)/2 - 1)
-  
+
   k<-1
   for (i in 1:L) {
     tabs <- rep("\t",i-1)
@@ -199,7 +199,7 @@ dotlattice <- function(S, labels=FALSE) {
       j <- j - 1
     }
   }
-  
+
   cat("}", sep="")
 }
 
@@ -255,10 +255,10 @@ $$
 
 And in period 1:
 
-$$ 
-\begin{aligned} 
-V_1(H) &= \frac{1}{1+r}\left[\tilde{p}V_2(HH) + \tilde{q}V_2(HT)\right] \ &= \frac{1}{1+\frac{1}{4}}\left[\frac{1}{2}V_2(HH) + \frac{1}{2}V_2(HT)\right] \ &= \frac{1}{\frac{5}{4}}\left[\frac{1}{2} \cdot \frac{16}{5} + \frac{1}{2} \cdot \frac{12}{5}\right] \ &= \frac{4}{5} \times \frac{14}{5} = \frac{56}{25} = 2.24 \[1.5em] V_1(T) &= \frac{1}{1+r}\left[\tilde{p}V_2(TH) + \tilde{q}V_2(TT)\right] \ &= \frac{1}{1+\frac{1}{4}}\left[\frac{1}{2}V_2(TH) + \frac{1}{2}V_2(TT)\right] \ &= \frac{1}{\frac{5}{4}}\left[\frac{1}{2} \cdot \frac{4}{5} + \frac{1}{2} \cdot \frac{11}{5}\right] \ &= \frac{4}{5} \times \frac{15}{10} = \frac{6}{5} = 1.2 \ 
-\end{aligned} 
+$$
+\begin{aligned}
+V_1(H) &= \frac{1}{1+r}\left[\tilde{p}V_2(HH) + \tilde{q}V_2(HT)\right] \ &= \frac{1}{1+\frac{1}{4}}\left[\frac{1}{2}V_2(HH) + \frac{1}{2}V_2(HT)\right] \ &= \frac{1}{\frac{5}{4}}\left[\frac{1}{2} \cdot \frac{16}{5} + \frac{1}{2} \cdot \frac{12}{5}\right] \ &= \frac{4}{5} \times \frac{14}{5} = \frac{56}{25} = 2.24 \[1.5em] V_1(T) &= \frac{1}{1+r}\left[\tilde{p}V_2(TH) + \tilde{q}V_2(TT)\right] \ &= \frac{1}{1+\frac{1}{4}}\left[\frac{1}{2}V_2(TH) + \frac{1}{2}V_2(TT)\right] \ &= \frac{1}{\frac{5}{4}}\left[\frac{1}{2} \cdot \frac{4}{5} + \frac{1}{2} \cdot \frac{11}{5}\right] \ &= \frac{4}{5} \times \frac{15}{10} = \frac{6}{5} = 1.2 \
+\end{aligned}
 $$
 
 Finally, in period 0:

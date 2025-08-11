@@ -12,7 +12,7 @@ format:
 reading-time: true
 keywords: ["LLM","RAG","multi-agent","prompt engineering","vector database","LangChain","LangGraph"]
 abstract: >
-  A streamlined, rephrased summary of core Generative AI concepts distilled from a longer reference guide: 
+  A streamlined, rephrased summary of core Generative AI concepts distilled from a longer reference guide:
   foundations, retrieval augmentation, agents, prompting patterns, system architectures, and essential tools—
   with pragmatic checklists and references for deeper exploration.
 ---
@@ -88,7 +88,7 @@ Modern applications move beyond a single prompt→response. Real value comes fro
 
 ### 4.1 Canonical Prompt Skeleton
 
-```         
+```
 ROLE: You are a concise support classifier.
 INSTRUCTION: Classify ticket sentiment: Positive | Neutral | Negative.
 CONTEXT: Product launched 7 days ago; shipping delays known.
@@ -137,7 +137,7 @@ Only add multiple agents when specialization *reduces* overall complexity or per
 
 ## 7. Lightweight System Architecture (Conceptual)
 
-```         
+```
 User Input
   ↓
 [Sanitize] → [Retriever] → [Prompt Assembler] → [LLM]
@@ -197,4 +197,3 @@ Add logging hooks at every arrow early.
 -   Multi-agent patterns are optional—earn the complexity.
 -   Enforce structure early to enable automation.
 -   Continuous small evaluations beat occasional large audits.
-

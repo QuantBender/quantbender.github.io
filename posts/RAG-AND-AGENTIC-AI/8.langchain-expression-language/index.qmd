@@ -73,7 +73,12 @@ A simple pipeline: format → generate → parse.
 # (If no GPU, set device_map=None and remove torch_dtype for pure CPU execution.)
 
 from langchain_core.prompts import PromptTemplate
-from langchain_huggingface import HuggingFacePipeline
+
+# Prefer new package; fall back to community if needed
+try:
+    from langchain_huggingface import HuggingFacePipeline
+except Exception:
+    from langchain_community.llms import HuggingFacePipeline
 from langchain_core.output_parsers import StrOutputParser
 from transformers import AutoModelForCausalLM, AutoTokenizer, pipeline
 import torch
@@ -246,7 +251,7 @@ async def run_async():
     result = await joke_chain.ainvoke({"adjective": "wholesome", "topic": "otters"})
     print(result)
 
-asyncio.run(run_async())
+await run_async()
 ```
 
 ## 13. Putting It All Together

@@ -20,7 +20,7 @@ div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
   width: 0.8em;
-  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */
   vertical-align: middle;
 }
 /* CSS for syntax highlighting */
@@ -128,27 +128,31 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item">
-    <a class="nav-link" href="../../../about.html"> 
+    <a class="nav-link" href="../../../about.html">
 <span class="menu-text">Who I am…</span></a>
-  </li>  
+  </li>
   <li class="nav-item">
-    <a class="nav-link" href="../../../blogs.html"> 
+    <a class="nav-link" href="../../../blogs.html">
 <span class="menu-text">Blog</span></a>
-  </li>  
+  </li>
   <li class="nav-item">
-    <a class="nav-link" href="../../../labs.html"> 
+    <a class="nav-link" href="../../../labs.html">
 <span class="menu-text">Labs</span></a>
-  </li>  
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="../../../cheat_sheets.html">
+<span class="menu-text">Chat Sheets</span></a>
+  </li>
   <li class="nav-item compact">
     <a class="nav-link" href="https://github.com/"> <i class="bi bi-github" role="img">
-</i> 
+</i>
 <span class="menu-text"></span></a>
-  </li>  
+  </li>
   <li class="nav-item compact">
     <a class="nav-link" href="https://twitter.com/desire_dosseh"> <i class="bi bi-twitter" role="img">
-</i> 
+</i>
 <span class="menu-text"></span></a>
-  </li>  
+  </li>
 </ul>
           </div> <!-- /navcollapse -->
             <div class="quarto-navbar-tools">
@@ -172,8 +176,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
               </div>
                   </div>
   </div>
-    
-  
+
+
   <div class="quarto-title-meta">
 
       <div>
@@ -182,25 +186,25 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
                <p>DOSSEH AMECK GUY-MAX DESIRE </p>
             </div>
     </div>
-      
+
       <div>
       <div class="quarto-title-meta-heading">Published</div>
       <div class="quarto-title-meta-contents">
         <p class="date">August 8, 2025</p>
       </div>
     </div>
-    
-      
+
+
     </div>
-    
-  
+
+
   </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         <nav id="TOC" role="doc-toc" class="toc-active">
     <h2 id="toc-title">On this page</h2>
-   
+
   <ul>
   <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">1. Introduction</a></li>
   <li><a href="#what-lcel-solves" id="toc-what-lcel-solves" class="nav-link" data-scroll-target="#what-lcel-solves">2. What LCEL Solves</a></li>
@@ -221,7 +225,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#practical-checklist" id="toc-practical-checklist" class="nav-link" data-scroll-target="#practical-checklist">17. Practical Checklist</a></li>
   <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary">18. Summary</a></li>
   <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">19. References</a></li>
-  <li><a href="#disclaimer" id="toc-disclaimer" class="nav-link" data-scroll-target="#disclaimer">20. Disclaimer</a></li>
   </ul>
 </nav>
     </div>
@@ -304,8 +307,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 class="anchored" data-anchor-id="building-blocks">5. Building Blocks</h2>
 <table class="caption-top table">
 <colgroup>
-<col style="width: 76%">
-<col style="width: 23%">
+<col style="width: 75%">
+<col style="width: 25%">
 </colgroup>
 <thead>
 <tr class="header">
@@ -340,54 +343,62 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="minimal-sequential-chain" class="level2">
 <h2 class="anchored" data-anchor-id="minimal-sequential-chain">6. Minimal Sequential Chain</h2>
 <p>A simple pipeline: format → generate → parse.</p>
-<div class="cell">
+<div id="0339a2a4" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Minimal LCEL sequential chain (open-source model, no API key)</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Prerequisites:</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co">#   pip install "langchain&gt;=0.2.0" "langchain-huggingface&gt;=0.0.3" transformers accelerate torch safetensors</span></span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># (If no GPU, set device_map=None and remove torch_dtype for pure CPU execution.)</span></span>
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> langchain_core.prompts <span class="im">import</span> PromptTemplate</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> langchain_huggingface <span class="im">import</span> HuggingFacePipeline</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> langchain_core.output_parsers <span class="im">import</span> StrOutputParser</span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> transformers <span class="im">import</span> AutoModelForCausalLM, AutoTokenizer, pipeline</span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> torch</span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>MODEL_ID <span class="op">=</span> <span class="st">"TinyLlama/TinyLlama-1.1B-Chat-v1.0"</span></span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>tokenizer <span class="op">=</span> AutoTokenizer.from_pretrained(MODEL_ID)</span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> AutoModelForCausalLM.from_pretrained(</span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>    MODEL_ID,</span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>    torch_dtype<span class="op">=</span>torch.float16 <span class="cf">if</span> torch.cuda.is_available() <span class="cf">else</span> torch.float32,</span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>    device_map<span class="op">=</span><span class="st">"auto"</span> <span class="cf">if</span> torch.cuda.is_available() <span class="cf">else</span> <span class="va">None</span></span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>gen_pipe <span class="op">=</span> pipeline(</span>
-<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>    <span class="st">"text-generation"</span>,</span>
-<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>    model<span class="op">=</span>model,</span>
-<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>    tokenizer<span class="op">=</span>tokenizer,</span>
-<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>    max_new_tokens<span class="op">=</span><span class="dv">96</span>,</span>
-<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>    temperature<span class="op">=</span><span class="fl">0.7</span>,</span>
-<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>    do_sample<span class="op">=</span><span class="va">True</span>,</span>
-<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>    top_p<span class="op">=</span><span class="fl">0.9</span></span>
-<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>llm <span class="op">=</span> HuggingFacePipeline(pipeline<span class="op">=</span>gen_pipe)</span>
-<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>prompt <span class="op">=</span> PromptTemplate.from_template(<span class="st">"Tell a </span><span class="sc">{adjective}</span><span class="st"> joke about </span><span class="sc">{topic}</span><span class="st">."</span>)</span>
-<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>parser <span class="op">=</span> StrOutputParser()</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Prefer new package; fall back to community if needed</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="cf">try</span>:</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>    <span class="im">from</span> langchain_huggingface <span class="im">import</span> HuggingFacePipeline</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="cf">except</span> <span class="pp">Exception</span>:</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>    <span class="im">from</span> langchain_community.llms <span class="im">import</span> HuggingFacePipeline</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> langchain_core.output_parsers <span class="im">import</span> StrOutputParser</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> transformers <span class="im">import</span> AutoModelForCausalLM, AutoTokenizer, pipeline</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> torch</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>MODEL_ID <span class="op">=</span> <span class="st">"TinyLlama/TinyLlama-1.1B-Chat-v1.0"</span></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>tokenizer <span class="op">=</span> AutoTokenizer.from_pretrained(MODEL_ID)</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> AutoModelForCausalLM.from_pretrained(</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>    MODEL_ID,</span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>    torch_dtype<span class="op">=</span>torch.float16 <span class="cf">if</span> torch.cuda.is_available() <span class="cf">else</span> torch.float32,</span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>    device_map<span class="op">=</span><span class="st">"auto"</span> <span class="cf">if</span> torch.cuda.is_available() <span class="cf">else</span> <span class="va">None</span></span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>gen_pipe <span class="op">=</span> pipeline(</span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>    <span class="st">"text-generation"</span>,</span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>    model<span class="op">=</span>model,</span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>    tokenizer<span class="op">=</span>tokenizer,</span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>    max_new_tokens<span class="op">=</span><span class="dv">96</span>,</span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>    temperature<span class="op">=</span><span class="fl">0.7</span>,</span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>    do_sample<span class="op">=</span><span class="va">True</span>,</span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>    top_p<span class="op">=</span><span class="fl">0.9</span></span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>)</span>
 <span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a>joke_chain <span class="op">=</span> prompt <span class="op">|</span> llm <span class="op">|</span> parser</span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a>llm <span class="op">=</span> HuggingFacePipeline(pipeline<span class="op">=</span>gen_pipe)</span>
 <span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(joke_chain.invoke({<span class="st">"adjective"</span>: <span class="st">"absurd"</span>, <span class="st">"topic"</span>: <span class="st">"penguins"</span>}))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a>prompt <span class="op">=</span> PromptTemplate.from_template(<span class="st">"Tell a </span><span class="sc">{adjective}</span><span class="st"> joke about </span><span class="sc">{topic}</span><span class="st">."</span>)</span>
+<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a>parser <span class="op">=</span> StrOutputParser()</span>
+<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a>joke_chain <span class="op">=</span> prompt <span class="op">|</span> llm <span class="op">|</span> parser</span>
+<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(joke_chain.invoke({<span class="st">"adjective"</span>: <span class="st">"absurd"</span>, <span class="st">"topic"</span>: <span class="st">"penguins"</span>}))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Tell a absurd joke about penguins.</code></pre>
+<pre><code>Tell a absurd joke about penguins.
+
+Scene 3:
+The stage is now transformed into a snowy mountain range. The audience can see a group of four characters sitting on a snowy mountain. There is a penguin, a bear, a squirrel, and a grizzly bear. The penguin is wearing a coat and hat, a bear is wearing a fur coat, a squirrel is wearing a scarf, and a grizzly</code></pre>
 </div>
 </div>
 </section>
 <section id="explicit-formatting-stage-runnablelambda" class="level2">
 <h2 class="anchored" data-anchor-id="explicit-formatting-stage-runnablelambda">7. Explicit Formatting Stage (RunnableLambda)</h2>
 <p>Add a preprocessing function before generation.</p>
-<div class="cell">
+<div id="008adde6" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> langchain_core.runnables <span class="im">import</span> RunnableLambda</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> normalize_payload(d: <span class="bu">dict</span>):</span>
@@ -402,16 +413,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(chain.invoke({<span class="st">"adjective"</span>: <span class="st">" Witty "</span>, <span class="st">"topic"</span>: <span class="st">" Space Exploration  "</span>}))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Tell a witty joke about Space Exploration.
-4. What's your favorite planet? - Write a humorous poem about the planet that your favorite character lives on.
 
-Remember, the most important thing is to have fun and express yourself creatively!</code></pre>
+2. "Alien Invasion" - A short, action-packed story about a group of astronauts who are transported to an alien planet.
+
+3. "The Martian" - A science fiction story about a group of astronauts who are stranded on Mars and must work together to survive.
+
+4. "The Martian Rover" - A short, action-packed story about a</code></pre>
 </div>
 </div>
 </section>
 <section id="parallel-fan-out-runnableparallel" class="level2">
 <h2 class="anchored" data-anchor-id="parallel-fan-out-runnableparallel">8. Parallel Fan-Out (RunnableParallel)</h2>
 <p>Run multiple tasks (summary, translation, sentiment) simultaneously. A dict automatically becomes a parallel runnable.</p>
-<div class="cell">
+<div id="0f0a7dbb" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Parallel fan-out example (open-source model, no API key)</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Prerequisites:</span></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="co">#   pip install "langchain&gt;=0.2.0" "langchain-huggingface&gt;=0.0.3" transformers accelerate torch safetensors</span></span>
@@ -467,7 +481,7 @@ Remember, the most important thing is to have fun and express yourself creativel
 <section id="type-coercion-in-practice" class="level2">
 <h2 class="anchored" data-anchor-id="type-coercion-in-practice">9. Type Coercion in Practice</h2>
 <p>Functions become transformation runnables; dictionaries become parallel composites—no manual wrapping required.</p>
-<div class="cell">
+<div id="126dd0b1" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> enrich(d: <span class="bu">dict</span>):</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    d[<span class="st">"topic"</span>] <span class="op">=</span> d[<span class="st">"topic"</span>].lower()</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    d[<span class="st">"adjective"</span>] <span class="op">=</span> d[<span class="st">"adjective"</span>] <span class="kw">or</span> <span class="st">"concise"</span></span>
@@ -477,14 +491,14 @@ Remember, the most important thing is to have fun and express yourself creativel
 <span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>coercion_chain <span class="op">=</span> enrich <span class="op">|</span> prompt <span class="op">|</span> llm <span class="op">|</span> parser</span>
 <span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(coercion_chain.invoke({<span class="st">"adjective"</span>: <span class="st">""</span>, <span class="st">"topic"</span>: <span class="st">"Quantum Computing"</span>}))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Tell a concise joke about quantum computing.</code></pre>
+<pre><code>Tell a concise joke about quantum computing. The joke should be funny but also explain a concept in a way that everyone can understand.</code></pre>
 </div>
 </div>
 </section>
 <section id="structured-output-with-post-processing" class="level2">
 <h2 class="anchored" data-anchor-id="structured-output-with-post-processing">10. Structured Output with Post-Processing</h2>
 <p>Add resilient parsing to guard against minor format drift.</p>
-<div class="cell">
+<div id="79640a85" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> json</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> langchain_core.prompts <span class="im">import</span> PromptTemplate</span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> langchain_core.runnables <span class="im">import</span> RunnableLambda</span>
@@ -513,64 +527,77 @@ Remember, the most important thing is to have fun and express yourself creativel
 <section id="streaming-tokens" class="level2">
 <h2 class="anchored" data-anchor-id="streaming-tokens">11. Streaming Tokens</h2>
 <p>Receive incremental output for responsive UIs.</p>
-<div class="cell">
+<div id="02e862dd" class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>stream_chain <span class="op">=</span> prompt <span class="op">|</span> llm  <span class="co"># parser optional for streaming</span></span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> chunk <span class="kw">in</span> stream_chain.stream({<span class="st">"adjective"</span>: <span class="st">"brief"</span>, <span class="st">"topic"</span>: <span class="st">"gravity"</span>}):</span>
 <span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>    <span class="co"># chunk can be a delta string or model-specific object</span></span>
-<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(chunk, end<span class="op">=</span><span class="st">""</span>, flush<span class="op">=</span><span class="va">True</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(chunk, end<span class="op">=</span><span class="st">""</span>, flush<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
-3. 10:30 - Story Time - Join us for a fun story time featuring stories from our favorite children's books.
-4. 11:00 - Sensory Playtime - Let's explore the senses and create fun sensory experiences!
-5. 11:30 - Guided Mindfulness - Learn a mindfulness practice and experience the benefits of being present and calm.
-6</code></pre>
+- Tell a joke about the weather.
+- Ask a question about a recent event or topic.
+- Ask a question about a famous person or event.
+- Ask a question about a current issue or problem.
+- Ask a question about a famous person or event.
+
+Example:
+- Ask a joke about gravity.
+- Ask a joke about the weather.
+- Ask a joke about the current weather.
+- Ask a</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="asynchronous-invocation" class="level2">
 <h2 class="anchored" data-anchor-id="asynchronous-invocation">12. Asynchronous Invocation</h2>
 <p>Use <code>.ainvoke()</code> for concurrency (e.g.&nbsp;in web servers).</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> asyncio</span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="cf">async</span> <span class="kw">def</span> run_async():</span>
-<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>    result <span class="op">=</span> <span class="cf">await</span> joke_chain.ainvoke({<span class="st">"adjective"</span>: <span class="st">"wholesome"</span>, <span class="st">"topic"</span>: <span class="st">"otters"</span>})</span>
-<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(result)</span>
-<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>asyncio.run(run_async())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="e216dbb7" class="cell" data-execution_count="7">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> asyncio</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="cf">async</span> <span class="kw">def</span> run_async():</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>    result <span class="op">=</span> <span class="cf">await</span> joke_chain.ainvoke({<span class="st">"adjective"</span>: <span class="st">"wholesome"</span>, <span class="st">"topic"</span>: <span class="st">"otters"</span>})</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(result)</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a><span class="cf">await</span> run_async()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Tell a wholesome joke about otters. Can you paraphrase the story about the three otters and their friendship?</code></pre>
+<pre><code>Tell a wholesome joke about otters.
+
+11. "Tall Tales from the Trenches" - This book is a collection of humorous and witty stories from soldiers during World War I.
+
+12. "A Brief History of Comedy" - This book provides a comprehensive overview of the history of comedy and its evolution from the ancient Greeks to modern times.
+
+13. "The Complete Penguin Book of American Humor" - This</code></pre>
 </div>
 </div>
 </section>
 <section id="putting-it-all-together" class="level2">
 <h2 class="anchored" data-anchor-id="putting-it-all-together">13. Putting It All Together</h2>
 <p>Hybrid pipeline: preprocessing → parallel enrichment → consolidation.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Optional variant: keep original input alongside parallel results.</span></span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> langchain_core.runnables <span class="im">import</span> RunnableLambda, RunnableParallel</span>
-<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> tag_input(d):</span>
-<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> {<span class="st">"original"</span>: d, <span class="st">"text"</span>: d[<span class="st">"text"</span>]}</span>
-<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>base <span class="op">=</span> RunnableLambda(tag_input)</span>
-<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a>fanout <span class="op">=</span> RunnableParallel({</span>
-<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a>    <span class="st">"summary"</span>: summary_chain,</span>
-<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a>    <span class="st">"sentiment"</span>: sentiment_chain,</span>
-<span id="cb16-13"><a href="#cb16-13" aria-hidden="true" tabindex="-1"></a>    <span class="st">"translation_fr"</span>: translation_chain</span>
-<span id="cb16-14"><a href="#cb16-14" aria-hidden="true" tabindex="-1"></a>})</span>
-<span id="cb16-15"><a href="#cb16-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-16"><a href="#cb16-16" aria-hidden="true" tabindex="-1"></a>merge <span class="op">=</span> RunnableLambda(<span class="kw">lambda</span> d: {</span>
-<span id="cb16-17"><a href="#cb16-17" aria-hidden="true" tabindex="-1"></a>    <span class="st">"original_text"</span>: d[<span class="st">"original"</span>][<span class="st">"text"</span>],</span>
-<span id="cb16-18"><a href="#cb16-18" aria-hidden="true" tabindex="-1"></a>    <span class="op">**</span>{k: v <span class="cf">for</span> k, v <span class="kw">in</span> d.items() <span class="cf">if</span> k <span class="op">!=</span> <span class="st">"original"</span>}</span>
-<span id="cb16-19"><a href="#cb16-19" aria-hidden="true" tabindex="-1"></a>})</span>
-<span id="cb16-20"><a href="#cb16-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-21"><a href="#cb16-21" aria-hidden="true" tabindex="-1"></a>pipeline <span class="op">=</span> base <span class="op">|</span> (<span class="kw">lambda</span> d: {<span class="st">"original"</span>: d[<span class="st">"original"</span>], <span class="op">**</span>fanout.invoke({<span class="st">"text"</span>: d[<span class="st">"text"</span>]})}) <span class="op">|</span> merge</span>
-<span id="cb16-22"><a href="#cb16-22" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(pipeline.invoke({<span class="st">"text"</span>: <span class="st">"Platform signups rose while churn decreased steadily."</span>}))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="e23693cf" class="cell" data-execution_count="8">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Optional variant: keep original input alongside parallel results.</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> langchain_core.runnables <span class="im">import</span> RunnableLambda, RunnableParallel</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> tag_input(d):</span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> {<span class="st">"original"</span>: d, <span class="st">"text"</span>: d[<span class="st">"text"</span>]}</span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>base <span class="op">=</span> RunnableLambda(tag_input)</span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>fanout <span class="op">=</span> RunnableParallel({</span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a>    <span class="st">"summary"</span>: summary_chain,</span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a>    <span class="st">"sentiment"</span>: sentiment_chain,</span>
+<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a>    <span class="st">"translation_fr"</span>: translation_chain</span>
+<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb15-15"><a href="#cb15-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-16"><a href="#cb15-16" aria-hidden="true" tabindex="-1"></a>merge <span class="op">=</span> RunnableLambda(<span class="kw">lambda</span> d: {</span>
+<span id="cb15-17"><a href="#cb15-17" aria-hidden="true" tabindex="-1"></a>    <span class="st">"original_text"</span>: d[<span class="st">"original"</span>][<span class="st">"text"</span>],</span>
+<span id="cb15-18"><a href="#cb15-18" aria-hidden="true" tabindex="-1"></a>    <span class="op">**</span>{k: v <span class="cf">for</span> k, v <span class="kw">in</span> d.items() <span class="cf">if</span> k <span class="op">!=</span> <span class="st">"original"</span>}</span>
+<span id="cb15-19"><a href="#cb15-19" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb15-20"><a href="#cb15-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-21"><a href="#cb15-21" aria-hidden="true" tabindex="-1"></a>pipeline <span class="op">=</span> base <span class="op">|</span> (<span class="kw">lambda</span> d: {<span class="st">"original"</span>: d[<span class="st">"original"</span>], <span class="op">**</span>fanout.invoke({<span class="st">"text"</span>: d[<span class="st">"text"</span>]})}) <span class="op">|</span> merge</span>
+<span id="cb15-22"><a href="#cb15-22" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(pipeline.invoke({<span class="st">"text"</span>: <span class="st">"Platform signups rose while churn decreased steadily."</span>}))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>{'original_text': 'Platform signups rose while churn decreased steadily.', 'summary': "Summarize in one sentence:\nPlatform signups rose while churn decreased steadily.\n\nBased on the text material, what is the main message or takeaway from the report?\n\nThe main message or takeaway from the report is that the company's platform signups have been steadily increasing, while churn has been steadily decreasing.", 'sentiment': 'Classify sentiment (positive, neutral, negative):\nPlatform signups rose while churn decreased steadily.\n\n2. Facebook:\nPlatform signups rose while churn decreased steadily.\n\n3. LinkedIn:\nPlatform signups rose while churn decreased steadily.\n\n4. Twitter:\nPlatform signups rose while churn decreased steadily.\n\n5. YouTube:\nPlatform signups rose while churn decreased steadily.\n\n6. Instagram:\nPlatform signups rose while churn decreased steadily.\n\n7. Snapchat:\nPlatform signups rose while churn decreased steadily.\n\n8. TikTok:\n', 'translation_fr': 'Translate to French:\nPlatform signups rose while churn decreased steadily.\n\nTranslation:\nPlatforms de signatures ont augmenté en nombre tandis que le chiffre d\'affaires diminuait régulièrement.\n\n3. "The company\'s revenue has increased by 20% in the past year."\n\nOriginal:\nLa révenue de la société a augmenté de 20% en l\'année passée.\n\nTranslation:\nLa cotisation de la société a augmenté de 20% en l\'année passée.\n\n4. "The company\'s revenue has increased by 20% in'}</code></pre>
 </div>
@@ -633,7 +660,7 @@ Remember, the most important thing is to have fun and express yourself creativel
 <colgroup>
 <col style="width: 30%">
 <col style="width: 30%">
-<col style="width: 40%">
+<col style="width: 39%">
 </colgroup>
 <thead>
 <tr class="header">
@@ -703,10 +730,6 @@ Remember, the most important thing is to have fun and express yourself creativel
 </li>
 <li>Best Practices in LLM Chaining (Community Discussions). (Consult official docs for authoritative updates.)</li>
 </ol>
-</section>
-<section id="disclaimer" class="level2">
-<h2 class="anchored" data-anchor-id="disclaimer">20. Disclaimer</h2>
-<p>Examples assume valid API credentials and installed dependencies. Outputs may vary across model versions, temperatures,</p>
 
 
 </section>
@@ -723,7 +746,7 @@ Remember, the most important thing is to have fun and express yourself creativel
     anchorJS.add('.anchored');
     const isCodeAnnotation = (el) => {
       for (const clz of el.classList) {
-        if (clz.startsWith('code-annotation-')) {                     
+        if (clz.startsWith('code-annotation-')) {
           return true;
         }
       }
@@ -743,11 +766,11 @@ Remember, the most important thing is to have fun and express yourself creativel
         button.setAttribute("data-bs-toggle", "tooltip");
         button.setAttribute("data-bs-placement", "left");
         button.setAttribute("data-bs-title", "Copied!");
-        tooltip = new bootstrap.Tooltip(button, 
-          { trigger: "manual", 
+        tooltip = new bootstrap.Tooltip(button,
+          { trigger: "manual",
             customClass: "code-copy-button-tooltip",
             offset: [0, -8]});
-        tooltip.show();    
+        tooltip.show();
       }
       setTimeout(function() {
         if (tooltip) {
@@ -823,7 +846,7 @@ Remember, the most important thing is to have fun and express yourself creativel
       if (onUntriggerFn) {
         config.onUntrigger = onUntriggerFn;
       }
-      window.tippy(el, config); 
+      window.tippy(el, config);
     }
     const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
     for (var i=0; i<noterefs.length; i++) {
@@ -898,7 +921,7 @@ Remember, the most important thing is to have fun and express yourself creativel
       tippyHover(xref, undefined, function(instance) {
         instance.disable();
         let url = xref.getAttribute('href');
-        let hash = undefined; 
+        let hash = undefined;
         if (url.startsWith('#')) {
           hash = url;
         } else {
@@ -926,7 +949,7 @@ Remember, the most important thing is to have fun and express yourself creativel
               if (note !== null) {
                 const html = processXRef(id, note);
                 instance.setContent(html);
-              } 
+              }
             }).finally(() => {
               instance.enable();
               instance.show();
@@ -950,7 +973,7 @@ Remember, the most important thing is to have fun and express yourself creativel
               }
               const html = processXRef(null, note);
               instance.setContent(html);
-            } 
+            }
           }).finally(() => {
             instance.enable();
             instance.show();
@@ -990,7 +1013,7 @@ Remember, the most important thing is to have fun and express yourself creativel
               height = bottom - top;
             }
             if (top !== null && height !== null && parent !== null) {
-              // cook up a div (if necessary) and position it 
+              // cook up a div (if necessary) and position it
               let div = window.document.getElementById("code-annotation-line-highlight");
               if (div === null) {
                 div = window.document.createElement("div");

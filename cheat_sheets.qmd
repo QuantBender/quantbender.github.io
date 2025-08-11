@@ -1,0 +1,14 @@
+---
+title: "Chat Sheets"
+listing:
+    contents: "cheat sheets/RAG-AND-AGENTIC-AI/*.qmd"
+    type: default
+    sort: "date desc"
+    categories: true
+    sort-ui: false
+    filter-ui: false
+    image-align: left
+    fields: [image, date, title, description, categories,author]
+page-layout: full
+title-block-banner: true
+---
