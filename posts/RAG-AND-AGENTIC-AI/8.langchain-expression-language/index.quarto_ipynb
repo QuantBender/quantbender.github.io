@@ -72,7 +72,7 @@
         "\n",
         "A simple pipeline: format → generate → parse."
       ],
-      "id": "323afe98"
+      "id": "fd0e5055"
     },
     {
       "cell_type": "code",
@@ -122,7 +122,7 @@
         "\n",
         "print(joke_chain.invoke({\"adjective\": \"absurd\", \"topic\": \"penguins\"}))"
       ],
-      "id": "1b709adb",
+      "id": "aa5e6579",
       "execution_count": null,
       "outputs": []
     },
@@ -134,7 +134,7 @@
         "\n",
         "Add a preprocessing function before generation."
       ],
-      "id": "c3f3f58f"
+      "id": "e71d5eff"
     },
     {
       "cell_type": "code",
@@ -153,7 +153,7 @@
         "\n",
         "print(chain.invoke({\"adjective\": \" Witty \", \"topic\": \" Space Exploration  \"}))"
       ],
-      "id": "64ace5ec",
+      "id": "dc31b75d",
       "execution_count": null,
       "outputs": []
     },
@@ -165,7 +165,7 @@
         "\n",
         "Run multiple tasks (summary, translation, sentiment) simultaneously. A dict automatically becomes a parallel runnable."
       ],
-      "id": "209d428f"
+      "id": "bcffa8fc"
     },
     {
       "cell_type": "code",
@@ -219,7 +219,7 @@
         "sample = \"The product launch exceeded expectations, delighting early adopters despite minor shipping delays.\"\n",
         "print(parallel.invoke({\"text\": sample}))"
       ],
-      "id": "b5254f10",
+      "id": "97c1c063",
       "execution_count": null,
       "outputs": []
     },
@@ -231,7 +231,7 @@
         "\n",
         "Functions become transformation runnables; dictionaries become parallel composites—no manual wrapping required."
       ],
-      "id": "6dd7390d"
+      "id": "9002f0c7"
     },
     {
       "cell_type": "code",
@@ -246,7 +246,7 @@
         "coercion_chain = enrich | prompt | llm | parser\n",
         "print(coercion_chain.invoke({\"adjective\": \"\", \"topic\": \"Quantum Computing\"}))"
       ],
-      "id": "ca72ef24",
+      "id": "1f437673",
       "execution_count": null,
       "outputs": []
     },
@@ -258,7 +258,7 @@
         "\n",
         "Add resilient parsing to guard against minor format drift."
       ],
-      "id": "dcea0494"
+      "id": "88104c19"
     },
     {
       "cell_type": "code",
@@ -285,7 +285,7 @@
         "\n",
         "print(analysis_chain.invoke({\"text\": \"User adoption is accelerating and early feedback is enthusiastic.\"}))"
       ],
-      "id": "f7ffe854",
+      "id": "e44b93f1",
       "execution_count": null,
       "outputs": []
     },
@@ -297,7 +297,7 @@
         "\n",
         "Receive incremental output for responsive UIs."
       ],
-      "id": "99d659e1"
+      "id": "d1e021e2"
     },
     {
       "cell_type": "code",
@@ -310,7 +310,7 @@
         "    print(chunk, end=\"\", flush=True)\n",
         "print()"
       ],
-      "id": "f45e5e94",
+      "id": "b277ac67",
       "execution_count": null,
       "outputs": []
     },
@@ -322,7 +322,7 @@
         "\n",
         "Use `.ainvoke()` for concurrency (e.g. in web servers)."
       ],
-      "id": "3c973496"
+      "id": "50664dba"
     },
     {
       "cell_type": "code",
@@ -336,7 +336,7 @@
         "\n",
         "await run_async()"
       ],
-      "id": "fc7aa673",
+      "id": "c08f1b81",
       "execution_count": null,
       "outputs": []
     },
@@ -348,7 +348,7 @@
         "\n",
         "Hybrid pipeline: preprocessing → parallel enrichment → consolidation."
       ],
-      "id": "6a626677"
+      "id": "9dbc33c7"
     },
     {
       "cell_type": "code",
@@ -377,7 +377,7 @@
         "pipeline = base | (lambda d: {\"original\": d[\"original\"], **fanout.invoke({\"text\": d[\"text\"]})}) | merge\n",
         "print(pipeline.invoke({\"text\": \"Platform signups rose while churn decreased steadily.\"}))"
       ],
-      "id": "cc2f0125",
+      "id": "3ab777d0",
       "execution_count": null,
       "outputs": []
     },
@@ -440,7 +440,7 @@
         "5.  Li, D. et al. (2023). A Survey on Prompt Engineering. arXiv:2305.00050.\\\n",
         "6.  Best Practices in LLM Chaining (Community Discussions). (Consult official docs for authoritative updates.)"
       ],
-      "id": "849905de"
+      "id": "7c6824ed"
     }
   ],
   "metadata": {

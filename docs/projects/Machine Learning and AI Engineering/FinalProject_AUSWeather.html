@@ -249,8 +249,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="about-the-dataset" class="level2">
 <h2 class="anchored" data-anchor-id="about-the-dataset">About The Dataset</h2>
 <p>The dataset contains observations of weather metrics for each day from 2008 to 2017 in Australia. Features include temperature, rainfall, wind, humidity, pressure, cloud cover, and rain indicators.</p>
-<p>The dataset you’ll use in this project was downloaded from Kaggle at <a href="https://www.kaggle.com/datasets/jsphyg/weather-dataset-rattle-package?resource=download&amp;select=weatherAUS.csv">https://www.kaggle.com/datasets/jsphyg/weather-dataset-rattle-package/</a><br>
-Column definitions were gathered from <a href="http://www.bom.gov.au/climate/dwo/IDCJDW0000.shtml?utm_medium=Exinfluencer&amp;utm_source=Exinfluencer&amp;utm_content=000026UJ&amp;utm_term=10006555&amp;utm_id=NA-SkillsNetwork-Channel-SkillsNetworkCoursesIBMDeveloperSkillsNetworkML0101ENSkillsNetwork20718538-2022-01-01">http://www.bom.gov.au/climate/dwo/IDCJDW0000.shtml</a></p>
+<p>The dataset you’ll use in this project was downloaded from Kaggle at <a href="https://www.kaggle.com/datasets/jsphyg/weather-dataset-rattle-package?resource=download&amp;select=weatherAUS.csv">https://www.kaggle.com/datasets/jsphyg/weather-dataset-rattle-package/</a> Column definitions were gathered from <a href="http://www.bom.gov.au/climate/dwo/IDCJDW0000.shtml?utm_medium=Exinfluencer&amp;utm_source=Exinfluencer&amp;utm_content=000026UJ&amp;utm_term=10006555&amp;utm_id=NA-SkillsNetwork-Channel-SkillsNetworkCoursesIBMDeveloperSkillsNetworkML0101ENSkillsNetwork20718538-2022-01-01">http://www.bom.gov.au/climate/dwo/IDCJDW0000.shtml</a></p>
 <p>The dataset contains observations of weather metrics for each day from 2008 to 2017, and includes the following fields:</p>
 <table class="caption-top table">
 <colgroup>
@@ -548,7 +547,7 @@ weighted avg       0.83      0.84      0.83      1512</code></pre>
 <span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>y_pred <span class="op">=</span> grid_search.predict(X_test)</span>
 <span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(classification_report(y_test, y_pred))</span>
 <span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Generate the confusion matrix </span></span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Generate the confusion matrix</span></span>
 <span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>conf_matrix <span class="op">=</span> confusion_matrix(y_test, y_pred)</span>
 <span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a>plt.figure()</span>

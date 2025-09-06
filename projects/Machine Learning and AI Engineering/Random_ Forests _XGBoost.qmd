@@ -130,7 +130,3 @@ std_y = np.std(y_test)
 - XGBoost typically edges ahead in accuracy/time trade-off due to gradient boosting optimizations.
 - Random Forest remains a solid, low-friction baseline and a robustness benchmark.
 - Visualization of residual structure complements scalar metrics.
-
----
-
-*Static article: code is non-executable; figures generated with `scripts/generate_rf_xgb_figures.py`.*
