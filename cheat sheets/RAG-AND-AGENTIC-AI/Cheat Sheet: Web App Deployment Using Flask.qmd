@@ -1,0 +1,114 @@
+---
+title: "Cheat Sheet: Web App Deployment Using Flask"
+author: "Andrew Pfeiffer"
+date: "2025-08-11"
+description: "Quick reference for building simple Flask endpoints and handling HTTP status codes."
+categories: [Flask, Web]
+image: cover_image3.jpeg
+format:
+  html:
+    theme: cosmo
+    toc: true
+    toc-depth: 2
+    code-copy: true
+    smooth-scroll: true
+    anchor-sections: true
+---
+
+![](cover_image3.jpeg)
+
+> Estimated time needed: 5 minutes
+
+## Flask
+
+Used to instantiate an object of the Flask class named app.
+
+```python
+from flask import Flask
+
+app = Flask(__name__)
+```
+
+## @app.route decorator
+
+A decorator in Flask used to map URLs to specific functions in a Flask application.
+
+```python
+from flask import Flask
+
+app = Flask(__name__)
+
+@app.route('/')
+def hello_world():
+    return "My first Flask application in action!"
+```
+
+## 200 OK status
+
+Flask returns a 200 OK status by default when a route returns a value. You can also return it explicitly.
+
+```python
+from flask import Flask
+
+app = Flask(__name__)
+
+@app.route('/')
+def hello_world():
+    # Implicit 200 OK
+    return "My first Flask application in action!"
+
+@app.route('/explicit')
+def explicit_ok():
+    # Explicit 200 OK
+    return "My first Flask application in action!", 200
+```
+
+## Error statuses
+
+- 400: Invalid request (e.g., missing or improper parameters).
+- 401: Missing or invalid credentials.
+- 403: Insufficient permissions to fulfill the request.
+- 404: Resource not found.
+- 405: Method not allowed.
+
+Example returning validation and not-found errors:
+
+```python
+from flask import Flask, request
+
+app = Flask(__name__)
+
+@app.route('/search')
+def search_response():
+    query = request.args.get("q")
+    if not query:
+        return {"error_message": "Input parameter missing"}, 422
+    # fetch the resource from the database
+    resource = fetch_from_database(query)  # implement this function
+    if resource:
+        return {"message": resource}
+    else:
+        return {"error_message": "Resource not found"}, 404
+```
+
+## Error 500
+
+500 is used when there is an error on the server.
+
+```python
+from flask import Flask
+
+app = Flask(__name__)
+
+@app.errorhandler(500)
+def server_error(error):
+    return {"message": "Something went wrong on the server"}, 500
+```
+
+## Author(s)
+
+Andrew Pfeiffer
+
+#### Other Contributor(s)
+
+Abhishek Gagneja,

@@ -1,0 +1,124 @@
+---
+title: "Introduction to Financial Mathematics: Terms, Concepts, and Real-World Applications"
+author: "DOSSEH Ameck Guy-Max Désiré"
+image: intro_fin.jpg
+description: "A comprehensive overview of financial mathematics, covering key terms, concepts, and their applications in modern finance. This post summarizes the first lecture of MIT's 18.S096 course, providing insights into the evolution of quantitative finance and foundational financial products and markets."
+format:
+  html:
+    theme: cosmo
+    toc: true
+    toc-depth: 2
+    code-copy: true
+    smooth-scroll: true
+    anchor-sections: true
+date: 2025-08-21
+categories: ["Quantitative-Finance", "Financial Mathematics"]
+---
+
+![](intro_fin.jpg)
+
+> Estimated reading time: \~10 minutes
+
+## Introduction
+
+This post summarizes the first lecture of MIT's 18.S096 Topics in Mathematics with Applications in Finance, providing an overview of the course, the evolution of quantitative finance, and foundational concepts in financial markets.
+
+------------------------------------------------------------------------
+
+## Course Overview
+
+The course is designed to show how mathematics is applied in modern finance, with lectures from both academics and industry practitioners. The aim is to give students a "sampling menu" of topics, helping them decide if this is a field they wish to pursue.
+
+-   **Instructors:** Dr. Jake Xia, Dr. Vasily Strela, Dr. Peter Kempthorne, Dr. Choongbum Lee
+-   **Audience:** Primarily math majors, with some students from finance, business, engineering, and other universities
+
+------------------------------------------------------------------------
+
+## The Evolution of Quantitative Finance
+
+Quantitative finance is a relatively new field, with many terms and models developed in the last 30 years. The transformation from intuition-based trading to mathematically-driven strategies has changed the industry, with most traders now having advanced degrees in mathematics or computer science.
+
+------------------------------------------------------------------------
+
+## Financial Markets and Products
+
+### Types of Markets
+
+-   **Centralized Exchanges:** Stock and futures exchanges where products are listed and traded
+-   **Electronic Platforms (ECNs):** High-volume electronic trading
+-   **Over-the-Counter (OTC):** Direct trades between counterparties, not subject to exchange rules
+
+### Financial Products
+
+-   **Equities (Stocks):** Traded via IPO (primary market) and then in secondary markets
+-   **Debt Products (Loans, Bonds):** Private agreements or securitized as bonds
+-   **Commodities:** Metals, energy, agriculture, often traded as futures
+-   **Real Estate:** Houses, mortgages, asset-backed securities
+-   **Derivatives:** Swaps, options, and complex structured products
+
+------------------------------------------------------------------------
+
+## Key Market Participants
+
+-   **Banks:** Commercial and investment banks, often acting as market makers
+-   **Asset Managers:** Mutual funds, pension funds, insurance companies, endowments
+-   **Hedge Funds:** Seek profit from market inefficiencies using various strategies
+-   **Private Equity:** Invest in companies to improve profitability
+-   **Governments:** Influence markets through policy and regulation
+
+------------------------------------------------------------------------
+
+## Types of Trading
+
+-   **Hedging:** Reducing existing risk (e.g., currency or interest rate exposure)
+-   **Market Making:** Providing liquidity and earning the bid-offer spread
+-   **Proprietary Trading:** Taking risk to generate returns (e.g., hedge funds)
+
+------------------------------------------------------------------------
+
+## Mathematical Concepts in Finance
+
+-   **Pricing Models:** Use mathematics (e.g., differential equations) to price complex products like options
+-   **Risk Management:** Quantify and manage exposure using mathematical tools (e.g., Value at Risk)
+-   **Trading Strategies:** Develop systematic, statistical, or arbitrage strategies
+
+------------------------------------------------------------------------
+
+## Human Behavior and Risk
+
+**Risk Aversion Example:** - **Choice A:** 80% chance to win \$500, 20% chance to lose \$500 - **Choice B:** 100% chance to win \$280
+
+People often prefer a certain smaller gain over a risky larger one, even if the expected value is higher for the risky choice. This illustrates risk aversion, a key concept in behavioral finance.
+
+**Do People Learn from Experience?** - Market cycles are long, but memories are short. - People tend to extrapolate from recent history, sometimes oversimplifying complex systems.
+
+------------------------------------------------------------------------
+
+## Real-World Projects
+
+### Project 1: Noisy Delta
+
+-   **Goal:** Estimate the derivative (Delta) of a function using Monte Carlo simulations.
+-   **Challenge:** The estimate is noisy; optimal shift size must be chosen to minimize error.
+
+### Project 2: Kalman Filter
+
+-   **Goal:** Use the Kalman filter to improve the accuracy of currency price predictions from noisy broker data.
+-   **Application:** Aggregating and filtering real-time financial data for better trading decisions.
+
+------------------------------------------------------------------------
+
+## Homework (Optional)
+
+-   **Create a Financial Glossary:** List and research financial terms you don't understand.
+-   **Explore Course Materials:** Read additional resources and suggested literature.
+
+------------------------------------------------------------------------
+
+## Conclusion
+
+Financial mathematics is a dynamic and evolving field, blending rigorous mathematics with real-world intuition and judgment. Understanding both the technical and human aspects is key to success in modern finance.
+
+------------------------------------------------------------------------
+
+*Inspired by MIT 18.S096 Topics in Mathematics with Applications in Finance, Lecture Note 1.*
