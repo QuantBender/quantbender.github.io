@@ -2,14 +2,43 @@
   {
     "listing": "/cheat_sheets.html",
     "items": [
+      "/cheat sheets/RAG-AND-AGENTIC-AI/Build Smarter AI Apps: Empower LLMs with LangChain.html",
+      "/cheat sheets/RAG-AND-AGENTIC-AI/Cheat Sheet: Web App Deployment Using Flask.html",
       "/cheat sheets/RAG-AND-AGENTIC-AI/Foundations of Generative AI and LangChain.html"
     ]
   },
   {
-    "listing": "/index.html",
+    "listing": "/projects.html",
+    "items": [
+      "/projects/Machine Learning and AI Engineering/Random_ Forests _XGBoost.html",
+      "/projects/Machine Learning and AI Engineering/Logistic_Regression.html",
+      "/projects/Machine Learning and AI Engineering/ML_Pipelines_and_GridSearchCV.html",
+      "/projects/Machine Learning and AI Engineering/Mulitple-Linear-Regression.html",
+      "/projects/Machine Learning and AI Engineering/Multi-class_Classification.html",
+      "/projects/Machine Learning and AI Engineering/PCA.html",
+      "/projects/Machine Learning and AI Engineering/Regression_Trees_Taxi_Tip.html",
+      "/projects/Machine Learning and AI Engineering/Regularization_in_LinearRegression.html",
+      "/projects/Machine Learning and AI Engineering/Simple-Linear-Regression.html",
+      "/projects/Machine Learning and AI Engineering/TitanicSurvivalPred.html",
+      "/projects/Machine Learning and AI Engineering/tSNE_UMAP.html",
+      "/projects/Machine Learning and AI Engineering/Comparing_DBScan_HDBScan.html",
+      "/projects/Machine Learning and AI Engineering/Decision_trees.html",
+      "/projects/Machine Learning and AI Engineering/Evaluating Classification Models.html",
+      "/projects/Machine Learning and AI Engineering/Evaluating_k-means_clustering.html",
+      "/projects/Machine Learning and AI Engineering/Evaluating_random_forest.html",
+      "/projects/Machine Learning and AI Engineering/FinalProject_AUSWeather.html",
+      "/projects/Machine Learning and AI Engineering/K-Means-Customer-Seg.html",
+      "/projects/Machine Learning and AI Engineering/KNN_Classification.html",
+      "/projects/Machine Learning and AI Engineering/decision_tree_svm_ccFraud.html"
+    ]
+  },
+  {
+    "listing": "/blogs.html",
     "items": [
       "/posts/Quantitative-Finance/swap-design/index.html",
       "/posts/Quantitative-Finance/The-Binomial-No-Arbitrage-Pricing-Model/index.html",
+      "/posts/RAG-AND-AGENTIC-AI/12. Choose the right AI model for your use case/index.html",
+      "/posts/RAG-AND-AGENTIC-AI/13. From Idea to AI/index.html",
       "/posts/RAG-AND-AGENTIC-AI/10. langchain-and-agents-for-building-applications/index.html",
       "/posts/RAG-AND-AGENTIC-AI/11. LCEL-chaining-method/index.html",
       "/posts/RAG-AND-AGENTIC-AI/9.langchain-core-concepts/index.html",
@@ -24,18 +53,12 @@
     ]
   },
   {
-    "listing": "/labs.html",
-    "items": [
-      "/labs/RAG-AND-AGENTIC-AI/2. Langchain Core Components And Advanced Features Part 1/index.html",
-      "/labs/RAG-AND-AGENTIC-AI/3. Langchain Core Components And Advanced Features Part 2/index.html",
-      "/labs/RAG-AND-AGENTIC-AI/1. Develop Generative AI Applications: Get Started/index.html"
-    ]
-  },
-  {
-    "listing": "/blogs.html",
+    "listing": "/index.html",
     "items": [
       "/posts/Quantitative-Finance/swap-design/index.html",
       "/posts/Quantitative-Finance/The-Binomial-No-Arbitrage-Pricing-Model/index.html",
+      "/posts/RAG-AND-AGENTIC-AI/12. Choose the right AI model for your use case/index.html",
+      "/posts/RAG-AND-AGENTIC-AI/13. From Idea to AI/index.html",
       "/posts/RAG-AND-AGENTIC-AI/10. langchain-and-agents-for-building-applications/index.html",
       "/posts/RAG-AND-AGENTIC-AI/11. LCEL-chaining-method/index.html",
       "/posts/RAG-AND-AGENTIC-AI/9.langchain-core-concepts/index.html",

@@ -72,7 +72,7 @@
         "\n",
         "A simple pipeline: format → generate → parse."
       ],
-      "id": "38dcad72"
+      "id": "323afe98"
     },
     {
       "cell_type": "code",
@@ -122,7 +122,7 @@
         "\n",
         "print(joke_chain.invoke({\"adjective\": \"absurd\", \"topic\": \"penguins\"}))"
       ],
-      "id": "8b20999b",
+      "id": "1b709adb",
       "execution_count": null,
       "outputs": []
     },
@@ -134,7 +134,7 @@
         "\n",
         "Add a preprocessing function before generation."
       ],
-      "id": "2080f02d"
+      "id": "c3f3f58f"
     },
     {
       "cell_type": "code",
@@ -153,7 +153,7 @@
         "\n",
         "print(chain.invoke({\"adjective\": \" Witty \", \"topic\": \" Space Exploration  \"}))"
       ],
-      "id": "c4ac730a",
+      "id": "64ace5ec",
       "execution_count": null,
       "outputs": []
     },
@@ -165,7 +165,7 @@
         "\n",
         "Run multiple tasks (summary, translation, sentiment) simultaneously. A dict automatically becomes a parallel runnable."
       ],
-      "id": "763b796c"
+      "id": "209d428f"
     },
     {
       "cell_type": "code",
@@ -219,7 +219,7 @@
         "sample = \"The product launch exceeded expectations, delighting early adopters despite minor shipping delays.\"\n",
         "print(parallel.invoke({\"text\": sample}))"
       ],
-      "id": "6351feb3",
+      "id": "b5254f10",
       "execution_count": null,
       "outputs": []
     },
@@ -231,7 +231,7 @@
         "\n",
         "Functions become transformation runnables; dictionaries become parallel composites—no manual wrapping required."
       ],
-      "id": "67ba8b04"
+      "id": "6dd7390d"
     },
     {
       "cell_type": "code",
@@ -246,7 +246,7 @@
         "coercion_chain = enrich | prompt | llm | parser\n",
         "print(coercion_chain.invoke({\"adjective\": \"\", \"topic\": \"Quantum Computing\"}))"
       ],
-      "id": "15d622a1",
+      "id": "ca72ef24",
       "execution_count": null,
       "outputs": []
     },
@@ -258,7 +258,7 @@
         "\n",
         "Add resilient parsing to guard against minor format drift."
       ],
-      "id": "13de7f33"
+      "id": "dcea0494"
     },
     {
       "cell_type": "code",
@@ -285,7 +285,7 @@
         "\n",
         "print(analysis_chain.invoke({\"text\": \"User adoption is accelerating and early feedback is enthusiastic.\"}))"
       ],
-      "id": "80589d08",
+      "id": "f7ffe854",
       "execution_count": null,
       "outputs": []
     },
@@ -297,7 +297,7 @@
         "\n",
         "Receive incremental output for responsive UIs."
       ],
-      "id": "ca4096c2"
+      "id": "99d659e1"
     },
     {
       "cell_type": "code",
@@ -310,7 +310,7 @@
         "    print(chunk, end=\"\", flush=True)\n",
         "print()"
       ],
-      "id": "9a98625b",
+      "id": "f45e5e94",
       "execution_count": null,
       "outputs": []
     },
@@ -322,7 +322,7 @@
         "\n",
         "Use `.ainvoke()` for concurrency (e.g. in web servers)."
       ],
-      "id": "df4cc20c"
+      "id": "3c973496"
     },
     {
       "cell_type": "code",
@@ -336,7 +336,7 @@
         "\n",
         "await run_async()"
       ],
-      "id": "f82f70f5",
+      "id": "fc7aa673",
       "execution_count": null,
       "outputs": []
     },
@@ -348,7 +348,7 @@
         "\n",
         "Hybrid pipeline: preprocessing → parallel enrichment → consolidation."
       ],
-      "id": "cb1972c7"
+      "id": "6a626677"
     },
     {
       "cell_type": "code",
@@ -377,7 +377,7 @@
         "pipeline = base | (lambda d: {\"original\": d[\"original\"], **fanout.invoke({\"text\": d[\"text\"]})}) | merge\n",
         "print(pipeline.invoke({\"text\": \"Platform signups rose while churn decreased steadily.\"}))"
       ],
-      "id": "f01893a1",
+      "id": "cc2f0125",
       "execution_count": null,
       "outputs": []
     },
@@ -440,15 +440,14 @@
         "5.  Li, D. et al. (2023). A Survey on Prompt Engineering. arXiv:2305.00050.\\\n",
         "6.  Best Practices in LLM Chaining (Community Discussions). (Consult official docs for authoritative updates.)"
       ],
-      "id": "55855538"
+      "id": "849905de"
     }
   ],
   "metadata": {
     "kernelspec": {
-      "name": "swap-env",
+      "display_name": "Python 3",
       "language": "python",
-      "display_name": "swap-env",
-      "path": "/home/ameck/.local/share/jupyter/kernels/swap-env"
+      "name": "python3"
     }
   },
   "nbformat": 4,

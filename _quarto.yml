@@ -7,7 +7,7 @@ website:
     right:
       - about.qmd
       - blogs.qmd
-      - labs.qmd
+      - projects.qmd
       - cheat_sheets.qmd
       - icon: github
         href: https://github.com/
