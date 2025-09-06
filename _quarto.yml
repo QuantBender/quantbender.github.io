@@ -20,4 +20,15 @@ format:
       - brand
     css: styles.css
 
-editor: visual
+editor: source
+comments:
+  giscus:
+    repo:  quantbender/quantbender.github.io
+    repo-id: "R_kgDOPamaAQ"
+    category: "Announcements"
+    category-id: "DIC_kwDOPamaAc4CvEiP"
+    mapping: "pathname"
+    reactions-enabled: true
+    loading: lazy
+    input-position: "bottom"
+    theme: "light"
